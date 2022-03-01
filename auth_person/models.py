@@ -8,6 +8,11 @@ class Role(models.Model):
     role = models.CharField(max_length=20)
 
 
+class Logo(models.Model):
+    logo_id = models.AutoField(primary_key=True)
+    logo = models.FileField(upload_to='files/image/user_logo/%Y-%m-%d/')
+
+
 class Person(models.Model):
     person_id = models.AutoField(primary_key=True)
     login = models.CharField(max_length=20, null=False, help_text='basic login information', unique=True)
@@ -19,7 +24,10 @@ class Person(models.Model):
     roleId = models.ForeignKey(
         Role,
         on_delete=models.CASCADE,
-        default=10
+    )
+    logoId = models.ForeignKey(
+        Logo,
+        on_delete=models.CASCADE,
     )
     balance = models.DecimalField(max_digits=19, decimal_places=10)
     registrationDate = models.DateTimeField(auto_now=True)

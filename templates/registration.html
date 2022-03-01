@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FabLab App</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+               {{ form }}
+        </table>
+        <input type="submit" value="Send" href="personalArea.html">
+    </form>
+</body>
+</html>
