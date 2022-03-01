@@ -1,6 +1,6 @@
 from django.urls import re_path, path
 
-from auth.views import registration
+from auth_person.views import registration
 
 urlpatterns = [
     path('registration/', registration),

@@ -10,7 +10,7 @@ class Role(models.Model):
 
 class Logo(models.Model):
     logo_id = models.AutoField(primary_key=True)
-    logo = models.FileField(upload_to='files/image/user_logo/%Y-%m-%d/')
+    logo = models.ImageField(upload_to='files/image/user_logo/%Y-%m-%d/', null=True, blank=True)
 
 
 class Person(models.Model):

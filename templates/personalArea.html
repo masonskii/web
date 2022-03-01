@@ -5,9 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>FabLab App</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
 </head>
 <body>
 <div>
+    {% if logo_obj %}
+    <img src='{{ logo_obj }}' alt="your_logo">
+    {% endif %}
     <p>{{ person.login }}</p>
     <p>{{ person.name }}</p>
     <p>{{ person.surname }}</p>
