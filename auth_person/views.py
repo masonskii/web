@@ -11,7 +11,8 @@ def registration(request):
         new_person = PersonRegistrationForms(request.POST, request.FILES)
         if new_person.is_valid():
             new_user = create_new_user(request)
-            return render(request, 'main.html')
+            return render(request, 'personalArea.html', {'person': new_user,
+                                                         'logo_obj': new_user.logoId.logo.url})
         else:
             return render(request, 'invData.html')
     else:

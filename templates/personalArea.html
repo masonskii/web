@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}" />
 </head>
 <body>
+{% if person.email.email is None %}
+    <div>
+        <p style="color:red">Пользователь без почтового адреса не имеет доступа к некоторым функциям</p>
+    </div>
+{% endif %}
 <div>
     {% if logo_obj %}
     <img src='{{ logo_obj }}' alt="your_logo">
     {% endif %}
     <p>{{ person.login }}</p>
     <p>{{ person.name }}</p>
+    <p>{{ person.email.email }}</p>
+    <p>{{ person.mobilePhone.phone }}</p>
     <p>{{ person.surname }}</p>
     <p>{{ person.birthday }}</p>
     <p>{{ person.balance }}</p>

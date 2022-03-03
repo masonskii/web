@@ -3,9 +3,7 @@ import datetime
 from django import forms
 
 
-
 class PersonRegistrationForms(forms.Form):
-
     login = forms.CharField(
         label='login',
         help_text='enter your login',
@@ -17,6 +15,12 @@ class PersonRegistrationForms(forms.Form):
         help_text='enter your password',
         min_length=6,
         max_length=32,
+    )
+    email = forms.EmailField(
+        label='Email',
+        help_text='enter your email',
+        max_length=30,
+        required=False,
     )
     name = forms.CharField(
         label='name',
@@ -39,7 +43,16 @@ class PersonRegistrationForms(forms.Form):
         help_text='enter your birthday',
         initial=datetime.date.today()
     )
-    logo = forms.ImageField()
+    mobilePhone = forms.CharField(
+        label='phone',
+        help_text='enter your telephone',
+        max_length=12,
+        initial='+7',
+        required=False,
+    )
+    logo = forms.ImageField(
+        required=False
+    )
 
 
 class SignIn(forms.Form):
