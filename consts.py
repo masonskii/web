@@ -1,0 +1,1 @@
+DEFAULT_NAME_APP = 'FabLab App'

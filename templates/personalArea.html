@@ -4,22 +4,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FabLab App</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static "css/style.less" %}" />
 </head>
 <body>
+{% if not person.email.email%}
+    <div>
+        <p style="color:red">Пользователь без почтового адреса не имеет доступа к некоторым функциям</p>
+    </div>
+{% endif %}
 <div>
     {% if logo_obj %}
-    <img src='{{ logo_obj }}' alt="your_logo">
+        <img src='{{ logo_obj }}' alt="your logo"  >
     {% endif %}
+</div>
     <p>{{ person.login }}</p>
-    <p>{{ person.name }}</p>
+    <p>{{ person.name}}</p>
+    <p>{{ person.email.email }}</p>
+    <p>{{ person.phone.phone }}</p>
     <p>{{ person.surname }}</p>
     <p>{{ person.birthday }}</p>
     <p>{{ person.balance }}</p>
     <p>{{ person.roleId.role }}</p>
     <p>{{ person.registrationDate }}</p>
     <p>{{ person.lastEntrance }}</p>
+</div>
+<div>
+    <a href="{% url 'index' %}"><p>Back</p></a>
 </div>
 </body>
 </html>

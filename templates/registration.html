@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>FabLab App</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" href="{% static "css/style.less" %}" />
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" >
         {% csrf_token %}
         <table>
             {{ form }}

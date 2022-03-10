@@ -13,6 +13,16 @@ class Logo(models.Model):
     logo = models.ImageField(upload_to='files/image/user_logo/%Y-%m-%d/', null=True, blank=True)
 
 
+class Email(models.Model):
+    email_id = models.AutoField(primary_key=True)
+    email = models.EmailField(max_length=50, null=True, blank=True)
+
+
+class MobilePhone(models.Model):
+    mPhone_id = models.AutoField(primary_key=True)
+    phone = models.CharField(max_length=12, null=True, blank=True)
+
+
 class Person(models.Model):
     person_id = models.AutoField(primary_key=True)
     login = models.CharField(max_length=20, null=False, help_text='basic login information', unique=True)
@@ -28,6 +38,22 @@ class Person(models.Model):
     logoId = models.ForeignKey(
         Logo,
         on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='toLogoFromUser'
+    )
+    email = models.ForeignKey(
+        Email,
+        on_delete=models.CASCADE,
+        default=10,
+        null=True, blank=True,
+        related_name='toEmailFromUser'
+    )
+    phone = models.ForeignKey(
+        MobilePhone,
+        on_delete=models.CASCADE,
+        default=10,
+        null=True, blank=True,
+        related_name='toPhoneFromUser'
     )
     balance = models.DecimalField(max_digits=19, decimal_places=10)
     registrationDate = models.DateTimeField(auto_now=True)
@@ -69,23 +95,4 @@ class Membership(models.Model):
         Person,
         on_delete=models.CASCADE,
         related_name='MembershipPersonId'
-    )
-
-
-class Email(models.Model):
-    email_id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=50)
-    personId = models.ForeignKey(
-        Person,
-        on_delete=models.CASCADE,
-        related_name='emailPerson'
-    )
-
-
-class MobilePhone(models.Model):
-    mPhone_id = models.AutoField(primary_key=True)
-    phone = models.CharField(max_length=12)
-    personId = models.ForeignKey(
-        Person,
-        on_delete=models.CASCADE
     )
