@@ -1,7 +1,12 @@
+import decimal
+
 from django.db import models
 
 # Create your models here.
-"""class Transfer(models.Model):
+from auth_person.models import Person
+
+
+class Transfer(models.Model):
     senderId = models.ForeignKey(
         Person,
         on_delete=models.CASCADE,
@@ -17,5 +22,22 @@ from django.db import models
     )
     tDate = models.DateTimeField()
 
-
-"""
+    def sending(self):
+        self.amout = decimal.Decimal(self.summary)
+        if self.amout <= 0 or self.senderId.balance <= 0 or self.senderId.balance < self.amout:
+            return [
+                False,
+                None,
+                None,
+                None,
+                'Funds sent successfully'
+            ]
+        self.senderId.balance - self.amout
+        self.recipientId.balance + self.amout
+        return [
+            True,
+            self.amout,
+            self.senderId.balance,
+            self.recipientId.balance,
+            'Funds sent successfully'
+        ]
