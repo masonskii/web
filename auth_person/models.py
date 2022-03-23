@@ -23,6 +23,13 @@ class MobilePhone(models.Model):
     phone = models.CharField(max_length=12, null=True, blank=True)
 
 
+class PersonCard(models.Model):
+    card_id = models.AutoField(primary_key=True)
+    number = models.CharField(max_length=12, unique=True)
+    secret_code = models.CharField(max_length=3)
+
+git
+
 class Person(models.Model):
     person_id = models.AutoField(primary_key=True)
     login = models.CharField(max_length=20, null=False, help_text='basic login information', unique=True)
@@ -54,6 +61,11 @@ class Person(models.Model):
         default=10,
         null=True, blank=True,
         related_name='toPhoneFromUser'
+    )
+    card = models.ForeignKey(
+        PersonCard,
+        on_delete=models.CASCADE,
+        related_name='toCardFromUser'
     )
     balance = models.DecimalField(max_digits=19, decimal_places=10)
     registrationDate = models.DateTimeField(auto_now=True)

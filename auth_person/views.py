@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from auth_person.forms import PersonRegistrationForms, SignIn
 from auth_person.func import add_to_user_role, add_to_user_logo, \
-    add_to_user_email, add_to_user_phone
+    add_to_user_email, add_to_user_phone, GenerateCard, add_to_user_card
 from auth_person.models import Person
 from django.contrib.auth.models import User
 
@@ -19,6 +19,7 @@ def sign_up(request):
         new_person = PersonRegistrationForms(request.POST, request.FILES)
         if new_person.is_valid():
             new_user = Person()
+
             new_user.login = request.POST.get('login')
             new_user.password = request.POST.get('password')
             new_user.name = request.POST.get('name')
@@ -29,6 +30,7 @@ def sign_up(request):
             new_user.logoId = add_to_user_logo(request)
             new_user.email = add_to_user_email(request)
             new_user.phone = add_to_user_phone(request)
+            new_user.card = add_to_user_card()
             new_user.save()
             if not new_user.email.email:
                 return new_user

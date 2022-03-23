@@ -64,7 +64,6 @@
             <li><a href="#">Feedback</a></li>
             {% if user.is_authenticated %}
                  <li><a href="{% url 'login:user-area' %}">{{ user.username }}</a></li>
-                 <li><a href="{% url 'login:user-area' %}">Profile</a></li>
                  <li><a href="{% url 'login:logout' %}" >Logout</a> </li>
             {% else %}
                 <li><a href="{% url 'login:sign-in' %}">sign in</a></li>
