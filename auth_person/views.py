@@ -19,7 +19,6 @@ def sign_up(request):
         new_person = PersonRegistrationForms(request.POST, request.FILES)
         if new_person.is_valid():
             new_user = Person()
-
             new_user.login = request.POST.get('login')
             new_user.password = request.POST.get('password')
             new_user.name = request.POST.get('name')

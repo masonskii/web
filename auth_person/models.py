@@ -28,7 +28,6 @@ class PersonCard(models.Model):
     number = models.CharField(max_length=12, unique=True)
     secret_code = models.CharField(max_length=3)
 
-git
 
 class Person(models.Model):
     person_id = models.AutoField(primary_key=True)

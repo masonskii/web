@@ -8,15 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/index_css.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/index_menu.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/index_bg.css' %}" type="text/css">
 </head>
 <body>
+<div class="background">
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+</div>
 <div class="intro">
       <div class="left">
         <div>
           <span>Explore</span>
           <h1>The Places Where You Will</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos eveniet amet excepturi voluptates dolorem totam ad quod hic, porro accusamus, repellat, corrupti at obcaecati ducimus, dolor quibusdam sequi nemo inventore?</p>
-          <a href="https://unsplash.com/" target="_blank">Images by Unsplash</a>
         </div>
       </div>
 
@@ -58,7 +65,7 @@
     <div class="wrapper">
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="{% url 'bank:transfer' %}">Bank</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Feedback</a></li>
@@ -72,6 +79,7 @@
         </ul>
 </div>
 </div>
+<div style="width: 100%; height: 1000px; background-color: transparent"></div>
 </body>
 {% block extrahead %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>

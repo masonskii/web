@@ -1,83 +1,326 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
+body{
+    background: rgb(35, 20, 43);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.background {
+  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding:0;
+  margin:0px;
+}
+.cube {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #D7D4E4;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 12s ease-in forwards infinite;
+}
+.cube:nth-child(2n) {
+  border-color: #FFF ;
+}
+.cube:nth-child(2) {
+  animation-delay: 2s;
+  left: 25vw;
+  top: 40vh;
+}
+.cube:nth-child(3) {
+  animation-delay: 4s;
+  left: 75vw;
+  top: 50vh;
+}
+.cube:nth-child(4) {
+  animation-delay: 6s;
+  left: 90vw;
+  top: 10vh;
+}
+.cube:nth-child(5) {
+  animation-delay: 8s;
+  left: 10vw;
+  top: 85vh;
+}
+.cube:nth-child(6) {
+  animation-delay: 10s;
+  left: 50vw;
+  top: 10vh;
+}
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background-color: rgb(39, 43, 82);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
   padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+  color: rgb(232, 131, 30);
+  text-align: center;
+}
+.login-box h2:hover {
+  animation:gradient-h2 5s infinite alternate;
+}
+
+@keyframes gradient-h2 {
+  0%{
+      color: #FC415A;
+  }
+  50%{
+      color:#591BC5;
+  }
+  100%{
+    color: #fff;
+  }
+}
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 12px;
+  color: rgb(232, 131, 30);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
   outline: none;
+  background: transparent;
 }
-html { height: 101%; } /* always display scrollbars */
-body { font-size: 62.5%; line-height: 1; font-family: Arial, Tahoma, Verdana, sans-serif; }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
-ol, ul { list-style: none; }
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: rgb(232, 131, 30);
+  pointer-events: none;
+  transition: .5s;
+}
 
-blockquote, q { quotes: none; }
-blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
-strong { font-weight: bold; }
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+  top: -20px;
+  left: 0;
+  color: #fff;
+  font-size: 12px;
+}
+.line {
+  width:100%;
+    border-bottom: 1px solid #fff; /* Параметры линии */
+   }
+.login-box form a {
+  position: relative;
+  display: flex;
+  padding: 10px 20px;
+  color: rgb(232, 131, 30);
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 2px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.login-box form .second-fu {
+  position: relative;
+  display: inline-block;
+}
 
-input { outline: none; }
+#button {
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #1ECD97;
+  color: #1ECD97;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin:5%;
+}
+#button:hover {
+  color: white;
+  background: #1ECD97;
+}
+#button:active {
+  letter-spacing: 2px;
+}
+#button:after {
+  content: "Вход";
+}
 
-table { border-collapse: collapse; border-spacing: 0; }
-img { border: 0; max-width: 100%; }
 
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
-.header{
-    z-index: 1;
-    width: 100%;
-    height: 250px;
-    position: relative;
-    background-color:#44518B ;
-    box-shadow: 0px 0px 5px black;
-    display: flex;
-    align-items:center;
+.login-box form .forg__up{
+    display:block;
+    width: auto;
+    font-size: 7px;
+    margin:4%;
 }
-.back-circle{
-    top:55%;
-    left:45%;
-    border-radius: 50%;
-    position: absolute;
-    display: flex;
-    width:150px;
-    height: 150px;
-    background-color: #44518B;
+.login-box form .reg__up{
+    display:block;
+    width: auto;
+    font-size: 7px;
+    margin:4%;
+}
+.login-box .sign__up:hover {
+  background: rgb(232, 131, 30);
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 2px rgb(232, 131, 30),
+    0 0 25px rgb(232, 131, 30),
+    0 0 50px rgb(232, 131, 30),
+    0 0 100px rgb(232, 131, 30);
+}
+.login-box .forg__up:hover {
+  background: rgb(163, 105, 96);
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 2px rgb(163, 105, 96),
+    0 0 25px rgb(163, 105, 96),
+    0 0 50px rgb(163, 105, 96),
+    0 0 100px rgb(163, 105, 96);
+}
+.login-box .reg__up:hover {
+  background: rgb(96, 163, 125);
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 2px rgb(96, 163, 125),
+    0 0 25px rgb(96, 163, 125),
+    0 0 50px rgb(96, 163, 125),
+    0 0 100px rgb(96, 163, 125);
+}
 
+.login-box a span {
+  position: absolute;
+  display: block;
 }
-.circle{
-    left:5%;
-    top:5%;
-    position: relative;
-    display: flex;
-    background-color: white;
-    border-radius: 45%;
-    width: 90%;
-    height: 90%;
-    justify-content: center;
-    -ms-align-items: center;
-    align-items: center;
-    box-shadow: 0px 5px 50px white;
+
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
 }
-.main{
-    position: relative;
-    width: 100%;
-    height: 500px;
-    background-color:#293C72 ;
-    display: flex;
-    align-items:center;
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 100%;
+  }
 }
-.form-login{
-    left:35%;
-    position: absolute;
-    border:2px solid black;
-    background-color: aliceblue;
+
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
 }
-.input__login{
-    margin:2%;
-    border-radius: 10px;
-    border:1px dashed #8078B4;
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+
+  50%,
+  100% {
+    top: 100%;
+  }
 }
-.input__password{
-    margin: 2%;
-    border:1px dashed #8078B4;
+
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+/* Animate Background*/
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
 }

@@ -34,6 +34,8 @@ class Transfer(models.Model):
             ]
         self.senderId.balance - self.amout
         self.recipientId.balance + self.amout
+        self.senderId.save()
+        self.recipientId.save()
         return [
             True,
             self.amout,

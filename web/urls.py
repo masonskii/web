@@ -21,5 +21,6 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('auth_person.urls')),
+    path('bank/', include('bank.urls')),
     path('', index, name='index')
 ] + static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)

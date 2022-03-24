@@ -11,12 +11,22 @@ html {
 }
 body {
   font-family: 'Playfair Display', serif;
+	  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 1000px;
+  width: 1000px;
+  overflow: hidden;
+  padding:0;
+  margin:0px;
 }
 a {
 	text-decoration: none;
 }
 .intro {
 	position: relative;
+    background-color:#fff;
 	width: 100%;
 	height: 100vh;
 }
@@ -138,3 +148,4 @@ a.current_dot {
 		height: 70%;
 	}
 }
+

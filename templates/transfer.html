@@ -1,10 +1,38 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>transfer</title>
+    <link rel="stylesheet" href="{% static 'css/credit.css' %}" type="text/css" />
 </head>
 <body>
-$END$
+    <div class="background">
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+      <div class="cube"></div>
+    </div>
+<div>
+    {% if not user.is_authenticated %}
+    <div>
+        <p style="color:red">Для использования банка необходимо войти в аккаунт!</p>
+        <a href="{% url 'login:sign-in'%}">Войти</a>
+        <a href="{% url 'login:sign-up'%}">Нет аккаунта?</a>
+    </div>
+{% endif %}
+    <a href="{% url 'index' %}">going to main page</a>
+    <form method="POST">
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </form>
+</div>
 </body>
 </html>
