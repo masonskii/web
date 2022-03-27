@@ -23,16 +23,30 @@
     </div>
 {% endif %}
     <a href="{% url 'index' %}">going to main page</a>
-    <form method="POST">
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </form>
+<div class="login-box">
+  <h2>Вход</h2>
+  <form method="POST">
+      {% csrf_token %}
+    <div class="user-box">
+        <input type="text" name="login" required="">
+        <label>Username</label>
+    </div>
+    <div class="user-box">
+        <input type="password" name="password" required="">
+        <label>Password</label>
+    </div>
+          <button type="submit" id="button"></button>
+      <div class="line"></div>
+      <div class="second-fu">
+        <a href="#" class="forg__up">
+            Забыли пароль?
+        </a>
+        <a href="{% url 'login:sign-up' %}" class="reg__up">
+            Регистрация
+        </a>
+      </div>
+  </form>
+</div>
 </div>
 </body>
 </html>
