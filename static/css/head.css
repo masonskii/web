@@ -1,0 +1,45 @@
+.header{
+    z-index: 89;
+    width: 100%;
+    height: 175px;
+    position: relative;
+    background-color:#44518B ;
+    box-shadow: 0 0 9px black;
+    align-items: center;
+display: flex;flex-direction: row;flex-wrap: nowrap;align-content: space-between;justify-content: space-between;}
+.back-circle{
+    top:45%;
+    margin-left:45%;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+
+    width:200px;
+    height: 200px;
+    background-color: #44518B;
+
+display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: space-between;}
+.circle{
+    left:2.5%;
+    position: relative;
+    display: flex;
+    background-color: white;
+    border-radius: 50%;
+    width: 95%;
+    height: 95%;
+    justify-content: space-between;
+    -ms-align-items: center;
+    align-items: center;
+
+flex-wrap: nowrap;}
+
+.back_layer_1:hover{
+    animation: moving-logo .2s ease-in;
+}
+
+@keyframes moving-logo {
+    100%{
+        transform: rotate(-360deg);
+    }
+
+}

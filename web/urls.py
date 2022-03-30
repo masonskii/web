@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, re_path, path
 from .views import *
 urlpatterns = [
@@ -24,3 +25,9 @@ urlpatterns = [
     path('bank/', include('bank.urls')),
     path('', index, name='index')
 ] + static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)
+
+# В конце файла:
+if settings.DEBUG:
+    if settings.MEDIA_ROOT:
+        # Эта строка опциональна и будет добавлять url'ы только при DEBUG = True
+        urlpatterns += staticfiles_urlpatterns()

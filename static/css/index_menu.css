@@ -1,28 +1,27 @@
 
 .wrapper{
-  z-index: 2;
-  position: fixed;
-  top: 0;
+  z-index: 60;
+  position: absolute;
+  top: -100%;
   /*left: -100%;*/
-  right: -100%;
   height: 100%;
-  width: 40%;
-  background: #000;
-  /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+  width: 100%;;
+  background-color: #000000;
+  /* background: linear-gradient(90deg, #f92c78, #4114a1); */
   /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
- /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
+ /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
   transition: all 0.6s ease-in-out;
 }
 #active:checked ~ .wrapper{
   /*left: 0;*/
-  right:0;
+  top: -35.4%;
 }
 .menu-btn{
-  position: absolute;
-  z-index: 3;
+  position: fixed;
+  z-index: 99;
   right: 20px;
   /*left: 20px; */
-  top: 20px;
+  top: 10%;
   height: 50px;
   width: 50px;
   text-align: center;
@@ -44,7 +43,7 @@
 	top: calc(50% - 1px);
 	left: 30%;
 	width: 40%;
-	border-bottom: 2px solid #000;
+	border-bottom: 2px solid #4114a1;
 	transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .menu-btn:before{
@@ -69,20 +68,21 @@
 }
 #active:checked + .menu-btn:before {
 	transform: rotate(45deg);
-  border-color: #fff;
+  border-color: #f92c78;
 }
 #active:checked + .menu-btn:after {
 	transform: rotate(-45deg);
-  border-color: #fff;
+  border-color: #4114a1;
 }
 .wrapper ul{
   position: absolute;
-  top: 60%;
-  left: 50%;
+  top: 70%;
+  left: 45%;
+  margin-left:110px;
   height: 90%;
   transform: translate(-50%, -50%);
   list-style: none;
-  text-align: center;
+  /* text-align: center; */
 }
 .wrapper ul li{
   height: 10%;
@@ -106,8 +106,8 @@
   position: absolute;
   content: "";
   background: #fff;
-   /*background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);*/
-  /*background: linear-gradient(375deg, #1cc7d0, #2ede98);*/
+   /* background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0); */
+  /* background: linear-gradient(90deg, #f598a8, #f6edb2); */
   width: 100%;
   height: 100%;
   left: 0;
