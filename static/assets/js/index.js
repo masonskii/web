@@ -52,7 +52,7 @@ blobs[0].addEventListener("animationiteration", nextIteration);
 
 colorBlobs();
 
-
+/*
 let minSize=50,
 el=document.querySelector('.under-head'),
 page=document.querySelector('html'),
@@ -66,4 +66,4 @@ document.addEventListener('scroll',()=>{
   let percent=height.page/st,
   value=height.el/percent
   el.style.height=height.el-value+minSize+'px'
-})
+})*/

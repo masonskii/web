@@ -10,12 +10,12 @@ class Transfer(models.Model):
     senderId = models.ForeignKey(
         Person,
         on_delete=models.CASCADE,
-        related_name='Sender'
+        related_name='sender'
     )
     recipientId = models.ForeignKey(
         Person,
         on_delete=models.CASCADE,
-        related_name='Recipient'
+        related_name='recipient'
     )
     summary = models.DecimalField(
         max_digits=19, decimal_places=10

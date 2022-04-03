@@ -26,6 +26,7 @@
     <orderEntry type="library" name="vue" level="application" />
     <orderEntry type="library" name="sweetalert2" level="application" />
     <orderEntry type="library" name="browse" level="application" />
+    <orderEntry type="library" name="gsap" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

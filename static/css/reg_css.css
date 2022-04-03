@@ -219,9 +219,6 @@ body{
 #button:active {
   letter-spacing: 2px;
 }
-#button:after {
-  content: "Вход";
-}
 
 
 .login-box form .forg__up{

@@ -5,56 +5,48 @@ import datetime
 # Create your views here.
 from django.urls import reverse
 
-from auth_person.forms import PersonRegistrationForms, SignIn
+from auth_person.forms import PersonRegistrationForms, SignIn, PersonSubSignForm
 from auth_person.func import add_to_user_role, add_to_user_logo, \
-    add_to_user_email, add_to_user_phone, GenerateCard, add_to_user_card
+    add_to_user_phone, GenerateCard, add_to_user_card, add_login, add_password, add_email
 from auth_person.models import Person
 from django.contrib.auth.models import User
 
-from consts import DEFAULT_NAME_APP
+from consts import DEFAULT_NAME_APP, DEFAULT_START_BALANCE
+
+
+def subsign(request):
+    return render(
+        request,
+        'subsign.html',
+    )
 
 
 def sign_up(request):
     if request.method == 'POST':
-        new_person = PersonRegistrationForms(request.POST, request.FILES)
+        new_person = PersonRegistrationForms(request.POST)
         if new_person.is_valid():
             new_user = Person()
-            new_user.login = request.POST.get('login')
-            new_user.password = request.POST.get('password')
-            new_user.name = request.POST.get('name')
-            new_user.surname = request.POST.get('surname')
-            new_user.birthday = request.POST.get('birthday')
+            new_user.login = add_login(request.POST.get('login'))
+            new_user.password = add_password(request.POST.get('password'))
+            new_user.email = add_email(request.POST.get('email'))
             new_user.balance = 0.0
             new_user.roleId = add_to_user_role()
-            new_user.logoId = add_to_user_logo(request)
-            new_user.email = add_to_user_email(request)
-            new_user.phone = add_to_user_phone(request)
             new_user.card = add_to_user_card()
             new_user.save()
-            if not new_user.email.email:
-                return new_user
-            else:
-                finally_user = User.objects.create_user(new_user.login,
-                                                        new_user.email.email,
-                                                        new_user.password
-                                                        )
-                finally_user.save()
-                request_user = authenticate(username=new_user.login, password=new_user.password)
-                if request_user is not None:
-                    login(request, request_user)
-                    return redirect(reverse('index'), kwargs={'user': request_user})
-                else:
-                    return render(
-                        request,
-                        'invData.html'
-                    )
+            finally_user = User.objects.create_user(username=new_user.login.login,
+                                                    email=new_user.email.email,
+                                                    password=new_user.password.password
+                                                    )
+            finally_user.save()
+            request_user = authenticate(username=new_user.login.login, password=new_user.password.password)
+            if request_user is not None:
+                login(request, request_user)
+                return redirect(reverse('login:subsign'), kwargs={'user': request_user})
     else:
-        new_person = PersonRegistrationForms()
         return render(
             request,
             'registration.html',
             {
-                'form': new_person,
                 'title': DEFAULT_NAME_APP
             }
         )

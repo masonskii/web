@@ -15,7 +15,7 @@ class Logo(models.Model):
 
 class Email(models.Model):
     email_id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=50, null=True, blank=True)
+    email = models.EmailField(max_length=50, null=True, blank=True, unique=True)
 
 
 class MobilePhone(models.Model):
@@ -29,17 +29,79 @@ class PersonCard(models.Model):
     secret_code = models.CharField(max_length=3)
 
 
+class PersonLogin(models.Model):
+    login_id = models.AutoField(primary_key=True)
+    login = models.CharField(max_length=20, null=False, help_text='basic login information', unique=True)
+
+
+class PersonPassword(models.Model):
+    password_id = models.AutoField(primary_key=True)
+    password = models.CharField(max_length=32, null=False, help_text='basic login information')
+
+
+class PersonName(models.Model):
+    name_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30, null=True, blank=True)
+
+
+class PersonSurname(models.Model):
+    surname_id = models.AutoField(primary_key=True)
+    surname = models.CharField(max_length=30, null=True, blank=True)
+
+
+class PersonNdName(models.Model):
+    ndName_id = models.AutoField(primary_key=True)
+    ndName = models.CharField(max_length=30, null=True, blank=True)
+
+
+class PersonBirthday(models.Model):
+    birthday_id = models.AutoField(primary_key=True)
+    birthday = models.DateField(null=True, blank=True)
+
+
 class Person(models.Model):
     person_id = models.AutoField(primary_key=True)
-    login = models.CharField(max_length=20, null=False, help_text='basic login information', unique=True)
-    password = models.CharField(max_length=32, null=False, help_text='basic login information', unique=True)
-    name = models.CharField(max_length=30, null=False)
-    surname = models.CharField(max_length=30, null=False)
-    ndName = models.CharField(max_length=30, null=True, blank=True)
-    birthday = models.CharField(max_length=30)
+    login = models.ForeignKey(
+        PersonLogin,
+        on_delete=models.CASCADE,
+        null=False, blank=False,
+        related_name='toLoginFromUser'
+    )
+    password = models.ForeignKey(
+        PersonPassword,
+        on_delete=models.CASCADE,
+        null=False, blank=False,
+        related_name='toPasswordFromUser'
+
+    )
+    name = models.ForeignKey(
+        PersonName,
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='toNameFromUser'
+    )
+    surname = models.ForeignKey(
+        PersonSurname,
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='toSurnameFromUser'
+    )
+    ndName = models.ForeignKey(
+        PersonNdName,
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='toNdNameFromUser'
+    )
+    birthday = models.ForeignKey(
+        PersonBirthday,
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='toBurthdayFromUser'
+    )
     roleId = models.ForeignKey(
         Role,
         on_delete=models.CASCADE,
+
     )
     logoId = models.ForeignKey(
         Logo,
@@ -50,8 +112,7 @@ class Person(models.Model):
     email = models.ForeignKey(
         Email,
         on_delete=models.CASCADE,
-        default=10,
-        null=True, blank=True,
+        null=False, blank=False,
         related_name='toEmailFromUser'
     )
     phone = models.ForeignKey(

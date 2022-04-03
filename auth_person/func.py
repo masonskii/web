@@ -1,10 +1,31 @@
 import random
 import string
 
-from auth_person.models import Person, Role, Logo, Email, MobilePhone, PersonCard
+from auth_person.models import Role, Logo, Email, MobilePhone, PersonCard, PersonLogin, PersonPassword
 from consts import START_NUMBER_CARD
 
 from .consts import *
+
+
+def add_login(login):
+    new_login = PersonLogin()
+    new_login.login = login
+    new_login.save()
+    return new_login
+
+
+def add_password(password):
+    new_password = PersonPassword()
+    new_password.password = password
+    new_password.save()
+    return new_password
+
+
+def add_email(email):
+    new_email = Email()
+    new_email.email = email
+    new_email.save()
+    return new_email
 
 
 def add_to_user_role():
@@ -19,13 +40,6 @@ def add_to_user_logo(request):
     new_logo.logo = request.FILES.get('logo')
     new_logo.save()
     return new_logo
-
-
-def add_to_user_email(request):
-    new_email = Email()
-    new_email.email = request.POST.get('email')
-    new_email.save()
-    return new_email
 
 
 def add_to_user_phone(request):
