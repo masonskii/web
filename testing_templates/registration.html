@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FabLab App</title>
+</head>
+<body>
+  <form method="POST">
+      {% csrf_token %}
+        <input type="text" name="login">
+        <input type="password" name="password">
+        <input type="email" name="email">
+      <input type="submit" id="button" value="Зарегистрироваться"/>
+  </form>
+</div>
+</body>
+</html>

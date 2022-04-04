@@ -31,55 +31,51 @@
       <div class="cube"></div>
     </div>
 <div class="login-box">
-      <h2>Welcome {{ user.username }}</h2>
-<form id="regForm" enctype="multipart/form-data">
+
+<form method="POST" id="regForm" enctype="multipart/form-data">
 
   <!-- One "tab" for each step in the form: -->
     <div class="tab">
+        <h2>Welcome {{ user.username }}</h2>
       <div  class="user-box">
-        <input oninput="this.className = ''" name="login">
-        <label>Логин</label>
+        <input oninput="this.className = ''" name="Name">
+        <label>Name</label>
       </div>
       <div class="user-box">
-        <input oninput="this.className = ''" name="password">
-        <label>Пароль</label>
+        <input oninput="this.className = ''" name="Surname">
+        <label>Surname</label>
       </div>
       <div class="user-box">
-        <input oninput="this.className = ''" name="email">
-        <label>Email</label>
+        <input oninput="this.className = ''" name="ndName">
+        <label>Father's name</label>
       </div>
   </div>
     <div class="tab">
-      <div class="user-box">
-        <input oninput="this.className = ''" name="email">
-        <label>Email</label>
-      </div>
+        <h2>Don`t stop {{ user.username }}</h2>
       <div class="user-box">
         <input oninput="this.className = ''" name="phone">
         <label>Telephone</label>
       </div>
   </div>
     <div class="tab">
+        <h2>left just a little bit!</h2>
       <div class="user-box">
         <input oninput="this.className = ''" name="birthday">
         <label>birthday</label>
       </div>
   </div>
     <div class="tab">
-          <div class="user-box">
-        <input oninput="this.className = ''" name="birthday">
-        <label>birthday</label>
-      </div>
-          <div class="user-box">
-        <input oninput="this.className = ''" name="birthday">
-        <label>birthday</label>
-      </div>
+        <h2>The final</h2>
+        <div class="user-box">
+               <input type="file" oninput="this.className = ''" name="logo"/>
+        </div>
   </div>
     <div style="overflow:auto;">
     <div style="float:right;">
       <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
       <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
     </div>
+        <a type="button" id="skipBtn" value="Пропустить" href="{% url 'login:user-area' %}"/>
   </div>
   <!-- Circles which indicates the steps of the form: -->
   <div style="text-align:center;margin-top:40px;">

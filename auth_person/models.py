@@ -15,7 +15,7 @@ class Logo(models.Model):
 
 class Email(models.Model):
     email_id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=50, null=True, blank=True, unique=True)
+    email = models.EmailField(max_length=50, null=False, blank=False, unique=True)
 
 
 class MobilePhone(models.Model):
@@ -31,12 +31,12 @@ class PersonCard(models.Model):
 
 class PersonLogin(models.Model):
     login_id = models.AutoField(primary_key=True)
-    login = models.CharField(max_length=20, null=False, help_text='basic login information', unique=True)
+    login = models.CharField(max_length=20, null=False, blank=False, help_text='basic login information', unique=True)
 
 
 class PersonPassword(models.Model):
     password_id = models.AutoField(primary_key=True)
-    password = models.CharField(max_length=32, null=False, help_text='basic login information')
+    password = models.CharField(max_length=32, null=False, blank=False, help_text='basic login information')
 
 
 class PersonName(models.Model):
@@ -118,7 +118,6 @@ class Person(models.Model):
     phone = models.ForeignKey(
         MobilePhone,
         on_delete=models.CASCADE,
-        default=10,
         null=True, blank=True,
         related_name='toPhoneFromUser'
     )

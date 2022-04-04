@@ -6,8 +6,7 @@ import datetime
 from django.urls import reverse
 
 from auth_person.forms import PersonRegistrationForms, SignIn, PersonSubSignForm
-from auth_person.func import add_to_user_role, add_to_user_logo, \
-    add_to_user_phone, GenerateCard, add_to_user_card, add_login, add_password, add_email
+from auth_person.func import CreateNewUser
 from auth_person.models import Person
 from django.contrib.auth.models import User
 
@@ -15,6 +14,12 @@ from consts import DEFAULT_NAME_APP, DEFAULT_START_BALANCE
 
 
 def subsign(request):
+    if request.method == 'POST':
+        new_person = PersonRegistrationForms(request.POST)
+        if new_person.is_valid():
+            new_user = CreateNewUser(request)
+            new_user.second_create_new_user(request.user)
+            return redirect(reverse('login:user-area'), kwargs={'user': Person.objects.get(person_id=request.user.id)})
     return render(
         request,
         'subsign.html',
@@ -25,20 +30,14 @@ def sign_up(request):
     if request.method == 'POST':
         new_person = PersonRegistrationForms(request.POST)
         if new_person.is_valid():
-            new_user = Person()
-            new_user.login = add_login(request.POST.get('login'))
-            new_user.password = add_password(request.POST.get('password'))
-            new_user.email = add_email(request.POST.get('email'))
-            new_user.balance = 0.0
-            new_user.roleId = add_to_user_role()
-            new_user.card = add_to_user_card()
-            new_user.save()
-            finally_user = User.objects.create_user(username=new_user.login.login,
-                                                    email=new_user.email.email,
-                                                    password=new_user.password.password
+            new_user = CreateNewUser(request)
+            new_user.main_create_new_user()
+            finally_user = User.objects.create_user(username=request.POST.get('login'),
+                                                    email=request.POST.get('email'),
+                                                    password=request.POST.get('password')
                                                     )
             finally_user.save()
-            request_user = authenticate(username=new_user.login.login, password=new_user.password.password)
+            request_user = authenticate(username=request.POST.get('login'), password=request.POST.get('password'))
             if request_user is not None:
                 login(request, request_user)
                 return redirect(reverse('login:subsign'), kwargs={'user': request_user})
@@ -92,22 +91,34 @@ def sign_in(request):
 
 
 def is_sign(request):
-    new_session = Person.objects.get(login=request.user.username)
+    new_session = Person.objects.get(person_id=request.user.id)
     if not new_session:
         return render(
             request,
             'invData.html'
         )
     else:
-        return render(
-            request,
-            'personalArea.html',
-            {
-                'title': DEFAULT_NAME_APP,
-                'person': new_session,
-                'logo_obj': new_session.logoId.logo.url
-            }
-        )
+        if new_session.logoId is None:
+            return render(
+                request,
+                'personalArea.html',
+                {
+                    'title': DEFAULT_NAME_APP,
+                    'person': new_session,
+                    'logo_obj': None
+                }
+            )
+        else:
+            return render(
+                request,
+                'personalArea.html',
+                {
+                    'title': DEFAULT_NAME_APP,
+                    'person': new_session,
+                    'logo_obj': new_session.logoId.logo.url
+                }
+            )
+
 
 
 def logout_view(request):
