@@ -33,16 +33,16 @@
 <div class="login-box">
 
 <form method="POST" id="regForm" enctype="multipart/form-data">
-
+      {% csrf_token %}
   <!-- One "tab" for each step in the form: -->
     <div class="tab">
         <h2>Welcome {{ user.username }}</h2>
       <div  class="user-box">
-        <input oninput="this.className = ''" name="Name">
+        <input oninput="this.className = ''" name="name">
         <label>Name</label>
       </div>
       <div class="user-box">
-        <input oninput="this.className = ''" name="Surname">
+        <input oninput="this.className = ''" name="surname">
         <label>Surname</label>
       </div>
       <div class="user-box">
@@ -75,7 +75,7 @@
       <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
       <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
     </div>
-        <a type="button" id="skipBtn" value="Пропустить" href="{% url 'login:user-area' %}"/>
+        <a type="button" id="skipBtn"  href="{% url 'login:user-area' %}">Пропустить</a>
   </div>
   <!-- Circles which indicates the steps of the form: -->
   <div style="text-align:center;margin-top:40px;">

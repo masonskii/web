@@ -145,11 +145,8 @@
     </div>
   </div>
 </div>
-<form class="form-container" >
-  <div class="field-container">
-    <label for="name">Name</label>
-    <input id="name" maxlength="20" type="text" name="name">
-  </div>
+<form class="form-container" method="POST">
+    {% csrf_token %}
   <div class="field-container">
     <label for="cardnumber">Card Number</label>
     <input id="cardnumber" type="text" inputmode="numeric" name="number">
@@ -159,7 +156,7 @@
   </div>
     <div class="field-container">
     <label for="summary">Summary</label>
-    <input id="summary" type="number"  inputmode="numeric" name="summary">
+    <input id="summary" type="text"  inputmode="numeric" name="summary">
   </div>
         <div class="field-container">
     <label for="comm">Comm</label>

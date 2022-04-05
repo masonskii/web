@@ -1,16 +1,15 @@
-from auth_person.models import Person
+from auth_person.models import Person, PersonName, PersonCard
 
 
-def search_person(name, number_card):
-    user = Person.objects.get(name=name.name, card__number=number_card)
-    if not user:
-        return None
-    else:
+def search_person(number_card):
+    card = PersonCard.objects.get(number=number_card)
+    user = Person.objects.get(card=card.card_id)
+    if not user is None:
         return user
 
 
 def sender(request_user):
-    person = Person.objects.get(login=request_user.username)
+    person = Person.objects.get(person_id=request_user.id)
     if not person:
         return None
     else:

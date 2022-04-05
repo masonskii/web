@@ -20,26 +20,21 @@ class Transfer(models.Model):
     summary = models.DecimalField(
         max_digits=19, decimal_places=10
     )
-    tDate = models.DateTimeField()
+    tDate = models.DateTimeField(auto_now=True)
 
     def sending(self):
+        if decimal.Decimal(self.summary) <= 0:
+            return False
         self.amout = decimal.Decimal(self.summary)
-        if self.amout <= 0 or self.senderId.balance <= 0 or self.senderId.balance < self.amout:
-            return [
-                False,
-                None,
-                None,
-                None,
-                'Funds sent successfully'
-            ]
-        self.senderId.balance - self.amout
-        self.recipientId.balance + self.amout
-        self.senderId.save()
-        self.recipientId.save()
-        return [
-            True,
-            self.amout,
-            self.senderId.balance,
-            self.recipientId.balance,
-            'Funds sent successfully'
-        ]
+        self.person = Person.objects.get(person_id=self.senderId.person_id)
+        self.rec_pers = Person.objects.get(person_id=self.recipientId.person_id)
+        if self.amout > self.person.balance:
+            return False
+        if self.person.balance - self.amout < 0:
+            return False
+        self.person.balance = self.person.balance - self.amout
+        self.rec_pers.balance = self.rec_pers.balance + self.amout
+        self.person.save()
+        self.rec_pers.save()
+        return True
+

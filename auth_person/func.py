@@ -16,14 +16,8 @@ class CreateNewUser:
         self.new_user = Person()
         self.new_email = Email()
         self.new_role = Role()
-        self.new_logo = Logo()
-        self.new_phone = MobilePhone()
         self.new_card = PersonCard()
         self.generate = GenerateCard()
-        self.name = PersonName()
-        self.surname = PersonSurname()
-        self.ndName = PersonNdName()
-        self.birthday = PersonBirthday()
 
     def main_create_new_user(self):
         self.new_login.login = self.request.POST.get('login')
@@ -45,29 +39,6 @@ class CreateNewUser:
         self.new_user.balance = DEFAULT_START_BALANCE
         self.new_user.save()
 
-    def second_create_new_user(self, user):
-        self.name.name = self.request.POST.get('name')
-        self.surname.surname = self.request.POST.get('surname')
-        self.ndName.ndName = self.request.POST.get('ndName')
-        self.birthday.birthday = self.request.POST.get('birthday')
-        self.new_phone.phone = self.request.POST.get('phone')
-        self.new_logo.logo = self.request.FILES.get('logo')
-        self.name.save()
-        self.surname.save()
-        self.ndName.save()
-        self.birthday.save()
-        self.new_phone.save()
-        self.new_logo.save()
-        user.name = self.name
-        user.surname = self.surname
-        user.ndName = self.ndName
-        user.birthday = self.birthday
-        user.phone = self.new_phone
-        user.logoId = self.new_logo
-        user.save()
-
-
-
 
 def generate_random_string(length=15):
     letters = string.ascii_lowercase
@@ -88,7 +59,7 @@ def generate_random_string_unique(length):
 
 
 def generate_number_card():
-    return '{0}{1}{2}{3}-{4}{5}{6}{7}'.format(random.randint(0, 9),
+    return '{0}{1}{2}{3} {4}{5}{6}{7}'.format(random.randint(0, 9),
                                               random.randint(0, 9),
                                               random.randint(0, 9),
                                               random.randint(0, 9),
@@ -112,7 +83,7 @@ class GenerateCard:
         self.secret_code = generate_secret_code()
 
     def generate_number(self):
-        number = '{0}-{1}'.format(START_NUMBER_CARD, generate_number_card())
+        number = '{0} {1}'.format(START_NUMBER_CARD, generate_number_card())
         return number
 
     def __reinit__(self):
