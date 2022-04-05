@@ -79,24 +79,24 @@ def sign_in(request):
         new_session_sign = SignIn(request.POST)
         if new_session_sign.is_valid():
             log = PersonLogin.objects.get(login=request.POST.get('login'))
-            pas = PersonPassword.objects.get(password=request.POST.get('password'))
-            session_complited = Person.objects.get(login=log.login_id, password=pas.password_id)
-            if not session_complited:
+            pas = PersonPassword.objects.filter(password=request.POST.get('password'))
+            for i in range(len(pas)):
+                try:
+                    session_complited = Person.objects.get(login=log.login_id, password=pas[i].password_id)
+                    if session_complited is not None:
+                        session_complited.__class__.objects.update(lastEntrance=datetime.date.today())
+                        request_user = authenticate(username=session_complited.login.login,
+                                                password=session_complited.password.password)
+                        if request_user is not None:
+                            login(request, request_user)
+                            return redirect(reverse('index'), kwargs={'user': request_user})
+                except:
+                    continue
+            else:
                 return render(
                     request,
                     'invData.html'
                 )
-            else:
-                session_complited.__class__.objects.update(lastEntrance=datetime.date.today())
-                request_user = authenticate(username=session_complited.login.login, password=session_complited.password.password)
-                if request_user is not None:
-                    login(request, request_user)
-                    return redirect(reverse('index'), kwargs={'user': request_user})
-                else:
-                    return render(
-                        request,
-                        'invData.html'
-                    )
         else:
             return render(
                 request,
