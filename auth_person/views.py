@@ -86,7 +86,7 @@ def sign_in(request):
                     if session_complited is not None:
                         session_complited.__class__.objects.update(lastEntrance=datetime.date.today())
                         request_user = authenticate(username=session_complited.login.login,
-                                                password=session_complited.password.password)
+                                                    password=session_complited.password.password)
                         if request_user is not None:
                             login(request, request_user)
                             return redirect(reverse('index'), kwargs={'user': request_user})

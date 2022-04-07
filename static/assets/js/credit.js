@@ -1,13 +1,8 @@
 
 window.onload = function () {
-  const name = document.getElementById('name');
   const cardnumber = document.getElementById('cardnumber');
-  const expirationdate = document.getElementById('expirationdate');
-  const securitycode = document.getElementById('securitycode');
-  const output = document.getElementById('output');
   const ccicon = document.getElementById('ccicon');
   const ccsingle = document.getElementById('ccsingle');
-  const generatecard = document.getElementById('generatecard');
 
 
   let cctype = null;
@@ -84,16 +79,6 @@ let fablab ='';
     }
   })
 
-  //On Input Change Events
-  name.addEventListener('input', function () {
-    if (name.value.length == 0) {
-      document.getElementById('svgname').innerHTML = 'John Doe';
-      document.getElementById('svgnameback').innerHTML = 'John Doe';
-    } else {
-      document.getElementById('svgname').innerHTML = this.value;
-      document.getElementById('svgnameback').innerHTML = this.value;
-    }
-  });
 
   cardnumber_mask.on('accept', function () {
     if (cardnumber_mask.value.length == 0) {
@@ -114,3 +99,50 @@ let fablab ='';
   });
 
 };
+
+$(document).ready(function() {
+
+
+  const labels = document.querySelectorAll(".accordion-item__label");
+  const tabs = document.querySelectorAll(".accordion-tab");
+
+  function toggleShow() {
+    const target = this;
+    const item = target.classList.contains("accordion-tab")
+      ? target
+      : target.parentElement;
+    const group = item.dataset.actabGroup;
+    const id = item.dataset.actabId;
+
+    tabs.forEach(function(tab) {
+      if (tab.dataset.actabGroup === group) {
+        if (tab.dataset.actabId === id) {
+          tab.classList.add("accordion-active");
+        } else {
+          tab.classList.remove("accordion-active");
+        }
+      }
+    });
+
+    labels.forEach(function(label) {
+      const tabItem = label.parentElement;
+
+      if (tabItem.dataset.actabGroup === group) {
+        if (tabItem.dataset.actabId === id) {
+          tabItem.classList.add("accordion-active");
+        } else {
+          tabItem.classList.remove("accordion-active");
+        }
+      }
+    });
+  }
+
+  labels.forEach(function(label) {
+    label.addEventListener("click", toggleShow);
+  });
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", toggleShow);
+  });
+
+});

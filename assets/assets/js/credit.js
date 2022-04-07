@@ -1,24 +1,19 @@
 
 window.onload = function () {
-  const name = document.getElementById('name');
   const cardnumber = document.getElementById('cardnumber');
-  const expirationdate = document.getElementById('expirationdate');
-  const securitycode = document.getElementById('securitycode');
-  const output = document.getElementById('output');
   const ccicon = document.getElementById('ccicon');
   const ccsingle = document.getElementById('ccsingle');
-  const generatecard = document.getElementById('generatecard');
 
 
   let cctype = null;
 
   //Mask the Credit Card Number Input
   var cardnumber_mask = new IMask(cardnumber, {
-    mask: [      {
-        mask: '0000 0000 0000 0000',
-        regex: '^(9090\\d{0,2}|6304|67\\d{0,2})\\d{0,12}',
-        cardtype: 'fablab'
-      },
+    mask: [{
+      mask: '0000 0000 0000 0000',
+      regex: '^(9090\\d{0,2}|6304|67\\d{0,2})\\d{0,12}',
+      cardtype: 'fablab'
+    },
       {
         mask: '0000 0000 0000 0000',
         cardtype: 'Unknown'
@@ -35,21 +30,21 @@ window.onload = function () {
     }
   });
 
-let fablab ='';
+  let fablab = '';
 
 
   //define the color swap function
   const swapColor = function (basecolor) {
     document.querySelectorAll('.lightcolor')
-      .forEach(function (input) {
-        input.setAttribute('class', '');
-        input.setAttribute('class', 'lightcolor ' + basecolor);
-      });
+        .forEach(function (input) {
+          input.setAttribute('class', '');
+          input.setAttribute('class', 'lightcolor ' + basecolor);
+        });
     document.querySelectorAll('.darkcolor')
-      .forEach(function (input) {
-        input.setAttribute('class', '');
-        input.setAttribute('class', 'darkcolor ' + basecolor + 'dark');
-      });
+        .forEach(function (input) {
+          input.setAttribute('class', '');
+          input.setAttribute('class', 'darkcolor ' + basecolor + 'dark');
+        });
   };
 
 
@@ -70,10 +65,6 @@ let fablab ='';
 
   });
 
-
-
-
-
   // CREDIT CARD IMAGE JS
   document.querySelector('.preload').classList.remove('preload');
   document.querySelector('.creditcard').addEventListener('click', function () {
@@ -84,33 +75,59 @@ let fablab ='';
     }
   })
 
-  //On Input Change Events
-  name.addEventListener('input', function () {
-    if (name.value.length == 0) {
-      document.getElementById('svgname').innerHTML = 'John Doe';
-      document.getElementById('svgnameback').innerHTML = 'John Doe';
-    } else {
-      document.getElementById('svgname').innerHTML = this.value;
-      document.getElementById('svgnameback').innerHTML = this.value;
-    }
-  });
 
   cardnumber_mask.on('accept', function () {
-    if (cardnumber_mask.value.length == 0) {
+    if (cardnumber_mask.value.length === 0) {
       document.getElementById('svgnumber').innerHTML = '0123 4567 8910 1112';
     } else {
       document.getElementById('svgnumber').innerHTML = cardnumber_mask.value;
     }
   });
+}
+
+$(document).ready(function() {
 
 
-  //On Focus Events
-  name.addEventListener('focus', function () {
-    document.querySelector('.creditcard').classList.remove('flipped');
+  const labels = document.querySelectorAll(".accordion-item__label");
+  const tabs = document.querySelectorAll(".accordion-tab");
+
+  function toggleShow() {
+    const target = this;
+    const item = target.classList.contains("accordion-tab")
+      ? target
+      : target.parentElement;
+    const group = item.dataset.actabGroup;
+    const id = item.dataset.actabId;
+
+    tabs.forEach(function(tab) {
+      if (tab.dataset.actabGroup === group) {
+        if (tab.dataset.actabId === id) {
+          tab.classList.add("accordion-active");
+        } else {
+          tab.classList.remove("accordion-active");
+        }
+      }
+    });
+
+    labels.forEach(function(label) {
+      const tabItem = label.parentElement;
+
+      if (tabItem.dataset.actabGroup === group) {
+        if (tabItem.dataset.actabId === id) {
+          tabItem.classList.add("accordion-active");
+        } else {
+          tabItem.classList.remove("accordion-active");
+        }
+      }
+    });
+  }
+
+  labels.forEach(function(label) {
+    label.addEventListener("click", toggleShow);
   });
 
-  cardnumber.addEventListener('focus', function () {
-    document.querySelector('.creditcard').classList.remove('flipped');
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", toggleShow);
   });
 
-};
+});

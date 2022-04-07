@@ -27,7 +27,9 @@ def transfer(request):
             else:
                 return redirect(reverse('bank:err-transact'), kwargs={'tr': res})
     else:
-        return render(request, 'transfer.html', {'user': request.user})
+        history_transfer = Transfer.objects.filter(senderId=request.user.id)
+
+        return render(request, 'transfer.html', {'person_tr': history_transfer})
 
 
 def successfully_transaction(request):

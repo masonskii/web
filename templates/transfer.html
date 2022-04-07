@@ -42,9 +42,20 @@
         <div class="bg"></div>
     </div>
 {% endif %}
-    </div>
-<div class="login-box">
-<div class="container preload">
+</div>
+<div class="accordion-tab-wrapper">
+  <div class="banner"></div>
+
+  <section class="accordion">
+    <section class="accordion-tabs">
+      <button class="accordion-tab accordion-active" data-actab-group="0" data-actab-id="0">Переводы</button>
+      <button class="accordion-tab" data-actab-group="0" data-actab-id="1">История транкций</button>
+    </section>
+    <section class="accordion-content">
+      <article class="accordion-item accordion-active" data-actab-group="0" data-actab-id="0">
+        <h4 class="accordion-item__label">Переводы</h4>
+        <div class="accordion-item__container">
+            <div class="container preload">
   <div class="creditcard">
     <div class="front">
       <div id="ccsingle"></div>
@@ -145,7 +156,7 @@
     </div>
   </div>
 </div>
-<form class="form-container" method="POST">
+                <form class="form-container" method="POST">
     {% csrf_token %}
   <div class="field-container">
     <label for="cardnumber">Card Number</label>
@@ -164,9 +175,46 @@
   </div>
     <input type="submit" value="Send"/>
 </form>
+        </div>
+      </article>
+      <article class="accordion-item" data-actab-group="0" data-actab-id="1">
+        <h4 class="accordion-item__label">История транзакций</h4>
+        <div class="accordion-item__container">
+            {% if person_tr.count > 0 %}
+                <table class="history--table">
+                    <thead>
+                    <tr>
+                        <th class="th__tr">Отправитель</th>
+                        <th class="th__tr">Получатель</th>
+                        <th class="th__tr">Сумма</th>
+                        <th class="th__tr">Дата</th>
+                    </tr>
+                    </thead>
+                <tbody>
+            {% for tr in person_tr %}
+            <tr>
+
+                <td class="td__tr">{{ tr.senderId.name.name}} {{ tr.senderId.surname.surname}} </td>
+                <td class="td__tr">{{ tr.recipientId.name.name}} {{ tr.recipientId.surname.surname}}</td>
+                <td class="td__tr">{{ tr.summary}}</td>
+                <td class="td__tr">{{ tr.tDate }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+                {% else%}
+                <h1>История транзакций пустая</h1>
+                {% endif %}
+        </div>
+      </article>
+    </section>
+  </section>
+
 </div>
+
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
 <script src={% static 'assets/js/credit.js' %}></script>
 </html>

@@ -1,3 +1,13 @@
+:root {
+  --bg-color: #ddd;
+  --p-color: darkslategray;
+  --a-color: indigo;
+  --a-hover-color: BlueViolet;
+  --citation-bg-color: #1E0519;
+  --citation-p-color: white;
+  --citation-a-color: darkmagenta;
+  --citation-a-hover-color: magenta;
+}
 body{
     background: rgb(35, 20, 43);
     padding: 0;
@@ -785,4 +795,178 @@ input {
 button:hover, button:focus {
   border-color: var(--hover);
   color: #fff;
+}
+
+.accordion-tab-wrapper {
+  position: absolute;
+  width: 100%;
+
+  top: 35%;display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100px;
+  background: #003852;
+}
+
+.accordion {
+  width: 96%;
+  overflow: hidden;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
+}
+@media (min-width: 600px) {
+  .accordion {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+.accordion-tabs {
+  display: none;
+}
+.accordion-tabs :focus {
+  outline: none;
+}
+.accordion-item {
+  border-bottom: 1px solid #c1d7e2;
+}
+.accordion-item:last-child {
+  border: none;
+}
+.accordion-item__label {
+  position: relative;
+  margin: 0;
+  padding: 20px;
+  cursor: pointer;
+  transition: padding 0.2s ease;
+}
+.accordion-item__label::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: 20px;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  margin: auto;
+  transform: rotate(45deg);
+  opacity: 1;
+  transition: opacity 0.1s ease;
+  border-radius: 2px;
+  border: 5px solid transparent;
+  border-color: transparent #003852 #003852 transparent;
+}
+.accordion-item__label:hover {
+  background: #c1d7e2;
+}
+.accordion-item__container {
+  height: 0;
+  padding: 0 20px;
+  overflow: hidden;
+  opacity: 0;
+  transition: padding 0.2s ease, opacity 0.5s 0.15s ease;
+}
+.accordion-active {
+  background: #d2e2ea;
+}
+.accordion-active .accordion-item__label {
+  padding-bottom: 0;
+  color: #003852;
+  cursor: inherit;
+}
+.accordion-active .accordion-item__label:hover {
+  background: none;
+}
+.accordion-active .accordion-item__label::after {
+  opacity: 0;
+}
+.accordion-active .accordion-item__container {
+  height: auto;
+  padding: 20px;
+  opacity: 1;
+}
+.accordion-active .accordion-item__container p,
+.accordion-active .accordion-item__container h1,
+.accordion-active .accordion-item__container h2,
+.accordion-active .accordion-item__container h3,
+.accordion-active .accordion-item__container h4,
+.accordion-active .accordion-item__container h5,
+.accordion-active .accordion-item__container h6 {
+  color: #7baac1;
+}
+.accordion-active .accordion-item__container p:first-child,
+.accordion-active .accordion-item__container h1:first-child,
+.accordion-active .accordion-item__container h2:first-child,
+.accordion-active .accordion-item__container h3:first-child,
+.accordion-active .accordion-item__container h4:first-child,
+.accordion-active .accordion-item__container h5:first-child,
+.accordion-active .accordion-item__container h6:first-child {
+  margin-top: 0;
+}
+.accordion-active .accordion-item__container p:last-child,
+.accordion-active .accordion-item__container h1:last-child,
+.accordion-active .accordion-item__container h2:last-child,
+.accordion-active .accordion-item__container h3:last-child,
+.accordion-active .accordion-item__container h4:last-child,
+.accordion-active .accordion-item__container h5:last-child,
+.accordion-active .accordion-item__container h6:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 600px) {
+  .accordion-tabs {
+    display: flex;
+    background: #d2e2ea;
+  }
+  .accordion-tabs .accordion-tab {
+    flex: 1;
+    padding: 20px;
+    font: inherit;
+    border: none;
+    cursor: pointer;
+    color: #003852;
+    background: #d2e2ea;
+    transition: background 0.1s ease;
+  }
+  .accordion-tabs .accordion-tab:hover {
+    background: #c1d7e2;
+  }
+  .accordion-tabs .accordion-tab:last-child {
+    border-right: 0;
+  }
+  .accordion-tabs .accordion-tab.accordion-active {
+    color: #006b99;
+    background: white;
+  }
+
+  .accordion-item {
+    display: none;
+    min-height: 260px;
+    height: max-content;padding: 30px;
+    border: none;
+    background: white;
+  }
+  .accordion-item__label, .accordion-item__container {
+    padding: 0;
+    transition: inherit;
+  }
+  .accordion-item__label {
+    margin-bottom: 20px;
+  }
+  .accordion-item.accordion-active {
+    display: block;
+  }
+  .accordion-item.accordion-active .accordion-item__container {
+    padding: 0;
+  }
 }
