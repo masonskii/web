@@ -131,3 +131,20 @@ $(document).ready(function() {
   });
 
 });
+
+$(function(){
+
+
+        // collapse
+        $("[data-collapse]").on("click", function(event){
+          event.preventDefault();
+
+          var $this = $(this),
+          blocktId = $(this).data('collapse');
+
+          $this.toggleClass("active");
+
+
+
+        });
+});

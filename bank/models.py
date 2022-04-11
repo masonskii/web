@@ -23,6 +23,8 @@ class Transfer(models.Model):
     tDate = models.DateTimeField(auto_now=True)
 
     def sending(self):
+        if self.senderId.card == self.recipientId.card:
+            return False
         if decimal.Decimal(self.summary) <= 0:
             return False
         self.amout = decimal.Decimal(self.summary)

@@ -173,7 +173,7 @@
     <label for="comm">Comm</label>
     <input id="comm" type="text"  inputmode="numeric" name="comm">
   </div>
-    <input type="submit" value="Send"/>
+    <input type="submit" name="send_transaction" value="Send"/>
 </form>
         </div>
       </article>
@@ -181,29 +181,40 @@
         <h4 class="accordion-item__label">История транзакций</h4>
         <div class="accordion-item__container">
             {% if person_tr.count > 0 %}
-                <table class="history--table">
-                    <thead>
-                    <tr>
-                        <th class="th__tr">Отправитель</th>
-                        <th class="th__tr">Получатель</th>
-                        <th class="th__tr">Сумма</th>
-                        <th class="th__tr">Дата</th>
-                    </tr>
-                    </thead>
-                <tbody>
+                <div>
+                    <span class="th__tr" >Дата</span>
+                </div>
             {% for tr in person_tr %}
-            <tr>
+                <div class="td__tr" >
+                <div class="td__tr__header" data-collapse="#data" >
+	   	  					<div class="td__tr__header-text">{{ tr.tDate }}</div>
+                </div>
 
-                <td class="td__tr">{{ tr.senderId.name.name}} {{ tr.senderId.surname.surname}} </td>
-                <td class="td__tr">{{ tr.recipientId.name.name}} {{ tr.recipientId.surname.surname}}</td>
-                <td class="td__tr">{{ tr.summary}}</td>
-                <td class="td__tr">{{ tr.tDate }}</td>
-            </tr>
+                <div class="td__tr__block_ext" >
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="td__tr__ext">
+                            <label class="sender__ext">От кого:</label>
+                                <input type="text" class='sender__name__ext' name="sender_name"  value="{{ tr.senderId.name.name}}"/>
+                                <input type="text" class='sender__surname__ext'  name="sender_surname" value="{{ tr.senderId.surname.surname}}"/>
+                        </div>
+                        <div class="td__tr__ext">
+                            <label class="recipient__ext">Кому:</label>
+                                <input type="text" class='recipient__name__ext' name="recip_name" value="{{ tr.recipientId.name.name}}"/>
+                                <input type="text" class='recipient__surname__ext'  name="recip_surname" value="{{ tr.recipientId.surname.surname}}"/>
+                        </div>
+                        <div class="td__tr__ext">
+                            <label class="summary__ext">На сумму:</label>
+                            <input type="text" class='summary__ext' name="summary"  value="{{ tr.summary}}"/>
+                        </div>
+                        <input style="visibility: hidden" name="tDate" value="{{ tr.tDate }}"/>
+                        <input class='btn_smbt' type="submit" name="transaction" value="Распечатать"/>
+                    </form>
+                </div>
+                                </div>
             {% endfor %}
-        </tbody>
-    </table>
                 {% else%}
-                <h1>История транзакций пустая</h1>
+                <h1>История транзакций пуста</h1>
                 {% endif %}
         </div>
       </article>

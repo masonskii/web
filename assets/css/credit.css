@@ -970,3 +970,66 @@ button:hover, button:focus {
     padding: 0;
   }
 }
+.line {
+  width:100%;
+    border-bottom: 1px solid #fff; /* Параметры линии */
+   }
+
+.td__tr{
+    display: flex;
+  margin-bottom: 2%;
+  border-radius: 25px;
+  background-color:  #e4e4e4;
+  cursor: pointer;
+}
+.td__tr__header.active
+{
+  width: 20%;
+   border-bottom-color: #e5e5e5;
+
+}
+.td__tr__header.active > .td__tr{
+   display: flex;
+}
+.td__tr__header{
+  width: 100%;
+  border-radius: 25px;
+  background-color: #59c173;
+  color:#1E0519;
+  padding:4%;
+   display: flex;
+}
+
+
+.td__tr__header.active ~ .td__tr__block_ext
+{
+   display: flex;
+}
+.th__tr{
+  margin-left: 7%;
+border-bottom: 2px solid currentColor;
+  display: inline-block;
+  line-height: 0.85;
+}
+
+.td__tr__block_ext
+{
+    height: 100%;
+    width: 100%;
+	padding: 15px 20px;
+	color: #999;
+	font-size: 15px;
+	display: none;
+    animation: .5s on_visible ease-in;
+}
+@keyframes on_visible {
+  0%{
+    height: 0;
+    opacity: 0;
+  }
+  100%{
+    height: 100%;
+    opacity: 1;
+  }
+
+}
