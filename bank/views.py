@@ -37,7 +37,6 @@ def transfer(request):
         rName = request.POST.get('recip_name'), request.POST.get('recip_surname')
         sum = request.POST.get('summary')
         tDate = request.POST.get('tDate')
-
         response = create_document_transaction(sName, rName, tDate, sum)
         return response
     else:

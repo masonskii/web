@@ -67,3 +67,66 @@ document.addEventListener('scroll',()=>{
   value=height.el/percent
   el.style.height=height.el-value+minSize+'px'
 })*/
+
+
+
+$(function(){
+
+
+
+
+   var header = $('#header'),
+    intrH = $('#intro').innerHeight(),
+    scrollOfSet =  $(window).scrollTop();
+
+    //fiexd header
+     checkscroll(scrollOfSet)
+
+  $(window).on('scroll', function()  {
+
+   scrollOfSet = $(this).scrollTop();
+
+   checkscroll(scrollOfSet)
+  });
+
+  function checkscroll(scrollOfSet)
+  {
+
+    if (scrollOfSet >= intrH ) {
+    	header.addClass('fixed');
+    }   else
+    {
+    	header.removeClass('fixed');
+    }
+  }
+
+   // smoot scroll
+     $("[data-scroll]").on('click', function(event) {
+       event.preventDefault();
+
+       var $this = $(this),
+          blocktId = $(this).data('scroll'),
+          blockOfset = $(blocktId).offset().top;
+
+         $('nav a').removeClass('active');
+          $this.addClass('active');
+
+          $("html , body").animate({
+            scrollTop:blockOfset
+          }, 500);
+
+
+
+     });
+
+     /*nav toogler*/
+     $('#nav__toggle').on('click', function(event){
+             event.preventDefault();
+        $(this).toggleClass("active");
+           $('#nav').toggleClass("active");
+
+
+     });
+
+
+});

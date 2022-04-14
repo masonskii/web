@@ -1,0 +1,80 @@
+
+.slider {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  display: none;
+}
+
+.slider-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  transition-timing-function: cubic-bezier(0.22, 1.61, 0.65, 1);
+  transition-duration: 1s;
+  background-visibility: hidden;
+  transition-delay: 0.75s;
+  transform: translateZ(0);
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: #f1c40f;
+  background-visibility: hidden;
+  transition-timing-function: cubic-bezier(0.25, 0.5, 0.25, 1.25);
+  transform: translateZ(0) scale(0.8, 0.8);
+  transition-duration: 0.5s;
+  text-align: center;
+  line-height: 600px;
+  font-size: 5rem;
+  color: white;
+}
+.slide.active {
+  transform: scale(1, 1);
+  transition-delay: 2s;
+}
+.slide:nth-child(2n) {
+  background-color: #2ecc71;
+}
+.slide:nth-child(3n) {
+  background-color: #3498db;
+}
+.slide:nth-child(4n) {
+  background-color: #9b50ba;
+}
+
+.slider-nav-index {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  text-align: center;
+}
+.slider-nav > div {
+  float: left;
+  width: 10px;
+  height: 10px;
+  border: 1px solid white;
+  z-index: 2;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition-duration: 0.25s;
+  background-color: transparent;
+}
+.slider-nav > div:hover {
+  opacity: 1;
+}
+.slider-nav > div.active {
+  background-color: white;
+  transform: scale(2);
+  opacity: 1;
+}

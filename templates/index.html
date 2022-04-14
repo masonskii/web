@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href='{% static '/css/index_menu.css' %}?{% now "U" %}' type="text/css">
     <link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}' type="text/css">
-    <link rel="stylesheet" href='{% static '/css/head.css' %}?{% now "U" %}' type="text/css">
     <link rel="stylesheet" href='{% static '/css/content1.css' %}?{% now "U" %}' type="text/css">
     <link
   rel="stylesheet"
@@ -19,7 +18,7 @@
 
 </head>
 <body>
-<section class='header'>
+<!--<section class='header'>
     <div class='back-circle'>
         <div class="circle">
             <svg width="219" height="209" viewBox="0 0 219 209" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -32,40 +31,39 @@
                         fill="#35469D" class="blue-logo-head"></path>
                 </svg>
         </div>
+    </div>
+-->
+<section class="header " id="header">
+	<div class="container">
+	    <div class="header-inner">
+		    <div class="logo" data-scroll="#intro">FabLab Polytech</div>
+		<nav class="nav" id="nav">
+			<a href="{% url 'bank:transfer' %}"  class="nav-link">Bank</a>
+			<a href="#" data-scroll="#service" class="nav-link">service</a>
+			<a href="#" data-scroll="#work" class="nav-link">work</a>
+			<a href="#" data-scroll="#blogt" class="nav-link">blog</a>
+			<a href="#" data-scroll="#contact" class="nav-link">contact</a>
+			<a href="#" data-scroll="#about" class="nav-link">
+				<i class="fas fa-shopping-cart"></i>
+			</a>
+			<a href="#" class="nav-link">
+				<i class="fas fa-search"></i>
+			</a>
 
-    </div>
-    <div class="personal-info">
-    {% if user.is_authenticated %}
-        <li><a href="{% url 'login:user-area' %}">{{ user.username }}</a></li>
-        <li><a href="{% url 'login:logout' %}" >Выйти</a> </li>
-    {% else %}
-        <li><a href="{% url 'login:sign-in' %}">Вход</a></li>
-        <li><a href="{% url 'login:presing' %}">Регистрация</a></li>
-    {% endif %}
-    </div>
+
+		</nav>
+     <button class="nav-toggle" id="nav__toggle" type="button">
+     	<span class="nav-toggle__item" type="button">Menu</span>
+     </button>
+
+	   </div>
+	</div>
 </section>
-<section class="background">
-       <div class="cube"></div>
-       <div class="cube"></div>
-       <div class="cube"></div>
-       <div class="cube"></div>
-      <div class="cube"></div>
-    </section>
-<section>
-    <input type="checkbox" id="active">
-    <label for="active" class="menu-btn"><span></span></label>
-    <label for="active" class="close"></label>
-    <div class="wrapper">
-        <ul>
-            <li><a href="#">Домой</a></li>
-            <li><a href="{% url 'bank:transfer' %}">Перевод</a></li>
-            <li><a href="#">Сервисы</a></li>
-            <li><a href="#">Галерея</a></li>
-            <li><a href="#">Обратная связь</a></li>
-        </ul>
-    </div>
-</section>
-<section>
+
+<section class="page">
+
+<div class="intro" id="intro">
+
     <div class="under-head">
         <svg viewbox="0 0 700 225" class="main-text">
     <clipPath id="textClip" class="filled-heading">
@@ -141,9 +139,44 @@
     </g>
 </svg>
     </div>
+</div>
+    <div class="personal-info ramka-7">
+    {% if user.is_authenticated %}
+        <div class="person__index__info">
+            <div class="person__index__i">
+                <a class="btn" href="{% url 'login:user-area' %}">
+                                            <span>Привет {{ user.username }}</span>
+                                            <h3>{{ user.email }}</h3>
+                </a>
+                <a class="btn" href="{% url 'login:logout' %}">
+                    <span>Уходишь? Выйти</span>
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="person__index__info">
+            <a href="{% url 'login:sign-in' %}" class="login__index__sign_in">Напомни, кто ты?</a>
+            <a href="{% url 'login:presing' %}" class="login__index__sign_in">Впервые тут?</a>
+        </div>
+    {% endif %}
+    </div>
+        </ul>
+    </div>
+</section>
+<section class="background">
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+      <div class="cube"></div>
+    </section>
+<section>
+
+
 </section>
 
-<section class="container1">
+
+<section class="container1" id="containter1">
     <div class="box">
     <div class="blog-slider">
   <div class="blog-slider__wrp swiper-wrapper">
@@ -229,12 +262,6 @@
 </div>
     </div>
 </section>
-<!--
-    <div class="typing">
-        <div class="typing-demo">
-            Create your history here.
-        </div>
-    </div>-->
 
 </body>
 {% block extrahead %}

@@ -63,7 +63,7 @@ def sign_up(request):
             request_user = authenticate(username=request.POST.get('login'), password=request.POST.get('password'))
             if request_user is not None:
                 login(request, request_user)
-                return redirect(reverse('login:subsign'), kwargs={'user': request_user})
+                return redirect(reverse('login:subsign'), kwargs={'user': finally_user})
     else:
         return render(
             request,
@@ -89,7 +89,7 @@ def sign_in(request):
                                                     password=session_complited.password.password)
                         if request_user is not None:
                             login(request, request_user)
-                            return redirect(reverse('index'), kwargs={'user': request_user})
+                            return redirect(reverse('index'), kwargs={'user': session_complited})
                 except:
                     continue
             else:
