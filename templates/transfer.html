@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transfer</title>
+    <link rel="stylesheet" href='{% static '/css/credit.css' %}?{% now "U" %}'  type="text/css" />
+        <link rel="stylesheet" href='{% static '/css/head.css' %}?{% now "U" %}' type="text/css">
+</head>
+<body>
+<div class='header'>
+    <div class='back-circle'>
+        <div class="circle">
+            <svg width="219" height="209" viewBox="0 0 219 209" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 class='back_layer_1'>
+                <path d="M83.4835 185.108V160.373C84.4177 160.033 85.3291 159.628 86.2042 159.137C98.6147 152.184 99.9194 132.432 89.1157 115.022C78.3133 97.6111 59.4953 89.1342 47.0853 96.0872C34.6748 103.04 33.3705 122.792 44.1722 140.202C45.9151 143.011 47.8681 145.582 49.9676 147.898V166.274L23.2192 151.728V60.623L13.8436 54.7417C5.3027 69.5288 0.445419 86.5098 0.445419 104.568C0.445419 160.677 47.2972 206.357 105.871 208.201L105.881 197.511L83.4835 185.108Z"
+                      fill="#0E9A48" ></path>
+                <path d="M52.4172 40.3404L68.766 49.5475C68.4438 52.1003 68.4334 54.9106 68.4438 55.8768C68.5935 69.566 88.1033 79.9727 109.372 79.7633C130.64 79.5538 145.788 67.31 145.68 55.2641C145.559 41.5753 131.706 30.8575 110.446 30.2551C103.248 30.051 96.3104 31.4167 93.151 31.9903L81.2272 24.7422L109.586 9.36636L193.187 55.5441L202.775 50.543C193.552 36.131 180.488 23.6588 164.019 14.6482C112.848 -13.3475 47.811 2.44416 16.9052 49.7611L26.4149 55.4675L52.4172 40.3404V40.3404Z"
+                      fill="#CB2026"></path>
+                <path d="M196.008 90.5322L178.23 99.3626C177.586 99.2601 173.64 95.7503 172.752 95.2791C160.166 88.6164 141.638 97.4259 131.286 115.082C120.935 132.738 121.817 152.925 134.402 159.589C146.988 166.251 165.729 158.258 176.082 140.602C177.751 137.754 179.981 131.142 181.023 128.251L196.169 119.93L196.079 151.521L112.702 197.792L112.742 208.217C130.487 207.749 148.362 203.151 164.761 194.026C215.713 165.674 233.521 104.173 205.598 55.2102L196.008 60.2144V90.5322V90.5322Z"
+                        fill="#35469D" ></path>
+                </svg>
+        </div>
+    </div>
+</div>
+    <div class="background">
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+      <div class="cube"></div>
+    </div>
+<div>
+    {% if not user.is_authenticated %}
+    <div id="not-email">
+        <div id="window-not-email">
+        <h1 >Для использования банка необходимо войти в аккаунт!</h1>
+              <a class="pulse" href="{% url 'login:sign-in'%}">Войти</a>
+              <a class="offset" href="{% url 'login:presing'%}">Нет аккаунта?</a>
+              <a class="raise" href="{% url 'index' %}">Вернуться</a>
+        </div>
+        <div class="bg"></div>
+    </div>
+{% endif %}
+</div>
+<div class="accordion-tab-wrapper">
+  <div class="banner"></div>
+
+  <section class="accordion">
+    <section class="accordion-tabs">
+      <button class="accordion-tab accordion-active" data-actab-group="0" data-actab-id="0">Переводы</button>
+      <button class="accordion-tab" data-actab-group="0" data-actab-id="1">История транкций</button>
+    </section>
+    <section class="accordion-content">
+      <article class="accordion-item accordion-active" data-actab-group="0" data-actab-id="0">
+        <h4 class="accordion-item__label">Переводы</h4>
+        <div class="accordion-item__container">
+            <div class="container preload">
+  <div class="creditcard">
+    <div class="front">
+      <div id="ccsingle"></div>
+      <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
+        <g id="Front">
+          <g id="CardBackground">
+            <g id="Page-1_1_">
+              <g id="amex_1_">
+                <path id="Rectangle-1_1_" class="lightcolor grey" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
+                      C0,17.9,17.9,0,40,0z"></path>
+              </g>
+            </g>
+            <path class="darkcolor greydark"
+              d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z"></path>
+          </g>
+          <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">0123 4567 8910
+            1112</text>
+          <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">YOUR NAME</text>
+          <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">cardholder name</text>
+          <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">expiration</text>
+          <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">card number</text>
+          <g>
+            <text transform="matrix(1 0 0 1 574.4219 433.8095)" id="svgexpire" class="st2 st5 st9">01/23</text>
+            <text transform="matrix(1 0 0 1 479.3848 417.0097)" class="st2 st10 st11">VALID</text>
+            <text transform="matrix(1 0 0 1 479.3848 435.6762)" class="st2 st10 st11">THRU</text>
+            <polygon class="st2" points="554.5,421 540.4,414.2 540.4,427.9 		" />
+          </g>
+          <g id="cchip">
+            <g>
+              <path class="st2" d="M168.1,143.6H82.9c-10.2,0-18.5-8.3-18.5-18.5V74.9c0-10.2,8.3-18.5,18.5-18.5h85.3
+                  c10.2,0,18.5,8.3,18.5,18.5v50.2C186.6,135.3,178.3,143.6,168.1,143.6z" />
+            </g>
+            <g>
+              <g>
+                <rect x="82" y="70" class="st12" width="1.5" height="60" />
+              </g>
+              <g>
+                <rect x="167.4" y="70" class="st12" width="1.5" height="60" />
+              </g>
+              <g>
+                <path class="st12" d="M125.5,130.8c-10.2,0-18.5-8.3-18.5-18.5c0-4.6,1.7-8.9,4.7-12.3c-3-3.4-4.7-7.7-4.7-12.3
+                      c0-10.2,8.3-18.5,18.5-18.5s18.5,8.3,18.5,18.5c0,4.6-1.7,8.9-4.7,12.3c3,3.4,4.7,7.7,4.7,12.3
+                      C143.9,122.5,135.7,130.8,125.5,130.8z M125.5,70.8c-9.3,0-16.9,7.6-16.9,16.9c0,4.4,1.7,8.6,4.8,11.8l0.5,0.5l-0.5,0.5
+                      c-3.1,3.2-4.8,7.4-4.8,11.8c0,9.3,7.6,16.9,16.9,16.9s16.9-7.6,16.9-16.9c0-4.4-1.7-8.6-4.8-11.8l-0.5-0.5l0.5-0.5
+                      c3.1-3.2,4.8-7.4,4.8-11.8C142.4,78.4,134.8,70.8,125.5,70.8z" />
+              </g>
+              <g>
+                <rect x="82.8" y="82.1" class="st12" width="25.8" height="1.5" />
+              </g>
+              <g>
+                <rect x="82.8" y="117.9" class="st12" width="26.1" height="1.5" />
+              </g>
+              <g>
+                <rect x="142.4" y="82.1" class="st12" width="25.8" height="1.5" />
+              </g>
+              <g>
+                <rect x="142" y="117.9" class="st12" width="26.2" height="1.5" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Back">
+        </g>
+      </svg>
+    </div>
+    <div class="back">
+      <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
+        <g id="Front">
+          <line class="st0" x1="35.3" y1="10.4" x2="36.7" y2="11" />
+        </g>
+        <g id="Back">
+          <g id="Page-1_2_">
+            <g id="amex_2_">
+              <path id="Rectangle-1_2_" class="darkcolor greydark" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
+                  C0,17.9,17.9,0,40,0z" />
+            </g>
+          </g>
+          <rect y="61.6" class="st2" width="750" height="78" />
+          <g>
+            <path class="st3" d="M701.1,249.1H48.9c-3.3,0-6-2.7-6-6v-52.5c0-3.3,2.7-6,6-6h652.1c3.3,0,6,2.7,6,6v52.5
+              C707.1,246.4,704.4,249.1,701.1,249.1z" />
+            <rect x="42.9" y="198.6" class="st4" width="664.1" height="10.5" />
+            <rect x="42.9" y="224.5" class="st4" width="664.1" height="10.5" />
+            <path class="st5"
+              d="M701.1,184.6H618h-8h-10v64.5h10h8h83.1c3.3,0,6-2.7,6-6v-52.5C707.1,187.3,704.4,184.6,701.1,184.6z" />
+          </g>
+          <text transform="matrix(1 0 0 1 621.999 227.2734)" id="svgsecurity" class="st6 st7">***</text>
+          <g class="st8">
+            <text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">security code</text>
+          </g>
+          <rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
+          <rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
+          <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">Your name</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+                <form class="form-container" method="POST">
+    {% csrf_token %}
+  <div class="field-container">
+    <label for="cardnumber">Card Number</label>
+    <input id="cardnumber" type="text" inputmode="numeric" name="number">
+    <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
+      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    </svg>
+  </div>
+    <div class="field-container">
+    <label for="summary">Summary</label>
+    <input id="summary" type="text"  inputmode="numeric" name="summary">
+  </div>
+        <div class="field-container">
+    <label for="comm">Comm</label>
+    <input id="comm" type="text"  inputmode="numeric" name="comm">
+  </div>
+    <input type="submit" name="send_transaction" value="Send" id="submit_btn_transaction"/>
+</form>
+        </div>
+      </article>
+      <article class="accordion-item" data-actab-group="0" data-actab-id="1">
+        <h4 class="accordion-item__label">История транзакций</h4>
+        <div class="accordion-item__container">
+            {% if person_tr.count > 0 %}
+                <div>
+                    <span class="th__tr" >Дата</span>
+                </div>
+            {% for tr in person_tr %}
+                <div class="td__tr" >
+                <div class="td__tr__header" data-collapse="#data" >
+	   	  					<div class="td__tr__header-text">{{ tr.tDate }}</div>
+                </div>
+
+                <div class="td__tr__block_ext" >
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="td__tr__ext">
+                            <label class="sender__ext">От кого:</label>
+                                <input type="text" class='sender__name__ext' name="sender_name"  value="{{ tr.senderId.name.name}}"/>
+                                <input type="text" class='sender__surname__ext'  name="sender_surname" value="{{ tr.senderId.surname.surname}}"/>
+                        </div>
+                        <div class="td__tr__ext">
+                            <label class="recipient__ext">Кому:</label>
+                                <input type="text" class='recipient__name__ext' name="recip_name" value="{{ tr.recipientId.name.name}}"/>
+                                <input type="text" class='recipient__surname__ext'  name="recip_surname" value="{{ tr.recipientId.surname.surname}}"/>
+                        </div>
+                        <div class="td__tr__ext">
+                            <label class="summary__ext">На сумму:</label>
+                            <input type="text" class='summary__ext' name="summary"  value="{{ tr.summary}}"/>
+                        </div>
+                        <input style="visibility: hidden" name="tDate" value="{{ tr.tDate }}"/>
+                        <input class='btn_smbt' type="submit" name="transaction" value="Распечатать"/>
+                    </form>
+                </div>
+                                </div>
+            {% endfor %}
+                {% else%}
+                <h1>История транзакций пуста</h1>
+                {% endif %}
+        </div>
+      </article>
+    </section>
+  </section>
+
+</div>
+<script>
+
+</script>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
+<script src={% static 'assets/js/person-credit.js' %}></script>
+</html>

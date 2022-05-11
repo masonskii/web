@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href='{% static '/css/crtdnews.css' %}?{% now "U" %}' type="text/css">
+</head>
+<body>
+<div id="form-main">
+  <div id="form-div">
+    <form class="form" id="form1" method="POST">
+   {% csrf_token %}
+      <p class="name">
+        <input name="title" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Title" id="name" />
+      </p>
+      <p class="text">
+        <textarea name="content" class="validate[required,length[6,999]] feedback-input" id="comment" placeholder="Content"></textarea>
+      </p>
+
+      <div class="submit">
+        <input type="submit" value="SEND" id="button-blue"/>
+        <div class="ease"></div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
