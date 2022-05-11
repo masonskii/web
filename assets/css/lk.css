@@ -1,0 +1,505 @@
+
+body{
+	margin:0;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+flex-direction: column;flex-wrap: nowrap;align-content: space-around;align-items: stretch;}
+.block-user-avatar {width: 50%;}
+
+img.avatar-user {width: 50%;height: 70%;border-radius: 25px;margin: 8%;}
+
+.block-info {margin: 10%;background-color: wheat;width: 80%;height: 75%;border-radius: 25px;display: flex;position: relative;flex-direction: row;flex-wrap: nowrap;align-content: flex-end;justify-content: flex-start;align-items: flex-start;}
+.card-user {width: 20%;height: 50%;z-index: 2;position: absolute;top: 2%;right: 1%;margin: 5%;}
+
+
+/* CREDIT CARD IMAGE STYLING */
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
+.slider {position: relative;display: block;width: 100%;height: 100%;}
+.container {
+  width: 100%;
+  max-width: 400px;
+  max-height: 251px;
+  height: 54vw;
+  padding: 20px;
+}
+
+#ccsingle {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}
+
+#ccsingle svg {
+  width: 100px;
+  max-height: 60px;
+}
+
+.creditcard svg#cardfront,
+.creditcard svg#cardback {
+  width: 100%;
+  -webkit-box-shadow: 1px 5px 6px 0px black;
+  box-shadow: 1px 5px 6px 0px black;
+  border-radius: 22px;
+}
+
+
+/* CHANGEABLE CARD ELEMENTS */
+.creditcard .lightcolor,
+.creditcard .darkcolor {
+  -webkit-transition: fill .5s;
+  transition: fill .5s;
+}
+
+.creditcard .lightblue {
+  fill: #03A9F4;
+}
+
+.creditcard .lightbluedark {
+  fill: #0288D1;
+}
+
+.creditcard .red {
+  fill: #ef5350;
+}
+
+.creditcard .reddark {
+  fill: #d32f2f;
+}
+
+.creditcard .purple {
+  fill: #ab47bc;
+}
+
+.creditcard .purpledark {
+  fill: #7b1fa2;
+}
+
+.creditcard .cyan {
+  fill: #26c6da;
+}
+
+.creditcard .cyandark {
+  fill: #0097a7;
+}
+
+.creditcard .green {
+  fill: #66bb6a;
+}
+
+.creditcard .greendark {
+  fill: #388e3c;
+}
+
+.creditcard .lime {
+  fill: #d4e157;
+}
+
+.creditcard .limedark {
+  fill: #afb42b;
+}
+
+.creditcard .yellow {
+  fill: #ffeb3b;
+}
+
+.creditcard .yellowdark {
+  fill: #f9a825;
+}
+
+.creditcard .orange {
+  fill: #ff9800;
+}
+
+.creditcard .orangedark {
+  fill: #ef6c00;
+}
+
+.creditcard .grey {
+  fill: #bdbdbd;
+}
+
+.creditcard .greydark {
+  fill: #616161;
+}
+
+/* FRONT OF CARD */
+#svgname {
+  text-transform: uppercase;
+}
+
+#cardfront .st2 {
+  fill: #FFFFFF;
+}
+
+#cardfront .st3 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 600;
+}
+
+#cardfront .st4 {
+  font-size: 54.7817px;
+}
+
+#cardfront .st5 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 400;
+}
+
+#cardfront .st6 {
+  font-size: 33.1112px;
+}
+
+#cardfront .st7 {
+  opacity: 0.6;
+  fill: #FFFFFF;
+}
+
+#cardfront .st8 {
+  font-size: 24px;
+}
+
+#cardfront .st9 {
+  font-size: 36.5498px;
+}
+
+#cardfront .st10 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300;
+}
+
+#cardfront .st11 {
+  font-size: 16.1716px;
+}
+
+#cardfront .st12 {
+  fill: #4C4C4C;
+}
+
+/* BACK OF CARD */
+#cardback .st0 {
+  fill: none;
+  stroke: #0F0F0F;
+  stroke-miterlimit: 10;
+}
+
+#cardback .st2 {
+  fill: #111111;
+}
+
+#cardback .st3 {
+  fill: #F2F2F2;
+}
+
+#cardback .st4 {
+  fill: #D8D2DB;
+}
+
+#cardback .st5 {
+  fill: #C4C4C4;
+}
+
+#cardback .st6 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 400;
+}
+
+#cardback .st7 {
+  font-size: 27px;
+}
+
+#cardback .st8 {
+  opacity: 0.6;
+}
+
+#cardback .st9 {
+  fill: #FFFFFF;
+}
+
+#cardback .st10 {
+  font-size: 24px;
+}
+
+#cardback .st11 {
+  fill: #EAEAEA;
+}
+
+#cardback .st12 {
+  font-family: 'Rock Salt', cursive;
+}
+
+#cardback .st13 {
+  font-size: 37.769px;
+}
+
+/* FLIP ANIMATION */
+.container {
+  perspective: 1000px;
+}
+
+.creditcard {
+  width: 100%;
+  max-width: 400px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: -webkit-transform 0.6s;
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+  cursor: pointer;
+}
+
+.creditcard .front,
+.creditcard .back {
+  position: absolute;
+  width: 100%;
+  max-width: 400px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  color: #47525d;
+}
+
+.creditcard .back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.creditcard.flipped {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+      #not-email{
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 88;
+
+      }
+      #window-not-email {
+        z-index: 99;
+        width: 900px;
+        height: 200px;
+        text-align: center;
+        padding: 15px;
+        border: 3px solid #0000cc;
+        border-radius: 10px;
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background: #17181c;
+        font: 50 1em "Fira Sans", sans-serif;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        display: flex;
+      }
+      #not-email {display: block;}
+      .pulse, .offset, .raise {
+        background: none;
+        border: 2px solid;
+        font: inherit;
+        line-height: 1;
+        margin: 0.5em;
+        padding: 1em 2em;
+      }
+
+
+.CSSgal {
+	position: relative;
+	overflow: hidden;
+	height: 100%; /* Or set a fixed height */
+}
+
+/* SLIDER */
+
+.CSSgal .slider {
+	height: 100%;
+	white-space: nowrap;
+	font-size: 0;
+	transition: 0.8s;
+}
+
+/* SLIDES */
+
+.CSSgal .slider > * {
+	font-size: 2rem;
+	display: inline-block;
+	/* white-space: normal; */
+	vertical-align: top;
+	height: 100%;
+	width: 100%;
+	background: none 50% no-repeat;
+	background-size: cover;
+}
+
+/* PREV/NEXT, CONTAINERS & ANCHORS */
+
+.CSSgal .prevNext {
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	width: 100%;
+	height: 0;
+}
+
+.CSSgal .prevNext > div+div {
+	visibility: hidden; /* Hide all but first P/N container */
+}
+
+.CSSgal .prevNext a {
+	background: #fff;
+	position: absolute;
+	width:       60px;
+	height:      60px;
+	line-height: 60px; /* If you want to place numbers */
+	text-align: center;
+	opacity: 0.7;
+	-webkit-transition: 0.3s;
+					transition: 0.3s;
+	-webkit-transform: translateY(-50%);
+					transform: translateY(-50%);
+	left: 0;
+}
+.CSSgal .prevNext a:hover {
+	opacity: 1;
+}
+.CSSgal .prevNext a+a {
+	left: auto;
+	right: 0;
+}
+
+
+/* NAVIGATION */
+
+.CSSgal .bullets {
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	padding: 10px 0;
+	width: 100%;
+	text-align: center;
+}
+.CSSgal .bullets > a {
+	display: inline-block;
+	width:       30px;
+	height:      30px;
+	line-height: 30px;
+	text-decoration: none;
+	text-align: center;
+	background: rgba(255, 255, 255, 1);
+	-webkit-transition: 0.3s;
+					transition: 0.3s;
+}
+.CSSgal .bullets > a+a {
+	background: rgba(255, 255, 255, 0.5); /* Dim all but first */
+}
+.CSSgal .bullets > a:hover {
+	background: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* NAVIGATION BUTTONS */
+/* ALL: */
+.CSSgal >s:target ~ .bullets >* {      background: rgba(255, 255, 255, 0.5);}
+/* ACTIVE */
+#s1:target ~ .bullets >*:nth-child(1) {background: rgba(255, 255, 255,   1);}
+#s2:target ~ .bullets >*:nth-child(2) {background: rgba(255, 255, 255,   1);}
+#s3:target ~ .bullets >*:nth-child(3) {background: rgba(255, 255, 255,   1);}
+#s4:target ~ .bullets >*:nth-child(4) {background: rgba(255, 255, 255,   1);}
+/* More slides? Add here more rules */
+
+/* PREV/NEXT CONTAINERS VISIBILITY */
+/* ALL: */
+.CSSgal >s:target ~ .prevNext >* {      visibility: hidden;}
+/* ACTIVE: */
+#s1:target ~ .prevNext >*:nth-child(1) {visibility: visible;}
+#s2:target ~ .prevNext >*:nth-child(2) {visibility: visible;}
+#s3:target ~ .prevNext >*:nth-child(3) {visibility: visible;}
+#s4:target ~ .prevNext >*:nth-child(4) {visibility: visible;}
+/* More slides? Add here more rules */
+
+/* SLIDER ANIMATION POSITIONS */
+
+#s1:target ~ .slider {transform: translateX(   0%); -webkit-transform: translateX(   0%);}
+#s2:target ~ .slider {transform: translateX(-100%); -webkit-transform: translateX(-100%);}
+#s3:target ~ .slider {transform: translateX(-200%); -webkit-transform: translateX(-200%);}
+#s4:target ~ .slider {transform: translateX(-300%); -webkit-transform: translateX(-300%);}
+/* More slides? Add here more rules */
+
+
+/* YOU'RE THE DESIGNER!
+   ____________________
+   All above was mainly to get it working :)
+   CSSgal CUSTOM STYLES / OVERRIDES HERE: */
+
+.CSSgal{
+	/* color: #fff; */
+	/* text-align: center; */
+}
+.CSSgal .slider h2 {
+	margin-top: 40vh;
+	font-weight: 200;
+	letter-spacing: -0.06em;
+	word-spacing: 0.2em;
+	font-size: 3em;
+}
+.CSSgal a {
+	border-radius: 50%;
+	margin: 0 3px;
+	color: rgba(0,0,0,0.8);
+	text-decoration: none;
+}
+.accordion {
+  background-color: transparent;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 45px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+border-radius: 25px;}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+
+}
+.btn-to-go-page {position: absolute;display: flex;width: 100%;top: 85%;left: 1%; margin: 2%;}
+.btn-to-go-page .btn-to-go:hover{
+    background-color: #9db6d7;
+    border-radius: 2px;
+    transition: 0.9s;
+}
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}

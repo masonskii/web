@@ -5,10 +5,11 @@ import datetime
 # Create your views here.
 from django.urls import reverse
 
+from auth_person.consts import DEFAULT_ROLE, ORG_ROLE
 from auth_person.forms import PersonRegistrationForms, SignIn
-from auth_person.func import CreateNewUser
-from auth_person.models import Person, PersonLogin, PersonPassword, PersonName, PersonSurname, PersonNdName, \
-    PersonBirthday, MobilePhone, Logo
+from auth_person.func import Created, generated_card
+from auth_person.models import Person, PersonLogin, PersonName, PersonSurname, PersonNdName, \
+    PersonBirthday, MobilePhone, Logo, Email, Role
 from django.contrib.auth.models import User
 
 from consts import DEFAULT_NAME_APP, DEFAULT_START_BALANCE
@@ -16,54 +17,89 @@ from consts import DEFAULT_NAME_APP, DEFAULT_START_BALANCE
 
 def subsign(request):
     if request.method == 'POST':
-            new_user = Person.objects.get(person_id=request.user.id)
-            name = PersonName()
-            surname = PersonSurname()
-            ndName = PersonNdName()
-            birthday = PersonBirthday()
-            new_phone = MobilePhone()
-            new_logo = Logo()
-            name.name = request.POST.get('name')
-            surname.surname = request.POST.get('surname')
-            ndName.ndName = request.POST.get('ndName')
-            birthday.birthday = request.POST.get('birthday')
-            new_phone.phone = request.POST.get('phone')
-            new_logo.logo = request.FILES.get('logo')
-            name.save()
-            surname.save()
-            ndName.save()
-            birthday.save()
-            new_phone.save()
-            new_logo.save()
-            new_user.name = name
-            new_user.surname = surname
-            new_user.ndName = ndName
-            new_user.birthday = birthday
-            new_user.phone = new_phone
-            new_user.logoId = new_logo
-            new_user.save()
-            return redirect(reverse('login:user-area'), kwargs={'user': Person.objects.get(person_id=request.user.id)})
+        new_user = Person.objects.get(person_id=request.user.person_id)
+        name = PersonName()
+        surname = PersonSurname()
+        ndName = PersonNdName()
+        birthday = PersonBirthday()
+        new_phone = MobilePhone()
+        new_logo = Logo()
+        new_bio = request.POST.get('bio')
+        name.name = request.POST.get('name')
+        surname.surname = request.POST.get('surname')
+        ndName.ndName = request.POST.get('ndName')
+        birthday.birthday = request.POST.get('birthday')
+        new_phone.phone = request.POST.get('phone')
+        new_logo.logo = request.FILES.get('logo')
+        name.save()
+        surname.save()
+        ndName.save()
+        birthday.save()
+        new_phone.save()
+        new_logo.save()
+        new_user.name = name
+        new_user.surname = surname
+        new_user.ndName = ndName
+        new_user.birthday = birthday
+        new_user.phone = new_phone
+        new_user.logoId = new_logo
+        new_user.save()
+        Person.objects.update(name=new_user.name, surname=new_user.surname)
+        return redirect(reverse('login:user-area'),
+                        kwargs={'user': Person.objects.get(person_id=request.user.person_id)})
     return render(
         request,
         'subsign.html',
+
     )
 
 
 def sign_up(request):
-    if request.method == 'POST':
+    if 'send_person' in request.POST:
         new_person = PersonRegistrationForms(request.POST)
         if new_person.is_valid():
-            new_user = CreateNewUser(request)
-            new_user.main_create_new_user()
-            finally_user = User.objects.create_user(username=request.POST.get('login'),
-                                                    email=request.POST.get('email'),
-                                                    password=request.POST.get('password')
-                                                    )
-            finally_user.save()
-            request_user = authenticate(username=request.POST.get('login'), password=request.POST.get('password'))
-            if request_user is not None:
-                login(request, request_user)
-                return redirect(reverse('login:subsign'), kwargs={'user': finally_user})
+            username = PersonLogin(login=request.POST.get('login'))
+            email = Email(email=request.POST.get('email'))
+            role = Role(role=DEFAULT_ROLE)
+            role.save()
+            username.save()
+            email.save()
+            user = Person.objects.create_user(username=username,
+                                              email=email,
+                                              password=request.POST.get('password'),
+                                              balance=DEFAULT_START_BALANCE,
+                                              roleId=role,
+                                              card=generated_card(),
+                                              bio='user'
+                                              )
+            user.save()
+            # request_user = authenticate(username__login=request.POST.get('login'))
+            login(request, user)
+            return redirect(reverse('login:subsign'), kwargs={'user': user})
+    if 'send_org' in request.POST:
+        new_person = PersonRegistrationForms(request.POST)
+        if new_person.is_valid():
+            username = PersonLogin(login=request.POST.get('login'))
+            email = Email(email=request.POST.get('email'))
+            role = Role(role=ORG_ROLE)
+            role.save()
+            username.save()
+            email.save()
+            user = Person.objects.create_user(username=username,
+                                              email=email,
+                                              password=request.POST.get('password'),
+                                              balance=DEFAULT_START_BALANCE,
+                                              roleId=role,
+                                              card=generated_card(),
+                                              bio='organizate',
+                                              is_organizate=True,
+                                              organization_name=request.POST.get('org_name'),
+                                              type_activity=request.POST.get('type')
+                                              )
+            user.save()
+            # request_user = authenticate(username__login=request.POST.get('login'))
+            login(request, user)
+            return redirect(reverse('login:subsign'), kwargs={'user': user})
     else:
         return render(
             request,
@@ -79,7 +115,7 @@ def sign_in(request):
         new_session_sign = SignIn(request.POST)
         if new_session_sign.is_valid():
             log = PersonLogin.objects.get(login=request.POST.get('login'))
-            pas = PersonPassword.objects.filter(password=request.POST.get('password'))
+            pas = Person.objects.filter(password=request.POST.get('password'))
             for i in range(len(pas)):
                 try:
                     session_complited = Person.objects.get(login=log.login_id, password=pas[i].password_id)
@@ -89,7 +125,7 @@ def sign_in(request):
                                                     password=session_complited.password.password)
                         if request_user is not None:
                             login(request, request_user)
-                            return redirect(reverse('index'), kwargs={'user': session_complited})
+                            return redirect(reverse('index'), {'user': session_complited})
                 except:
                     continue
             else:
@@ -115,7 +151,7 @@ def sign_in(request):
 
 
 def is_sign(request):
-    new_session = Person.objects.get(person_id=request.user.id)
+    new_session = Person.objects.get(person_id=request.user.person_id)
     if not new_session:
         return render(
             request,
@@ -142,7 +178,6 @@ def is_sign(request):
                     'logo_obj': new_session.logoId.logo.url
                 }
             )
-
 
 
 def logout_view(request):

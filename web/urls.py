@@ -18,13 +18,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, re_path, path
+
+from event.views import created_task
+from news.views import create_news
 from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('auth_person.urls')),
     path('bank/', include('bank.urls')),
-    path('', index, name='index')
+    path('', index, name='index'),
+    path('creating_news/', create_news, name='createdNews'),
+    path('creating_task/', created_task, name='createdTask'),
 ] + static(settings.MEDIA_URL,  document_root=settings.MEDIA_ROOT)
 
 # В конце файла:

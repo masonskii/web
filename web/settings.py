@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'event',
     'fabpro',
     'machine',
-    'webpack_loader',
+'news',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
 }
 
@@ -88,6 +88,8 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PWD_MODULE = "django.contrib.auth.password_validation."
+
+AUTH_USER_MODEL = 'auth_person.Person'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

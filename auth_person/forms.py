@@ -23,6 +23,7 @@ class PersonRegistrationForms(forms.Form):
         required=False,
     )
 
+
 class PersonSubSignForm(forms.Form):
     name = forms.CharField(
         label='name',

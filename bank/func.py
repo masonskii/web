@@ -24,7 +24,7 @@ def search_person(number_card):
 
 
 def sender(request_user):
-    person = Person.objects.get(person_id=request_user.id)
+    person = Person.objects.get(person_id=request_user.person_id)
     if not person:
         return None
     else:

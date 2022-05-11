@@ -40,9 +40,11 @@ def transfer(request):
         response = create_document_transaction(sName, rName, tDate, sum)
         return response
     else:
-        history_transfer = Transfer.objects.filter(senderId=request.user.id)
-
-        return render(request, 'transfer.html', {'person_tr': history_transfer})
+        if request.user.is_authenticated:
+            history_transfer = Transfer.objects.filter(senderId=request.user.person_id)
+            return render(request, 'transfer.html', {'person_tr': history_transfer})
+        else:
+            return render(request, 'transfer.html')
 
 
 def successfully_transaction(request):

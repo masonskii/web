@@ -373,3 +373,6 @@ body{
     opacity: 0;
   }
 }
+.org-box{
+  display: none;
+}

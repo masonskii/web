@@ -36,7 +36,7 @@
       {% csrf_token %}
   <!-- One "tab" for each step in the form: -->
     <div class="tab">
-        <h2>Welcome {{ user.username }}</h2>
+        <h2>Welcome {{ user.name.name }}!</h2>
       <div  class="user-box">
         <input oninput="this.className = ''" name="name">
         <label>Name</label>

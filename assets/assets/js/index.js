@@ -1,22 +1,58 @@
-var swiper = new Swiper('.blog-slider', {
-      spaceBetween: 30,
-      effect: 'fade',
-      loop: true,
-      mousewheel: {
-        invert: false,
-      },
-      // autoHeight: true,
-      pagination: {
-        el: '.blog-slider__pagination',
-        clickable: true,
-      }
-    });
 
-const colors = ['#f5a147','#51cad8','#112b39'];
-const numLines = 3;
-var currCount = numLines;
-const texts = document.querySelectorAll("#textClip text");
-const blobs = document.querySelectorAll("#background path");
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+
+window.onload = function () {
+    const cardnumber = document.getElementById('cardnumber');
+    const ccicon = document.getElementById('ccicon');
+    const ccsingle = document.getElementById('ccsingle');
+
+
+    let cctype = null;
+
+
+    let fablab = '';
+
+
+    //define the color swap function
+    const swapColor = function (basecolor) {
+        document.querySelectorAll('.lightcolor')
+            .forEach(function (input) {
+                input.setAttribute('class', '');
+                input.setAttribute('class', 'lightcolor ' + basecolor);
+            });
+        document.querySelectorAll('.darkcolor')
+            .forEach(function (input) {
+                input.setAttribute('class', '');
+                input.setAttribute('class', 'darkcolor ' + basecolor + 'dark');
+            });
+    };
+
+
+    //pop in the appropriate card icon when detected
+
+    // CREDIT CARD IMAGE JS
+    document.querySelector('.creditcard').addEventListener('click', function () {
+        if (this.classList.contains('flipped')) {
+            this.classList.remove('flipped');
+        } else {
+            this.classList.add('flipped');
+        }
+    })
+}
 
 function colorBlobs() {
 	blobs.forEach(blob => {
@@ -45,12 +81,6 @@ function nextIteration() {
     	currCount = 0;
     }
 }
-
-// Since all of our blobs are using the same animation, we only
-// need to listen to one of them
-blobs[0].addEventListener("animationiteration", nextIteration);
-
-colorBlobs();
 
 /*
 let minSize=50,
@@ -130,3 +160,29 @@ $(function(){
 
 
 });
+
+function openTab(evt, tab) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("content__inner");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tab");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+	document.getElementById(tab).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+
+//Horizontal scroll for the tabs on mousewheel. If tabs are longer than the content section, there's a scroll bar but it's hidden to retain the design.
+if (window.innerWidth > 800) {
+	const scrollContainer = document.querySelector(".tabs");
+
+	scrollContainer.addEventListener("wheel", (evt) => {
+		evt.preventDefault();
+		scrollContainer.scrollLeft += evt.deltaY;
+	});
+}
+
+

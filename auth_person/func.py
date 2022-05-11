@@ -2,42 +2,29 @@ import random
 import string
 
 from auth_person.consts import DEFAULT_ROLE
-from auth_person.models import Role, Logo, Email, MobilePhone, PersonCard, PersonLogin, PersonPassword, Person, \
+from auth_person.models import Role, Logo, Email, MobilePhone, PersonCard, PersonLogin, Person, \
     PersonName, PersonSurname, PersonNdName, PersonBirthday
 from consts import START_NUMBER_CARD, DEFAULT_START_BALANCE
 
 
-class CreateNewUser:
+class Created:
 
     def __init__(self, request):
         self.request = request
-        self.new_password = PersonPassword()
+        # self.new_password = PersonPassword()
         self.new_login = PersonLogin()
         self.new_user = Person()
         self.new_email = Email()
         self.new_role = Role()
-        self.new_card = PersonCard()
-        self.generate = GenerateCard()
 
-    def main_create_new_user(self):
-        self.new_login.login = self.request.POST.get('login')
-        self.new_password.password = self.request.POST.get('password')
-        self.new_email.email = self.request.POST.get('email')
-        self.new_role.role = DEFAULT_ROLE
-        self.new_card.number = self.generate.number
-        self.new_card.secret_code = self.generate.secret_code
-        self.new_login.save()
-        self.new_password.save()
-        self.new_email.save()
-        self.new_role.save()
-        self.new_card.save()
-        self.new_user.login = self.new_login
-        self.new_user.password = self.new_password
-        self.new_user.email = self.new_email
-        self.new_user.roleId = self.new_role
-        self.new_user.card = self.new_card
-        self.new_user.balance = DEFAULT_START_BALANCE
-        self.new_user.save()
+
+def generated_card():
+    new_card = PersonCard()
+    generate = GenerateCard()
+    new_card.number = generate.number
+    new_card.secret_code = generate.secret_code
+    new_card.save()
+    return new_card
 
 
 def generate_random_string(length=15):
