@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b4fe6495-6414-40b3-9324-b917b2715f9c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/abstract/AbstractUserModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/abstract/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/js/lk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/js/person-credit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/js/reg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/credit_on_index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/crtdnews.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/lk.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/create_news.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/create_task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_profile/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/index_menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/index_menu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/reg_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/reg_css.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/consts.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/consts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0002_alter_logo_logo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0003_alter_logo_logo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0004_alter_logo_logo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0005_remove_email_personid_remove_mobilephone_personid_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0006_alter_person_email_alter_person_logoid_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0007_personcard_person_card.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0008_alter_person_card.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0009_alter_person_card.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0010_alter_person_card.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0011_alter_person_card.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0012_alter_person_card_alter_personcard_secret_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0013_alter_person_card_alter_personcard_secret_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0014_personbirthday_personlogin_personname_personndname_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0015_remove_membership_departmentid_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0016_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0017_alter_email_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/migrations/0018_alter_person_phone.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_person/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bank/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/bank/func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bank/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bank/migrations/0002_alter_transfer_recipientid_alter_transfer_senderid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bank/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bank/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/personalArea.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/personalArea.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/subsign.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/subsign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/transfer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/transfer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SCSS File" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+        <option value="CSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.gitignore" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/web/urls.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/assets/js/index.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/web/settings.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/index.html" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/testing_templates/sign.html" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/assets/js/login.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="25jsrQc8pFiKlQzFCmA6ASnF7WF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="16.4.2" />
+    <property name="javascript.nodejs.core.library.typings.version" value="16.4.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gavri\PycharmProjects\web\testing_templates" />
+      <recent name="C:\Users\gavri\PycharmProjects\web\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gavri\pipwin\PycharmProjects\web\assets\css" />
+      <recent name="C:\Users\gavri\PycharmProjects\web\media\files\generated_transactions" />
+      <recent name="C:\Users\gavri\PycharmProjects\web\bank\documents\templates" />
+      <recent name="C:\Users\gavri\PycharmProjects\web\bank" />
+      <recent name="C:\Users\gavri\PycharmProjects\web\bank\documents" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django Server.web">
+    <configuration name="Test: auth_person.tests.TestingCard.test_1" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="web" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="auth_person.tests.TestingCard.test_1" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="web" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="web" type="Python.DjangoServer" factoryName="Django server">
+      <module name="web" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="web.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: auth_person.tests.TestingCard.test_1" />
+        <item itemvalue="Python.tests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4fe6495-6414-40b3-9324-b917b2715f9c" name="Changes" comment="" />
+      <created>1646052027768</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646052027768</updated>
+      <workItem from="1646052043546" duration="8368000" />
+      <workItem from="1646168776937" duration="82000" />
+      <workItem from="1646415379936" duration="3248000" />
+      <workItem from="1646427650647" duration="6162000" />
+      <workItem from="1646486561745" duration="4409000" />
+      <workItem from="1646516758340" duration="10939000" />
+      <workItem from="1646611911200" duration="3714000" />
+      <workItem from="1646760188332" duration="112000" />
+      <workItem from="1646835219495" duration="2749000" />
+      <workItem from="1646838003797" duration="1319000" />
+      <workItem from="1646924754801" duration="5519000" />
+      <workItem from="1646936982576" duration="599000" />
+      <workItem from="1646942913298" duration="1923000" />
+      <workItem from="1647001158859" duration="60000" />
+      <workItem from="1647001299625" duration="2705000" />
+      <workItem from="1647162954333" duration="103000" />
+      <workItem from="1647957899681" duration="3705000" />
+      <workItem from="1648048250173" duration="698000" />
+      <workItem from="1648064230235" duration="523000" />
+      <workItem from="1648074276722" duration="9900000" />
+      <workItem from="1648142823141" duration="96000" />
+      <workItem from="1648369903662" duration="1420000" />
+      <workItem from="1648371351745" duration="4659000" />
+      <workItem from="1648384436948" duration="1588000" />
+      <workItem from="1648405785609" duration="845000" />
+      <workItem from="1648471868759" duration="17000" />
+      <workItem from="1648505080245" duration="167000" />
+      <workItem from="1648505437168" duration="622000" />
+      <workItem from="1648566029861" duration="2644000" />
+      <workItem from="1648640245612" duration="4079000" />
+      <workItem from="1648648353335" duration="11794000" />
+      <workItem from="1648661496922" duration="177000" />
+      <workItem from="1648662016561" duration="1929000" />
+      <workItem from="1648672001952" duration="7180000" />
+      <workItem from="1648738815565" duration="2918000" />
+      <workItem from="1648793929707" duration="154000" />
+      <workItem from="1648986559332" duration="129000" />
+      <workItem from="1648987134588" duration="5521000" />
+      <workItem from="1648996763409" duration="2616000" />
+      <workItem from="1649019604075" duration="3745000" />
+      <workItem from="1649085451569" duration="2477000" />
+      <workItem from="1649105947617" duration="5175000" />
+      <workItem from="1649112572619" duration="2320000" />
+      <workItem from="1649114926949" duration="7421000" />
+      <workItem from="1649147364426" duration="61000" />
+      <workItem from="1649152773473" duration="877000" />
+      <workItem from="1649282368122" duration="573000" />
+      <workItem from="1649288933618" duration="2874000" />
+      <workItem from="1649366646482" duration="1192000" />
+      <workItem from="1649412051220" duration="3311000" />
+      <workItem from="1649510467448" duration="916000" />
+      <workItem from="1649512239710" duration="166000" />
+      <workItem from="1649543451222" duration="2244000" />
+      <workItem from="1649640505270" duration="18448000" />
+      <workItem from="1649839219005" duration="4003000" />
+      <workItem from="1649860732732" duration="1541000" />
+      <workItem from="1649880744965" duration="7271000" />
+      <workItem from="1649897641849" duration="766000" />
+      <workItem from="1649922230012" duration="323000" />
+      <workItem from="1649961811455" duration="19000" />
+      <workItem from="1649962148728" duration="11180000" />
+      <workItem from="1649987687319" duration="74000" />
+      <workItem from="1649987887969" duration="1412000" />
+      <workItem from="1649992016861" duration="1131000" />
+      <workItem from="1650986257701" duration="2540000" />
+      <workItem from="1651220875736" duration="151000" />
+      <workItem from="1651710140703" duration="3687000" />
+      <workItem from="1652090569255" duration="10226000" />
+      <workItem from="1652135955735" duration="12538000" />
+      <workItem from="1652176298683" duration="6215000" />
+      <workItem from="1652185638254" duration="2405000" />
+      <workItem from="1652190948541" duration="8646000" />
+      <workItem from="1652199815238" duration="17343000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/web$tests.coverage" NAME="tests Coverage Results" MODIFIED="1647003956418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/web$Test__auth_person_tests_TestingCard_test_1.coverage" NAME="Test: auth_person.tests.TestingCard.test_1 Coverage Results" MODIFIED="1649022033319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>
