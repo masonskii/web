@@ -2,20 +2,9 @@ import random
 import string
 
 from auth_person.consts import DEFAULT_ROLE
-from auth_person.models import Role, Logo, Email, MobilePhone, PersonCard, PersonLogin, Person, \
-    PersonName, PersonSurname, PersonNdName, PersonBirthday
+from auth_person.models import Role,PersonCard
+
 from consts import START_NUMBER_CARD, DEFAULT_START_BALANCE
-
-
-class Created:
-
-    def __init__(self, request):
-        self.request = request
-        # self.new_password = PersonPassword()
-        self.new_login = PersonLogin()
-        self.new_user = Person()
-        self.new_email = Email()
-        self.new_role = Role()
 
 
 def generated_card():

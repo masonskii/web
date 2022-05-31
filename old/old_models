@@ -1,0 +1,162 @@
+class Logo(models.Model):
+    """
+    Model table Logo in project db
+
+    Example:
+    SET:
+        var = Logo()
+        var.logo = object
+        var.save()
+    ----------------------------
+    GET:
+        var = Logo.objects.get(id = object)
+    """
+    logo_id = models.AutoField(primary_key=True)
+    logo = models.ImageField(upload_to='files/image/user_logo/%Y-%m-%d/', null=True, blank=True)
+
+
+class Email(models.Model):
+    """
+    Model table Email in project db
+        Example:
+    SET:
+        var = Email()
+        var.email = object
+        var.save()
+    ----------------------------
+    GET:
+        var = Email.objects.get(id = object)
+    """
+
+    email_id = models.AutoField(primary_key=True)
+    email = models.EmailField(max_length=50, null=False, blank=False, unique=True)
+
+
+class MobilePhone(models.Model):
+    """
+    Model table Phone in project db
+        Example:
+    SET:
+        var = MobilePhone()
+        var.phone = object
+        var.save()
+    ----------------------------
+    GET:
+        var = MobilePhone.objects.get(id = object)
+    """
+    mPhone_id = models.AutoField(primary_key=True)
+    phone = models.CharField(max_length=12, null=True, blank=True)
+
+
+class PersonCard(models.Model):
+    """
+    Model table PersonCard in project db
+        Example:
+    SET:
+        var = PersonCard()
+        var.number = object
+        var.secret_code = object
+        var.save()
+    ----------------------------
+    GET:
+        var = PersonCard.objects.get(id = object)
+    """
+    card_id = models.AutoField(primary_key=True)
+    number = models.CharField(max_length=12, unique=True)
+    secret_code = models.CharField(max_length=3)
+
+
+class PersonLogin(models.Model):
+    """
+    Model table Login in project db
+        Example:
+    SET:
+        var = Login()
+        var.login = object
+        var.save()
+    ----------------------------
+    GET:
+        var = Login.objects.get(id = object)
+    """
+    login_id = models.AutoField(primary_key=True)
+    login = models.CharField(max_length=20, null=False, blank=False, help_text='basic login information', unique=True)
+
+
+class PersonName(models.Model):
+    """
+    Model table PersonName in project db
+        Example:
+    SET:
+        var = PersonName()
+        var.name = object
+        var.save()
+    ----------------------------
+    GET:
+        var = PersonName.objects.get(id = object)
+    """
+    name_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30, null=True, blank=True)
+
+
+class PersonSurname(models.Model):
+    """
+    Model table PersonSurname in project db
+        Example:
+    SET:
+        var = PersonSurname()
+        var.surname = object
+        var.save()
+    ----------------------------
+    GET:
+        var = PersonSurname.objects.get(id = object)
+    """
+    surname_id = models.AutoField(primary_key=True)
+    surname = models.CharField(max_length=30, null=True, blank=True)
+
+
+class PersonNdName(models.Model):
+    """
+    Model table PersonNdName in project db
+        Example:
+    SET:
+        var = PersonNdName()
+        var.ndName = object
+        var.save()
+    ----------------------------
+    GET:
+        var = PersonNdName.objects.get(id = object)
+    """
+    ndName_id = models.AutoField(primary_key=True)
+    ndName = models.CharField(max_length=30, null=True, blank=True)
+
+
+class PersonBirthday(models.Model):
+    """
+    Model table PersonBirthday in project db
+        Example:
+    SET:
+        var = PersonBirthday()
+        var.birthday = object
+        var.save()
+    ----------------------------
+    GET:
+        var = PersonBirthday.objects.get(id = object)
+    """
+    birthday_id = models.AutoField(primary_key=True)
+    birthday = models.DateField(null=True, blank=True)
+
+
+    if 'send_org' in request.POST:
+        new_org = FormsOrgPullRequest(request.POST, request.FILES)
+        if new_org.is_valid():
+            OrgPullRequest(
+                person_email=new_org.cleaned_data['person_email'],
+                person_telephone=new_org.cleaned_data['person_telephone'],
+                name_org=new_org.cleaned_data['name_org'],
+                logo_org=request.FILES.get('logo_org'),
+                description=new_org.cleaned_data['description']
+            ).save()
+            return HttpResponseRedirect('/')
+
+              <div style="background:#e95;">
+            {% if person.is_organizate %}

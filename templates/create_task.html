@@ -3,39 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-        <link rel="stylesheet" href='{% static '/css/crtdnews.css' %}?{% now "U" %}' type="text/css">
+    <link rel="stylesheet" href='{% static '/css/crtdnews.css' %}?{% now "U" %}' type="text/css">
 </head>
 <body>
 <div id="form-main">
-  <div id="form-div">
-    <form class="form" id="form1" method="POST" enctype="multipart/form-data">
-   {% csrf_token %}
-      <p class="name">
-        <input name="title" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Title" id="name" />
-      </p>
-        <p class="name">
-        <input name="start_date" type="datetime-local" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="start data" id="name" />
-      </p>
-        <p class="name">
-        <input name="finish_date" type="datetime-local" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="finish data" id="name" />
-      </p>
-        <p class="name">
-        <input name="payment" type="number" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="payment" id="name" />
-      </p>
-        <p class="name">
-        <input name="file" type="file" class="feedback-input" placeholder="payment" id="name" />
-      </p>
-      <p class="text">
-        <textarea name="description" class="validate[required,length[6,999]] feedback-input" id="comment" placeholder="Description"></textarea>
-      </p>
+    <div id="form-div">
+        <form class="form" id="form1" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="name">
+                <input name="title" type="text"
+                       class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Title"
+                       id="name"/>
+            </p>
+            <p class="name">
+                <input name="start_date" type="datetime-local"
+                       class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                       placeholder="start data" id="name"/>
+            </p>
+            <p class="name">
+                <input name="finish_date" type="datetime-local"
+                       class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                       placeholder="finish data" id="name"/>
+            </p>
+            <p class="name">
+                <input name="payment" type="number"
+                       class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="payment"
+                       id="name"/>
+            </p>
+            <p class="name">
+                <input name="file" type="file" class="feedback-input" placeholder="payment" id="name"/>
+            </p>
+            <p class="text">
+                <textarea name="description" class="validate[required,length[6,999]] feedback-input" id="comment"
+                          placeholder="Description"></textarea>
+            </p>
 
-      <div class="submit">
-        <input type="submit" value="SEND" id="button-blue"/>
-        <div class="ease"></div>
-      </div>
-    </form>
-  </div>
+            <div class="submit">
+                <input type="submit" value="SEND" id="button-blue"/>
+                <div class="ease"></div>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

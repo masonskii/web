@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'event',
     'fabpro',
     'machine',
-'news',
+    'news',
+    'my_pull_request',
+    'abstract',
+    'market'
 ]
 
 MIDDLEWARE = [
@@ -105,7 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": f"{AUTH_PWD_MODULE}NumericPasswordValidator",
     },
 ]
-
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 

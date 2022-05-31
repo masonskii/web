@@ -8,7 +8,7 @@ from wsgiref.util import FileWrapper
 
 from django.http import StreamingHttpResponse
 
-from auth_person.models import Person, PersonName, PersonCard
+from auth_person.models import Person, PersonCard
 from docxtpl import DocxTemplate
 
 from bank.models import Transfer

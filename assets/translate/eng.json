@@ -1,0 +1,20 @@
+{
+  "Lang": "English",
+  "NameApp": "Laboratory Inc",
+  "Bank": "Bank",
+  "cNews": "Create news",
+  "News": "News",
+  "oNews": "Old news",
+  "cTask": "Create task",
+  "SignIn": "Sign In",
+  "SignUp": "Sign Up",
+  "LK": "Person Area",
+  "Logout": "Logout",
+  "Dashboard": "Dashboard",
+  "Events":"Events",
+  "Market":"Market",
+  "Profile":"Profile",
+  "Menu":"Menu",
+  "cEvent":"Create Events",
+  "RequestPullOrg": "Apply for an organizer"
+}

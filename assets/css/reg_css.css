@@ -48,61 +48,12 @@ button:hover {
 }
 
 body{
-    background: rgb(35, 20, 43);
+    background: rgb(221, 219, 222);
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-.background {
-  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
-  background-size: 400% 400%;
-  animation: Gradient 15s ease infinite;
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  padding:0;
-  margin:0px;
-}
-.cube {
-  position: absolute;
-  top: 80vh;
-  left: 45vw;
-  width: 10px;
-  height: 10px;
-  border: solid 1px #D7D4E4;
-  transform-origin: top left;
-  transform: scale(0) rotate(0deg) translate(-50%, -50%);
-  animation: cube 12s ease-in forwards infinite;
-}
-.cube:nth-child(2n) {
-  border-color: #FFF ;
-}
-.cube:nth-child(2) {
-  animation-delay: 2s;
-  left: 25vw;
-  top: 40vh;
-}
-.cube:nth-child(3) {
-  animation-delay: 4s;
-  left: 75vw;
-  top: 50vh;
-}
-.cube:nth-child(4) {
-  animation-delay: 6s;
-  left: 90vw;
-  top: 10vh;
-}
-.cube:nth-child(5) {
-  animation-delay: 8s;
-  left: 10vw;
-  top: 85vh;
-}
-.cube:nth-child(6) {
-  animation-delay: 10s;
-  left: 50vw;
-  top: 10vh;
-}
+
 .login-box {
   position: absolute;
   top: 50%;
@@ -126,17 +77,7 @@ body{
   animation:gradient-h2 5s infinite alternate;
 }
 
-@keyframes gradient-h2 {
-  0%{
-      color: #FC415A;
-  }
-  50%{
-      color:#591BC5;
-  }
-  100%{
-    color: #fff;
-  }
-}
+
 .login-box .user-box {
   position: relative;
 }
@@ -200,7 +141,7 @@ body{
   outline: none;
   height: 40px;
   text-align: center;
-  width: 130px;
+  width: 200px;
   border-radius: 40px;
   background: #fff;
   border: 2px solid #1ECD97;
@@ -278,16 +219,7 @@ body{
   animation: btn-anim1 1s linear infinite;
 }
 
-@keyframes btn-anim1 {
-  0% {
-    left: -100%;
-  }
 
-  50%,
-  100% {
-    left: 100%;
-  }
-}
 
 .login-box a span:nth-child(2) {
   top: -100%;
@@ -299,16 +231,6 @@ body{
   animation-delay: .25s
 }
 
-@keyframes btn-anim2 {
-  0% {
-    top: -100%;
-  }
-
-  50%,
-  100% {
-    top: 100%;
-  }
-}
 
 .login-box a span:nth-child(3) {
   bottom: 0;
@@ -320,16 +242,7 @@ body{
   animation-delay: .5s
 }
 
-@keyframes btn-anim3 {
-  0% {
-    right: -100%;
-  }
 
-  50%,
-  100% {
-    right: 100%;
-  }
-}
 
 .login-box a span:nth-child(4) {
   bottom: -100%;
@@ -341,38 +254,17 @@ body{
   animation-delay: .75s
 }
 
-@keyframes btn-anim4 {
-  0% {
-    bottom: -100%;
-  }
 
-  50%,
-  100% {
-    bottom: 100%;
-  }
+
+#one:checked ~.request_box_org{
+
+  left:58%;  opacity:1 ;
+
+  z-index: 1;
+  transition:0.67s;
 }
-/* Animate Background*/
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes cube {
-  from {
-    transform: scale(0) rotate(0deg) translate(-50%, -50%);
-    opacity: 1;
-  }
-  to {
-    transform: scale(20) rotate(960deg) translate(-50%, -50%);
-    opacity: 0;
-  }
-}
-.org-box{
-  display: none;
-}
+
+.request_box_org {z-index:-1;opacity: 0; position: absolute;background-color: white;border-radius: 15px;display: flex;flex-direction: column;flex-wrap: nowrap;align-content: space-between;justify-content: flex-start;align-items: center;padding: 35px;top: 30%;left: 35%;}
+label.lb-org {position: absolute;color: white;left: 52%;bottom: 35%;}
+
+input#one {position: absolute;border-radius: 15px;left: 51%;bottom: 35.5%;}

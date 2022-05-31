@@ -55,6 +55,7 @@ class PersonSubSignForm(forms.Form):
     )
     logo = forms.ImageField()
 
+
 class SignIn(forms.Form):
     login = forms.CharField(
         label='login',

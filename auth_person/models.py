@@ -49,119 +49,94 @@ class UserManager(BaseUserManager):
 
 
 class Role(models.Model):
+    """
+    Model table Role in project db
+
+    Example:
+    SET:
+        var = Role()
+        var.role = object
+        var.save()
+    ----------------------------
+    GET:
+        var = Role.objects.get(id = object )
+    """
     role_id = models.AutoField(primary_key=True)
     role = models.CharField(max_length=20)
 
 
-class Logo(models.Model):
-    logo_id = models.AutoField(primary_key=True)
-    logo = models.ImageField(upload_to='files/image/user_logo/%Y-%m-%d/', null=True, blank=True)
-
-
-class Email(models.Model):
-    email_id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=50, null=False, blank=False, unique=True)
-
-
-class MobilePhone(models.Model):
-    mPhone_id = models.AutoField(primary_key=True)
-    phone = models.CharField(max_length=12, null=True, blank=True)
-
-
 class PersonCard(models.Model):
+    """
+    Model table PersonCard in project db
+        Example:
+    SET:
+        var = PersonCard()
+        var.number = object
+        var.secret_code = object
+        var.save()
+    ----------------------------
+    GET:
+        var = PersonCard.objects.get(id = object)
+    """
     card_id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=12, unique=True)
     secret_code = models.CharField(max_length=3)
 
 
-class PersonLogin(models.Model):
-    login_id = models.AutoField(primary_key=True)
-    login = models.CharField(max_length=20, null=False, blank=False, help_text='basic login information', unique=True)
-
-
-class PersonName(models.Model):
-    name_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30, null=True, blank=True)
-
-
-class PersonSurname(models.Model):
-    surname_id = models.AutoField(primary_key=True)
-    surname = models.CharField(max_length=30, null=True, blank=True)
-
-
-class PersonNdName(models.Model):
-    ndName_id = models.AutoField(primary_key=True)
-    ndName = models.CharField(max_length=30, null=True, blank=True)
-
-
-class PersonBirthday(models.Model):
-    birthday_id = models.AutoField(primary_key=True)
-    birthday = models.DateField(null=True, blank=True)
-
-
 class Person(AbstractBaseUser, PermissionsMixin):
+    """
+    Model table Person in project db, central table on project
+        Example:
+    SET:
+        var = Person(request.POST)
+        var.save()
+    ----------------------------
+    GET:
+        var = Person.objects.get(id = object)
+    """
+    sex_choice = (
+        (0, 'Male'),
+        (1, 'Female')
+    )
     username_validator = UnicodeUsernameValidator()
 
     person_id = models.AutoField(primary_key=True)
-    username = models.ForeignKey(
-        PersonLogin,
-        on_delete=models.CASCADE,
-        null=False, blank=False,
-        related_name='toLoginFromUser'
-    )
+    username = models.CharField(max_length=99, null=False, blank=False)
     bio = models.CharField(
         max_length=160,
         null=True,
         blank=True
     )
-    name = models.ForeignKey(
-        PersonName,
-        on_delete=models.CASCADE,
-        null=True, blank=True,
-        related_name='toNameFromUser'
+    name = models.CharField(
+        max_length=99,
+        null=True,
+        blank=True
     )
-    surname = models.ForeignKey(
-        PersonSurname,
-        on_delete=models.CASCADE,
-        null=True, blank=True,
-        related_name='toSurnameFromUser'
+    sex = models.CharField(max_length=1, choices=sex_choice)
+    surname = models.CharField(
+        max_length=99,
+        null=True,
+        blank=True
     )
-    ndName = models.ForeignKey(
-        PersonNdName,
-        on_delete=models.CASCADE,
-        null=True, blank=True,
-        related_name='toNdNameFromUser'
+    ndName = models.CharField(
+        max_length=99,
+        null=True,
+        blank=True
     )
-    birthday = models.ForeignKey(
-        PersonBirthday,
-        on_delete=models.CASCADE,
-        null=True, blank=True,
-        related_name='toBurthdayFromUser'
+    birthday = models.DateField(
+        null=True,
+        blank=True
     )
-    roleId = models.ForeignKey(
+    role = models.ForeignKey(
         Role,
         on_delete=models.CASCADE,
 
     )
-    logoId = models.ForeignKey(
-        Logo,
-        on_delete=models.CASCADE,
+    logo = models.ImageField(upload_to='files/image/user_logo/%Y-%m-%d/', null=True, blank=True)
+    email = models.EmailField(max_length=50, null=False, blank=False, unique=True)
+    phone = models.CharField(
+        max_length=12,
         null=True, blank=True,
-        related_name='toLogoFromUser'
-    )
-    email = models.ForeignKey(
-        Email,
-        default=10,
-        on_delete=models.CASCADE,
-        null=False, blank=False,
-        unique=True,
-        related_name='toEmailFromUser'
-    )
-    phone = models.ForeignKey(
-        MobilePhone,
-        on_delete=models.CASCADE,
-        null=True, blank=True,
-        related_name='toPhoneFromUser'
     )
     card = models.ForeignKey(
         PersonCard,
@@ -171,20 +146,19 @@ class Person(AbstractBaseUser, PermissionsMixin):
     balance = models.DecimalField(max_digits=19, decimal_places=10)
     registrationDate = models.DateTimeField(auto_now=True)
     lastEntrance = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_organizate = models.BooleanField(default=False)
-    organization_name = models.CharField(max_length=99, null=True, blank=True)
-    type_activity = models.CharField(max_length=99, null=True, blank=True)
-
+    country = models.CharField(max_length=99)
+    address = models.CharField(max_length=999)
+    translate = models.IntegerField(default=0)
     USERNAME_FIELD = 'email'
 
-    REQUIRED_FIELDS = ['username', 'bio', 'role']
+    REQUIRED_FIELDS = ['username', 'password']
 
     objects = UserManager()
 
     def get_full_name(self):
-        return self.name.name, self.surname.surname, self.ndName.ndName
+        return self.name, self.surname, self.ndName
 
     def __str__(self):
         return self.email
@@ -195,18 +169,60 @@ class Person(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    def check_balance(self):
+        return self.balance == 0
+
+
+class Organization(models.Model):
+    name = models.CharField(max_length=99, null=False, blank=False)
+    type = models.CharField(max_length=99, null=False, blank=False)
+    description = models.CharField(max_length=999, null=False, blank=False)
+    logo = models.ImageField(upload_to='files/image/org_logo/%Y-%m-%d/', null=True, blank=True)
+    address = models.CharField(max_length=199, null=False, blank=False)
+    user = models.ForeignKey(Person, on_delete=models.CASCADE)
+
 
 class Department(models.Model):
+    """
+     Model table Department in project db
+         Example:
+     SET:
+         var = Department(request.POST)
+         var.save()
+     ----------------------------
+     GET:
+         var = Department.objects.get(id = object)
+     """
     departmen_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, null=False)
 
 
 class Specialization(models.Model):
+    """
+     Model table Specialization in project db
+         Example:
+     SET:
+         var = Specialization(request.POST)
+         var.save()
+     ----------------------------
+     GET:
+         var = Specialization.objects.get(id = object)
+     """
     specialization_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=20, null=False)
 
 
 class PersonSpecs(models.Model):
+    """
+     Model table PersonSpecs in project db
+         Example:
+     SET:
+         var = PersonSpecs(request.POST)
+         var.save()
+     ----------------------------
+     GET:
+         var = PersonSpecs.objects.get(id = object)
+     """
     personSpecs_id = models.AutoField(primary_key=True)
     SpecId = models.ForeignKey(
         Specialization,
@@ -221,6 +237,16 @@ class PersonSpecs(models.Model):
 
 
 class Membership(models.Model):
+    """
+     Model table Membership in project db
+         Example:
+     SET:
+         var = Membership(request.POST)
+         var.save()
+     ----------------------------
+     GET:
+         var = Membership.objects.get(id = object)
+     """
     membership_id = models.AutoField(primary_key=True)
     DepartmentId = models.ForeignKey(
         Department,

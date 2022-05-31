@@ -13,7 +13,7 @@ def created_task(request):
             implementerId=Person.objects.get(person_id=request.user.person_id),
             title=request.POST.get('title'),
             description=request.POST.get('description'),
-            taskData=request.POST.get('file'),
+            taskData=request.FILES.get('file'),
             payment=request.POST.get('payment'),
             startDate=request.POST.get('start_date'),
             finishDate=request.POST.get('finish_date')

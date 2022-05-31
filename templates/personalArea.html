@@ -1,206 +1,311 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
-        <link rel="stylesheet" href='{% static '/css/head.css' %}?{% now "U" %}' type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href='{% static '/css/index_menu.css' %}?{% now "U" %}' type="text/css">
+    <link rel="stylesheet" href='{% static '/css/lk.css' %}?{% now "U" %}' type="text/css">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
 
-     <link rel="stylesheet" href='{% static '/css/lk.css' %}?{% now "U" %}'  type="text/css" />
 </head>
 <body>
-<div class='header'>
-    <div class='back-circle'>
-        <div class="circle">
-            <svg width="219" height="209" viewBox="0 0 219 209" fill="none" xmlns="http://www.w3.org/2000/svg"
-                 class='back_layer_1' href="{% url 'index' %}">
-                <path d="M83.4835 185.108V160.373C84.4177 160.033 85.3291 159.628 86.2042 159.137C98.6147 152.184 99.9194 132.432 89.1157 115.022C78.3133 97.6111 59.4953 89.1342 47.0853 96.0872C34.6748 103.04 33.3705 122.792 44.1722 140.202C45.9151 143.011 47.8681 145.582 49.9676 147.898V166.274L23.2192 151.728V60.623L13.8436 54.7417C5.3027 69.5288 0.445419 86.5098 0.445419 104.568C0.445419 160.677 47.2972 206.357 105.871 208.201L105.881 197.511L83.4835 185.108Z"
-                      fill="#0E9A48" ></path>
-                <path d="M52.4172 40.3404L68.766 49.5475C68.4438 52.1003 68.4334 54.9106 68.4438 55.8768C68.5935 69.566 88.1033 79.9727 109.372 79.7633C130.64 79.5538 145.788 67.31 145.68 55.2641C145.559 41.5753 131.706 30.8575 110.446 30.2551C103.248 30.051 96.3104 31.4167 93.151 31.9903L81.2272 24.7422L109.586 9.36636L193.187 55.5441L202.775 50.543C193.552 36.131 180.488 23.6588 164.019 14.6482C112.848 -13.3475 47.811 2.44416 16.9052 49.7611L26.4149 55.4675L52.4172 40.3404V40.3404Z"
-                      fill="#CB2026"></path>
-                <path d="M196.008 90.5322L178.23 99.3626C177.586 99.2601 173.64 95.7503 172.752 95.2791C160.166 88.6164 141.638 97.4259 131.286 115.082C120.935 132.738 121.817 152.925 134.402 159.589C146.988 166.251 165.729 158.258 176.082 140.602C177.751 137.754 179.981 131.142 181.023 128.251L196.169 119.93L196.079 151.521L112.702 197.792L112.742 208.217C130.487 207.749 148.362 203.151 164.761 194.026C215.713 165.674 233.521 104.173 205.598 55.2102L196.008 60.2144V90.5322V90.5322Z"
-                        fill="#35469D" ></path>
-                </svg>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">Лаборатория Inc</div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}"><i
+                    class="fa fa-home" aria-hidden="true"></i>Главная</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#"><i
+                    class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мероприятия</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'bank:transfer' %}"><i class="fa fa-university" aria-hidden="true"></i>Банк</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'market:sell' %}"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i>Маркет</a>
+            <div>
+            </div>
+
         </div>
     </div>
-<div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle"><i class="fa fa-bars" aria-hidden="true"></i>Меню
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="#!"><i class="fa fa-bell"
+                                                                                     aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!"><i class="fa fa-comment"
+                                                                              aria-hidden="true"></i></a></li>
+                        {% if not user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login:sign-in' %}"><i
+                                    class="fa fa-sign-in" aria-hidden="true"></i>Вход</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login:presing' %}"><i
+                                    class="fa fa-user-plus" aria-hidden="true"></i>Регистрация</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">{{ user.name }} {{ user.surname }}</a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#!">{{ Profile }}</a>
+                                    {% if user.is_organizate %}
+                                        <a class="dropdown-item" href="{% url 'createdNews' %}">Создать новость</a>
+                                        <a class="dropdown-item" href="#!">Создать мероприятие</a>
+                                        <a class="dropdown-item" href="{% url 'createdTask' %}">Создать задачу</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="#!">Подать заявку на организатора</a>
+                                    {% endif %}
+                                    <a class="dropdown-item" href="{% url 'login:subsign' %}">О себе</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'login:logout' %}">Выход</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid">
+            <div class="container cont">
+                <div class="container-md">
+                    <div class="container logo-container">
+                        <div class="container-sm">
+                            {% if person.logo %}
+                                <img class='avatar-user' src='{{ person.logo.url }}' alt="your logo">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-1">Редактировать</button>
+                            {% else %}
+                                <img class='avatar-user' src='{% static 'default_img/noavatar.png' %}' alt="your logo">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-1">Редактировать</button>
+                            {% endif %}
+                            <div class="container hidden-adding-info-block-1" id="">
+                                <h5>Заполните данные</h5>
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="file" name="logo">
+                                    <button type="submit" class="btn" name="added_logo">Добавить</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% if not person.name %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-2">Добавить имя</button>
+                                <div class="container hidden-adding-info-block-2">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="name">
+                                        <button type="submit" class="btn" name="added_name">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.surname %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-3">Добавить фамилию</button>
+                                <div class="container hidden-adding-info-block-3">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="surname">
+                                        <button type="submit" class="btn" name="added_surname">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.ndName %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-4">Добавить отчество</button>
+                                <div class="container hidden-adding-info-block-4">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="ndName">
+                                        <button type="submit" class="btn" name="added_ndName">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.phone %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-5">Добавить телефон</button>
+                                <div class="container hidden-adding-info-block-5">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="phone">
+                                        <button type="submit" class="btn" name="added_phone">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.birthday %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-6">Добавить день рождения
+                                </button>
+                                <div class="container hidden-adding-info-block-6">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="birthday">
+                                        <button type="submit" class="btn" name="added_birthday">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.country %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-7">Добавить страну</button>
+                                <div class="container hidden-adding-info-block-7">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="country">
+                                        <button type="submit" class="btn" name="added_country">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.address %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-8">Добавить адрес</button>
+                                <div class="container hidden-adding-info-block-8">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="address">
+                                        <button type="submit" class="btn" name="added_address">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not person.sex %}
+                            <div class="container-sm adding-info">
+                                <button class="btn-dark btn-edit" id="btn-open-edit-box-9">Добавить пол</button>
+                                <div class="container hidden-adding-info-block-9">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <select id="inputState" class="form-control" name="sex">
+                                            <option selected>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                        <button type="submit" class="btn" name="added_sex">Добавить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="container info-container">
+                        <h3 class="pninfo"> {{ person.name }} {{ person.surname }}</h3>
+                        <div class="panel">
+                            <div class="registration-info-user">
+                                <h4>Логин</h4><h6>{{ person.username }}</h6>
+                                <h4>Почта</h4><h6>{{ person.email }}</h6>
+                                <h4>Телефон</h4><h6>{{ person.phone }}</h6>
+                            </div>
+                            <button class="btn-dark btn-open-info" id="check-btn">Показать подробную информацию</button>
+                            <div class="container-lg secret-panel" id="hidden-panel">
+                                <h4>День рождения</h4><h6>{{ person.birthday }}</h6>
+                                <h4>Пол</h4><h6>{{ person.sex }}</h6>
+                                <h4>Страна</h4><h6>{{ person.country }}</h6>
+                                <h4>Адрес</h4><h6>{{ person.address }}</h6>
+                                <h4>Баланс</h4><h6>{{ person.balance }}</h6>
+                                <h4>Роль</h4><h6>{{ person.role.role }}</h6>
+                                <h4>Номер карты</h4><h6>{{ person.card.number }}</h6>
+                                <h4>Код</h4><h6>{{ person.card.secret_code }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-md">
+                    {% if person.is_staff %}
+                        <div class="container success-block-req-org">
+                            <div class="list-request-box">
+                                <button class="btn-dark" id="show-req-org">История Заявок на рассмотрении</button>
+                                <div class="container table-org">
+                                    {% if form.count > 0 %}
+                                        {% if not form.is_pull %}
+                                            <table class="table_blur">
+                                                <thead>
+                                                <tr>
+                                                    <th>Logo</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <th>description</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for person in form %}
+                                                    <tr>
+                                                        <td><img class="img-org" src="{{ person.logo_org.url }}"
+                                                                 alt="logo"></td>
+                                                        <td>{{ person.name_org }}</td>
+                                                        <td>{{ person.country }}</td>
+                                                        <td>{{ person.address }}</td>
+                                                        <td>{{ person.description }}</td>
+                                                        <td>{{ person.date_created_request }}</td>
+                                                        <td>
+                                                            <form method="POST">
+                                                                {% csrf_token %}
+                                                                <input style="visibility: hidden"
+                                                                       value="{{ person.id }}"
+                                                                       name="id_req">
+                                                                <input type="submit" name="succ_req" value="Принять">
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <form method="POST">
+                                                                {% csrf_token %}
+                                                                <input style="visibility: hidden"
+                                                                       value="{{ person.id }}"
+                                                                       name="id_req">
+                                                                <input type="submit" name="not_succ_req"
+                                                                       value="Отклонить">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-{% if not person.email.email%}
-    <div>
-        <p style="color:red">Пользователь без почтового адреса не имеет доступа к некоторым функциям</p>
-    </div>
-{% endif %}
+{% block extrahead %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
 
-<div class="CSSgal">
-
-  <!-- Don't wrap targets in parent -->
-  <s id="s1"></s>
-  <s id="s2"></s>
-  <s id="s3"></s>
-  <s id="s4"></s>
-
-  <div class="slider">
-    <div style="background:#5b8;">
-<div class="block-info">
-<div class="block-user-avatar">
-    {% if logo_obj %}
-        <img  class='avatar-user' src='{{ logo_obj }}' alt="your logo"  >
-    {% endif %}
-</div>
-<div class="block-user-information">
-    <span class="user-name-tb"> {{ person.name.name }} </span> <span class="user-surname-tb"> {{ person.surname.surname }}</span>
-    <button class="accordion"></button>
-    <div class="panel">
-        <div class="registration-info-user">
-        <span>Логин:    {{ person.username.login }} Почта: {{ person.email.email }}
-                    Телефон:   {{ person.phone.phone }}</span>
-    </div>
-        <div class="password-user">
-        <span>Пароль:   {{ person.password}}</span>
-    </div>
-        <div>
-        <p>{{ person.birthday.birthday }}</p>
-        <p>{{ person.balance }}</p>
-        <p>{{ person.roleId.role }}</p>
-        <p>{{ person.registrationDate }}</p>
-        <p>{{ person.lastEntrance }}</p>
-    </div>
-    </div>
-    <div class='btn-to-go-page'>
-    <a class="btn-to-go" href="{% url 'login:subsign'%}"> Заполнить дополнительную информацию</a>
-    <a class="btn-to-go" href="{% url 'index'%}">на главную</a>
-    </div>
-</div>
-</div>
-		</div>
-    <div style="background:#85b;">
-	  <div class="creditcard">
-    <div class="front">
-      <div id="ccsingle"></div>
-      <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
-        <g id="Front">
-          <g id="CardBackground">
-            <g id="Page-1_1_">
-              <g id="amex_1_">
-                <path id="Rectangle-1_1_" class="lightcolor grey" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
-                      C0,17.9,17.9,0,40,0z"></path>
-              </g>
-            </g>
-            <path class="darkcolor greydark"
-              d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z"></path>
-          </g>
-          <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">{{ person.card.number }}</text>
-          <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">{{ person.name.name}} {{ pesron.surname.surname }}</text>
-          <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">cardholder name</text>
-          <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">expiration</text>
-          <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">card number</text>
-          <g>
-            <text transform="matrix(1 0 0 1 574.4219 433.8095)" id="svgexpire" class="st2 st5 st9">01/23</text>
-            <text transform="matrix(1 0 0 1 479.3848 417.0097)" class="st2 st10 st11">VALID</text>
-            <text transform="matrix(1 0 0 1 479.3848 435.6762)" class="st2 st10 st11">THRU</text>
-            <polygon class="st2" points="554.5,421 540.4,414.2 540.4,427.9 		" />
-          </g>
-          <g id="cchip">
-            <g>
-              <path class="st2" d="M168.1,143.6H82.9c-10.2,0-18.5-8.3-18.5-18.5V74.9c0-10.2,8.3-18.5,18.5-18.5h85.3
-                  c10.2,0,18.5,8.3,18.5,18.5v50.2C186.6,135.3,178.3,143.6,168.1,143.6z" />
-            </g>
-            <g>
-              <g>
-                <rect x="82" y="70" class="st12" width="1.5" height="60" />
-              </g>
-              <g>
-                <rect x="167.4" y="70" class="st12" width="1.5" height="60" />
-              </g>
-              <g>
-                <path class="st12" d="M125.5,130.8c-10.2,0-18.5-8.3-18.5-18.5c0-4.6,1.7-8.9,4.7-12.3c-3-3.4-4.7-7.7-4.7-12.3
-                      c0-10.2,8.3-18.5,18.5-18.5s18.5,8.3,18.5,18.5c0,4.6-1.7,8.9-4.7,12.3c3,3.4,4.7,7.7,4.7,12.3
-                      C143.9,122.5,135.7,130.8,125.5,130.8z M125.5,70.8c-9.3,0-16.9,7.6-16.9,16.9c0,4.4,1.7,8.6,4.8,11.8l0.5,0.5l-0.5,0.5
-                      c-3.1,3.2-4.8,7.4-4.8,11.8c0,9.3,7.6,16.9,16.9,16.9s16.9-7.6,16.9-16.9c0-4.4-1.7-8.6-4.8-11.8l-0.5-0.5l0.5-0.5
-                      c3.1-3.2,4.8-7.4,4.8-11.8C142.4,78.4,134.8,70.8,125.5,70.8z" />
-              </g>
-              <g>
-                <rect x="82.8" y="82.1" class="st12" width="25.8" height="1.5" />
-              </g>
-              <g>
-                <rect x="82.8" y="117.9" class="st12" width="26.1" height="1.5" />
-              </g>
-              <g>
-                <rect x="142.4" y="82.1" class="st12" width="25.8" height="1.5" />
-              </g>
-              <g>
-                <rect x="142" y="117.9" class="st12" width="26.2" height="1.5" />
-              </g>
-            </g>
-          </g>
-        </g>
-        <g id="Back">
-        </g>
-      </svg>
-    </div>
-    <div class="back">
-      <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
-        <g id="Front">
-          <line class="st0" x1="35.3" y1="10.4" x2="36.7" y2="11" />
-        </g>
-        <g id="Back">
-          <g id="Page-1_2_">
-            <g id="amex_2_">
-              <path id="Rectangle-1_2_" class="darkcolor greydark" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
-                  C0,17.9,17.9,0,40,0z" />
-            </g>
-          </g>
-          <rect y="61.6" class="st2" width="750" height="78" />
-          <g>
-            <path class="st3" d="M701.1,249.1H48.9c-3.3,0-6-2.7-6-6v-52.5c0-3.3,2.7-6,6-6h652.1c3.3,0,6,2.7,6,6v52.5
-              C707.1,246.4,704.4,249.1,701.1,249.1z" />
-            <rect x="42.9" y="198.6" class="st4" width="664.1" height="10.5" />
-            <rect x="42.9" y="224.5" class="st4" width="664.1" height="10.5" />
-            <path class="st5"
-              d="M701.1,184.6H618h-8h-10v64.5h10h8h83.1c3.3,0,6-2.7,6-6v-52.5C707.1,187.3,704.4,184.6,701.1,184.6z" />
-          </g>
-          <text transform="matrix(1 0 0 1 621.999 227.2734)" id="svgsecurity" class="st6 st7">{{ person.card.secret_code }}</text>
-          <g class="st8">
-            <text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">security code</text>
-          </g>
-          <rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
-          <rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
-          <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">{{ person.name.name}} {{ pesron.surname.surname }}</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-		</div>
-    <div style="background:#e95;">
-
-		</div>
-    <div style="background:#e59;">
-			<h2>Slide 4</h2>
-		</div>
-  </div>
-
-  <div class="prevNext">
-    <div><a href="#s4"></a><a href="#s2"></a></div>
-    <div><a href="#s1"></a><a href="#s3"></a></div>
-    <div><a href="#s2"></a><a href="#s4"></a></div>
-    <div><a href="#s3"></a><a href="#s1"></a></div>
-  </div>
-
-  <div class="bullets">
-    <a href="#s1">1</a>
-    <a href="#s2">2</a>
-    <a href="#s3">3</a>
-    <a href="#s4">4</a>
-  </div>
-
-</div>
-
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+{% endblock extrahead %}
+<script src="{% static 'assets/js/index.js' %}?{% now "U" %}'"></script>
+<script src={% static 'assets/js/lk.js' %}?{% now "U" %}'"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
-<script src={% static 'assets/js/lk.js' %}></script>
 </html>

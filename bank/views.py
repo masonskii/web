@@ -42,9 +42,10 @@ def transfer(request):
     else:
         if request.user.is_authenticated:
             history_transfer = Transfer.objects.filter(senderId=request.user.person_id)
-            return render(request, 'transfer.html', {'person_tr': history_transfer})
+            return render(request, 'transfer.html', {'person_tr': history_transfer,
+                                                     'person': Person.objects.get(person_id=request.user.person_id)})
         else:
-            return render(request, 'transfer.html')
+            return render(request, 'transfer.html', {'person': Person.objects.get(person_id=request.user.person_id)})
 
 
 def successfully_transaction(request):
@@ -53,35 +54,3 @@ def successfully_transaction(request):
 
 def error_transaction(request):
     return render(request, 'error_transaction.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

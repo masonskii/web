@@ -14,5 +14,5 @@ urlpatterns = [
     path('subsign/', subsign, name='subsign'),
     path('sign-in/', sign_in, name='sign-in'),
     path('user/', is_sign, name='user-area'),
-    path('logout/', logout_view, name='logout')
+    path('logout/', logout_view, name='logout'),
 ]

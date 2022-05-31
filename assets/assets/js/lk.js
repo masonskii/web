@@ -1,121 +1,135 @@
-var acc = document.getElementsByClassName("accordion");
-var i;
+$(function () {
+    $("#check-btn").on("click", function () {
+        if ($("#check-btn").hasClass('checked')) {
+            $("#hidden-panel").css('display', 'none')
+            $("#check-btn").removeClass('checked')
+            $("#check-btn").text('Показать подробную информацию')
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-window.onload = function () {
-  const cardnumber = document.getElementById('cardnumber');
-  const ccicon = document.getElementById('ccicon');
-  const ccsingle = document.getElementById('ccsingle');
-
-
-  let cctype = null;
-
-  //Mask the Credit Card Number Input
-
-
-  let fablab = '';
-
-
-  //define the color swap function
-  const swapColor = function (basecolor) {
-    document.querySelectorAll('.lightcolor')
-        .forEach(function (input) {
-          input.setAttribute('class', '');
-          input.setAttribute('class', 'lightcolor ' + basecolor);
-        });
-    document.querySelectorAll('.darkcolor')
-        .forEach(function (input) {
-          input.setAttribute('class', '');
-          input.setAttribute('class', 'darkcolor ' + basecolor + 'dark');
-        });
-  };
-
-
-  //pop in the appropriate card icon when detected
-
-
-  // CREDIT CARD IMAGE JS
-  document.querySelector('.creditcard').addEventListener('click', function () {
-    if (this.classList.contains('flipped')) {
-      this.classList.remove('flipped');
-    } else {
-      this.classList.add('flipped');
-    }
-  })
-
-
-}
-
-$(document).ready(function() {
-
-
-  const labels = document.querySelectorAll(".accordion-item__label");
-  const tabs = document.querySelectorAll(".accordion-tab");
-
-  function toggleShow() {
-    const target = this;
-    const item = target.classList.contains("accordion-tab")
-      ? target
-      : target.parentElement;
-    const group = item.dataset.actabGroup;
-    const id = item.dataset.actabId;
-
-    tabs.forEach(function(tab) {
-      if (tab.dataset.actabGroup === group) {
-        if (tab.dataset.actabId === id) {
-          tab.classList.add("accordion-active");
         } else {
-          tab.classList.remove("accordion-active");
+            $("#hidden-panel").css('display', 'block')
+            $("#check-btn").addClass('checked')
+            $("#check-btn").text('Скрыть подробную информацию')
         }
-      }
     });
-
-    labels.forEach(function(label) {
-      const tabItem = label.parentElement;
-
-      if (tabItem.dataset.actabGroup === group) {
-        if (tabItem.dataset.actabId === id) {
-          tabItem.classList.add("accordion-active");
-        } else {
-          tabItem.classList.remove("accordion-active");
-        }
-      }
-    });
-  }
-
-  labels.forEach(function(label) {
-    label.addEventListener("click", toggleShow);
-  });
-
-  tabs.forEach(function(tab) {
-    tab.addEventListener("click", toggleShow);
-  });
-
 });
 
-$(function(){
+$(function () {
+    $("#btn-open-edit-box-1").on("click", function () {
+        if ($("#btn-open-edit-box-1").hasClass('checked')) {
+            $(".hidden-adding-info-block-1").css('display', 'none')
+            $("#btn-open-edit-box-1").removeClass('checked')
 
+        } else {
+            $(".hidden-adding-info-block-1").css('display', 'flex')
+            $("#btn-open-edit-box-1").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-2").on("click", function () {
+        if ($("#btn-open-edit-box-2").hasClass('checked')) {
+            $(".hidden-adding-info-block-2").css('display', 'none')
+            $("#btn-open-edit-box-2").removeClass('checked')
 
-        // collapse
-        $("[data-collapse]").on("click", function(event){
-          event.preventDefault();
+        } else {
+            $(".hidden-adding-info-block-2").css('display', 'flex')
+            $("#btn-open-edit-box-2").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-3").on("click", function () {
+        if ($("#btn-open-edit-box-3").hasClass('checked')) {
+            $(".hidden-adding-info-block-3").css('display', 'none')
+            $("#btn-open-edit-box-3").removeClass('checked')
 
-          var $this = $(this),
-          blocktId = $(this).data('collapse');
+        } else {
+            $(".hidden-adding-info-block-3").css('display', 'flex')
+            $("#btn-open-edit-box-3").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-4").on("click", function () {
+        if ($("#btn-open-edit-box-4").hasClass('checked')) {
+            $(".hidden-adding-info-block-4").css('display', 'none')
+            $("#btn-open-edit-box-4").removeClass('checked')
 
-          $this.toggleClass("active");
+        } else {
+            $(".hidden-adding-info-block-4").css('display', 'flex')
+            $("#btn-open-edit-box-4").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-5").on("click", function () {
+        if ($("#btn-open-edit-box-5").hasClass('checked')) {
+            $(".hidden-adding-info-block-5").css('display', 'none')
+            $("#btn-open-edit-box-5").removeClass('checked')
 
+        } else {
+            $(".hidden-adding-info-block-5").css('display', 'flex')
+            $("#btn-open-edit-box-5").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-6").on("click", function () {
+        if ($("#btn-open-edit-box-6").hasClass('checked')) {
+            $(".hidden-adding-info-block-6").css('display', 'none')
+            $("#btn-open-edit-box-6").removeClass('checked')
 
+        } else {
+            $(".hidden-adding-info-block-6").css('display', 'flex')
+            $("#btn-open-edit-box-6").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-7").on("click", function () {
+        if ($("#btn-open-edit-box-7").hasClass('checked')) {
+            $(".hidden-adding-info-block-7").css('display', 'none')
+            $("#btn-open-edit-box-7").removeClass('checked')
 
-        });
-});
+        } else {
+            $(".hidden-adding-info-block-7").css('display', 'flex')
+            $("#btn-open-edit-box-7").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-8").on("click", function () {
+        if ($("#btn-open-edit-box-8").hasClass('checked')) {
+            $(".hidden-adding-info-block-8").css('display', 'none')
+            $("#btn-open-edit-box-8").removeClass('checked')
+
+        } else {
+            $(".hidden-adding-info-block-8").css('display', 'flex')
+            $("#btn-open-edit-box-8").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#btn-open-edit-box-9").on("click", function () {
+        if ($("#btn-open-edit-box-9").hasClass('checked')) {
+            $(".hidden-adding-info-block-9").css('display', 'none')
+            $("#btn-open-edit-box-9").removeClass('checked')
+
+        } else {
+            $(".hidden-adding-info-block-9").css('display', 'flex')
+            $("#btn-open-edit-box-9").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#show-req-org").on("click", function () {
+        if ($("#show-req-org").hasClass('checked')) {
+            $(".table-org").css('display', 'none')
+            $("#show-req-org").removeClass('checked')
+
+        } else {
+            $(".table-org").css('display', 'flex')
+            $("#show-req-org").addClass('checked')
+        }
+    });
+})
