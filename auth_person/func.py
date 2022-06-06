@@ -1,10 +1,17 @@
+import os
 import random
 import string
 
+from wsgiref.util import FileWrapper
+
+from django.http import StreamingHttpResponse
+import mimetypes
+
 from auth_person.consts import DEFAULT_ROLE
-from auth_person.models import Role,PersonCard
+from auth_person.models import Role, PersonCard
 
 from consts import START_NUMBER_CARD, DEFAULT_START_BALANCE
+from web.settings import BASE_DIR
 
 
 def generated_card():
@@ -64,3 +71,14 @@ class GenerateCard:
 
     def __reinit__(self):
         self.number, self.secret_code = self.generate_number(), generate_secret_code()
+
+
+def download_file(file):
+    path = '{0}\media\{1}'.format(BASE_DIR, file)
+    filename = os.path.basename(path)
+    chunk_size = 8192
+    response = StreamingHttpResponse(FileWrapper(open(path, 'rb'), chunk_size),
+                                     content_type=mimetypes.guess_type(path)[0])
+    response['Content-Length'] = os.path.getsize(path)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'auth_person',
     'bank',
     'event',
@@ -108,10 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": f"{AUTH_PWD_MODULE}NumericPasswordValidator",
     },
 ]
-#Authentication backends
+# Authentication backends
 AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.ModelBackend',
-    )
+    'django.contrib.auth.backends.ModelBackend',
+)
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -141,7 +142,9 @@ STATICFILES_FINDERS = (
 )
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
+RECIPIENTS_EMAIL = ['gavrin.01@bk.ru']  # замените на свою почту
+DEFAULT_FROM_EMAIL = 'gavrin.01@bk.ru'  # замените на свою почту
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
@@ -150,3 +153,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login/presign/'
+CORS_ORIGIN_ALLOW_ALL = True
+APPEND_SLASH=False

@@ -44,3 +44,9 @@ class Buy(models.Model):
         self.person.save()
         self.product.save()
         return True
+
+
+class ErrorMsg(models.Model):
+    status = models.CharField(max_length=99)
+    msg = models.CharField(max_length=99)
+    reason = models.CharField(max_length=99)

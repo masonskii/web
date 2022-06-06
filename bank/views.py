@@ -2,6 +2,7 @@ import mimetypes
 import os
 from wsgiref.util import FileWrapper
 
+from django.contrib.auth.decorators import login_required
 from django.http import StreamingHttpResponse
 from django.shortcuts import render, redirect
 
@@ -13,7 +14,6 @@ from bank.forms import TransferForms
 from bank.func import search_person, sender, create_document_transaction
 from bank.models import Transfer
 from web.settings import MEDIA_URL, MEDIA_ROOT
-
 
 def transfer(request):
     if 'send_transaction' in request.POST:
@@ -27,11 +27,16 @@ def transfer(request):
             tr.recipientId = search_person(request.POST.get('number'))
             tr.summary = request.POST.get('summary')
             res = tr.sending()
+            history_transfer = Transfer.objects.filter(senderId=request.user.person_id)
             if res:
                 tr.save()
-                return redirect(reverse('bank:sc-transact'), kwargs={'tr': res})
+                return render(request, 'transfer.html', {'return': True, 'person_tr': history_transfer,
+                                                         'person': Person.objects.get(
+                                                             person_id=request.user.person_id)})
             else:
-                return redirect(reverse('bank:err-transact'), kwargs={'tr': res})
+                return render(request, 'transfer.html', {'return': True, 'person_tr': history_transfer,
+                                                         'person': Person.objects.get(
+                                                             person_id=request.user.person_id)})
     if 'transaction' in request.POST:
         sName = request.POST.get('sender_name'), request.POST.get('sender_surname')
         rName = request.POST.get('recip_name'), request.POST.get('recip_surname')
@@ -43,14 +48,12 @@ def transfer(request):
         if request.user.is_authenticated:
             history_transfer = Transfer.objects.filter(senderId=request.user.person_id)
             return render(request, 'transfer.html', {'person_tr': history_transfer,
-                                                     'person': Person.objects.get(person_id=request.user.person_id)})
+                                                     'person': Person.objects.get(person_id=request.user.person_id),
+                                                     'return': None})
         else:
-            return render(request, 'transfer.html', {'person': Person.objects.get(person_id=request.user.person_id)})
-
-
-def successfully_transaction(request):
-    return render(request, 'result_transaction.html')
-
-
-def error_transaction(request):
-    return render(request, 'error_transaction.html')
+            try:
+                return render(request, 'transfer.html',
+                              {'person': Person.objects.get(person_id=request.user.person_id), 'return': None})
+            except:
+                return render(request, 'transfer.html',
+                              {'return': None})

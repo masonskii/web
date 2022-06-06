@@ -1,12 +1,15 @@
-/*!
-* Start Bootstrap - Simple Sidebar v6.0.5 (https://startbootstrap.com/template/simple-sidebar)
-* Copyright 2013-2022 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
-*/
-// 
-// Scripts
-// 
+$(function () {
+    $("#btn-reg-log").on("click", function () {
+        if ($("#btn-reg-log").hasClass('checked')) {
+            $(".hidden-registration-form-organizate").css('display', 'none')
+            $("#btn-reg-log").removeClass('checked')
 
+        } else {
+            $(".hidden-registration-form-organizate").css('display', 'flex')
+            $("#btn-reg-log").addClass('checked')
+        }
+    });
+})
 window.addEventListener('DOMContentLoaded', event => {
 
     // Toggle the side navigation
@@ -25,16 +28,3 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-$(function () {
-    $("#btn-reg-org").on("click", function () {
-        if ($("#btn-reg-org").hasClass('checked')) {
-            $(".hidden-registration-form-organizate").css('display', 'none')
-            $("#btn-reg-org").removeClass('checked')
-			return false
-        } else {
-            $(".hidden-registration-form-organizate").css('display', 'flex')
-            $("#btn-reg-org").addClass('checked')
-			return false
-        }
-    });
-});

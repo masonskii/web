@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href='{% static '/css/index_menu.css' %}?{% now "U" %}' type="text/css">
+    <link rel="stylesheet" href='{% static '/css/lk.css' %}?{% now "U" %}' type="text/css">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">Лаборатория Inc</div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}"><i
+                    class="fa fa-home" aria-hidden="true"></i>Главная</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#"><i
+                    class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'events:show_task' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Задачи</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'events:show_event' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мероприятия</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'bank:transfer' %}"><i class="fa fa-university" aria-hidden="true"></i>Банк</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'market:sell' %}"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i>Маркет</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'login:myevents' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мои мероприятия</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'login:todolist' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мои задачи</a>
+            {% if person.is_staff %}
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                   href="{% url 'login:history_req' %}"><i
+                        class="fa fa-calendar" aria-hidden="true"></i>История заявок организатора</a>
+            {% endif %}
+
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle"><i class="fa fa-bars" aria-hidden="true"></i>Меню
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="#!"><i class="fa fa-bell"
+                                                                                     aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!"><i class="fa fa-comment"
+                                                                              aria-hidden="true"></i></a></li>
+                        {% if not user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login:sign-in' %}"><i
+                                    class="fa fa-sign-in" aria-hidden="true"></i>Вход</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login:presing' %}"><i
+                                    class="fa fa-user-plus" aria-hidden="true"></i>Регистрация</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">{{ user.name }} {{ user.surname }}</a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'login:user-area' %}">Профиль</a>
+                                    {% if user.is_organizate %}
+                                        <a class="dropdown-item" href="{% url 'createdNews' %}">Создать новость</a>
+                                        <a class="dropdown-item" href="{% url 'events:create_event' %}">Создать
+                                            мероприятие</a>
+                                        <a class="dropdown-item" href="{% url 'events:create_task' %}">Создать
+                                            задачу</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="#!">Подать заявку на организатора</a>
+                                    {% endif %}
+                                    <a class="dropdown-item" href="{% url 'login:subsign' %}">О себе</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'login:logout' %}">Выход</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid">
+            <div class="container cont">
+                <div class="container-lg">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-md-12 col-xl-10">
+                            <div class="card">
+                                <div class="card-header p-3 btn-show-todolist">
+                                    <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+                                </div>
+                                <div class="card-body" data-mdb-perfect-scrollbar="true"
+                                     style="position: relative; height: 400px">
+                                    <table class="table mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Составитель</th>
+                                            <th scope="col">Задача</th>
+                                            <th scope="col">Оплата</th>
+                                            <th scope="col">Приоритет</th>
+                                            <th scope="col">Действие</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for item in list %}
+                                            <tr class="fw-normal">
+                                                <th>
+
+                                                    <img src="{{ item.implementerId.logo.url }}"
+                                                         class="shadow-1-strong rounded-circle" alt="avatar 1"
+                                                         style="width: 55px; height: auto;">
+                                                    <a href='{% url 'login:another-user' item.implementerId.person_id %}'
+                                                       class="ms-2">{{ item.implementerId.name }} {{ item.implementerId.surname }}</a>
+                                                </th>
+                                                <td class="align-middle">
+                                                    <span>{{ item.title }}</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span>{{ item.payment }}</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    {% if item.priority == 'Sandbox' %}
+                                                        <h6 class="mb-0"><span
+                                                                class="badge bg-success">Sandbox priority</span></h6>
+                                                    {% elif item.priority == 'Low' %}
+                                                        <h6 class="mb-0"><span
+                                                                class="badge bg-success">Low priority</span></h6>
+                                                    {% elif item.priority == 'Medium' %}
+                                                        <h6 class="mb-0"><span
+                                                                class="badge bg-warning">Medium priority</span></h6>
+                                                    {% elif item.priority == 'High' %}
+                                                        <h6 class="mb-0"><span
+                                                                class="badge bg-danger">High priority</span></h6>
+                                                    {% endif %}
+                                                </td>
+
+                                                <td class="align-middle">
+                                                    <div class="align-middle forms-work-item">
+                                                        <form method="POST">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="id" value="{{ item.id }}">
+                                                            <button type='submit' name="accept-item-btn"
+                                                                    data-mdb-toggle="tooltip" class="icon-btn-request"
+                                                                    title="Done"><i
+                                                                    class="fas fa-check text-success me-3"></i></button>
+                                                        </form>
+                                                        <form method="POST">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="id" value="{{ item.id }}">
+                                                            <button type='submit' name="close-item-btn"
+                                                                    data-mdb-toggle="tooltip" class="icon-btn-request"
+                                                                    title="Remove">
+                                                                <i class="fas fa-trash-alt text-danger"></i>
+                                                            </button>
+                                                        </form>
+                                                        <form method="POST">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="id" value="{{ item.id }}">
+                                                            <button type='submit' name='download-item-btn'
+                                                                    data-mdb-toggle="tooltip" class="icon-btn-request"
+                                                                    title="Download files">
+                                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                                            </button>
+                                                        </form>
+                                                        <button data-mdb-toggle="tooltip" class="icon-btn-request"
+                                                                id="show-add-info-item"
+                                                                title="Show more info"><i class="fa fa-info"
+                                                                                          aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle hidding-more-information">
+                                                    <span>{{ item.description }}</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        {% endfor %}
+                                    </table>
+
+                                </div>
+                                <div class="card-footer text-end p-3">
+                                    <button class="me-2 btn btn-show-todolist ">Cancel</button>
+                                    <button class="btn"><a href="{% url 'events:show_task' %}">Add Task</a></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container hidden-registration-form-organizate">
+                <div>
+                    <h2>Оформление заявки</h2>
+                    <h6>Оформите заявку на статус организации за 5 минут</h6>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label>
+                        Почта
+                    </label>
+                    <input type="email" name="reg_org_person_email" class="">
+
+                    <label>
+                        Телефон
+                    </label>
+                    <input type="text" name="reg_org_person_phone" class="">
+
+                    <label>
+                        Название организации
+                    </label>
+                    <input type="text" name="reg_org_name" class="">
+
+                    <label>
+                        Адрес организации
+                    </label>
+                    <input type="text" name="reg_org_address" class="">
+
+                    <label>
+                        Выберите тип организации
+                    </label>
+                    <select id="inputState" class="form-control" name="reg_org_type">
+                        <option selected>Новостная</option>
+                        <option>Многостороняя</option>
+                    </select>
+
+                    <label>
+                        Логотип организации
+                    </label>
+                    <input type="file" name="reg_org_logo" class="">
+
+                    <label>
+                        Описание организации
+                    </label>
+                    <textarea name="reg_org_description" class=""></textarea>
+
+                    <button class="btn-dark" type="submit" name="request_org">Подать заявку</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Start -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Get in Touch</h3>
+                    <div class="contact-info">
+                        <p><i class="fa fa-map-marker"></i>Пр.Энгельса 23</p>
+                        <p><i class="fa fa-envelope"></i>gavrin.01@bk.ru</p>
+                        <p><i class="fa fa-phone"></i>+8(981)157-41-85</p>
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Useful Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Newsletter</h3>
+                    <div class="newsletter">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class
+                            aptent taciti sociosqu
+                        </p>
+                        <form>
+                            <input class="form-control" type="email" placeholder="Your email here">
+                            <button class="btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Footer Menu Start -->
+<div class="footer-menu">
+    <div class="container">
+        <div class="f-menu">
+            <a href="">Terms of use</a>
+            <a href="">Privacy policy</a>
+            <a href="">Cookies</a>
+            <a href="">Accessibility help</a>
+            <a href="">Advertise with us</a>
+            <a href="">Contact us</a>
+        </div>
+    </div>
+</div>
+<!-- Footer Menu End -->
+
+<!-- Footer Bottom Start -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>Copyright &copy; <a href="{% url 'index' %}">Laboratory Inc</a>. All Rights Reserved</p>
+            </div>
+
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <div class="col-md-6 template-by">
+                <p>Designed By <a href="#">Andrey Gavrin</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Bottom End -->
+
+{% block extrahead %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+{% endblock extrahead %}
+<script src="{% static 'assets/js/index.js' %}?{% now "U" %}'"></script>
+<script src={% static 'assets/js/lk.js' %}?{% now "U" %}'"></script>
+</body>
+</html>

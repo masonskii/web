@@ -8,9 +8,18 @@
     <title>Bank</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick.css ' %}" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
     <link rel="stylesheet" href='{% static '/css/credit.css' %}?{% now "U" %}' type="text/css"/>
-    <link rel="stylesheet" href='{% static '/css/head.css' %}?{% now "U" %}' type="text/css">
     <link rel="stylesheet" href='{% static '/css/index_menu.css' %}?{% now "U" %}' type="text/css">
 </head>
 <body>
@@ -213,7 +222,7 @@
                                                        value="{{ tr.senderId.name }}"/>
                                                 <input type="text" class='sender__surname__ext'
                                                        name="sender_surname"
-                                                       value="{{ tr.senderId.surname}}"/>
+                                                       value="{{ tr.senderId.surname }}"/>
                                             </div>
                                             <div class="td__tr__ext">
                                                 <label class="recipient__ext">Кому:</label>
@@ -246,7 +255,6 @@
         </section>
 
     </div>
-    </p>
 </div>
 <div>
     {% if not user.is_authenticated %}
@@ -261,12 +269,125 @@
         </div>
     {% endif %}
 </div>
+{% if return == True %}
+    <div id="not-email-pabel">
+        <div id="window-not-email">
+            <h1>Перевод успешно выполнен</h1>
+            <button class="raise" href="#" id="btnClose">Окей</button>
+        </div>
+        <div class="bg"></div>
+    </div>
+{% elif return == False %}
+    <div id="not-email-pabel">
+        <div id="window-not-email">
+            <h1>Выполнить перевод не удалось</h1>
+            <button class="raise" href="#" id="btnClose">Как жаль</button>
+        </div>
+        <div class="bg"></div>
+    </div>
+{% endif %}
+<!-- Footer Start -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Get in Touch</h3>
+                    <div class="contact-info">
+                        <p><i class="fa fa-map-marker"></i>Пр.Энгельса 23</p>
+                        <p><i class="fa fa-envelope"></i>gavrin.01@bk.ru</p>
+                        <p><i class="fa fa-phone"></i>+8(981)157-41-85</p>
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<script>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Useful Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
 
-</script>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Newsletter</h3>
+                    <div class="newsletter">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui.
+                            Class
+                            aptent taciti sociosqu
+                        </p>
+                        <form>
+                            <input class="form-control" type="email" placeholder="Your email here">
+                            <button class="btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Footer Menu Start -->
+<div class="footer-menu">
+    <div class="container">
+        <div class="f-menu">
+            <a href="">Terms of use</a>
+            <a href="">Privacy policy</a>
+            <a href="">Cookies</a>
+            <a href="">Accessibility help</a>
+            <a href="">Advertise with us</a>
+            <a href="">Contact us</a>
+        </div>
+    </div>
+</div>
+<!-- Footer Menu End -->
+
+<!-- Footer Bottom Start -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>Copyright &copy; <a href="{% url 'index' %}">Laboratory Inc</a>. All Rights Reserved</p>
+            </div>
+
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <div class="col-md-6 template-by">
+                <p>Designed By <a href="#">Andrey Gavrin</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Bottom End -->
+
 </body>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
 <script src={% static 'assets/js/person-credit.js' %}></script>

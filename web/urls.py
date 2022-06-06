@@ -30,9 +30,11 @@ urlpatterns = [
                   path('', index, name='index'),
                   path('creating_news/', create_news, name='createdNews'),
                   path('news/', show_news, name='show_news'),
-                  path('creating_task/', created_task, name='createdTask'),
+                  path('ev/', include('event.ursl')),
+                  path('bb/', include('machine.urls')),
                   path('rq%org/', include('my_pull_request.urls')),
-                  path('marketplace/', include('market.urls'))
+                  path('marketplace/', include('market.urls')),
+                  re_path('^', include('django.contrib.auth.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # В конце файла:

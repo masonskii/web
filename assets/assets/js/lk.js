@@ -133,3 +133,62 @@ $(function () {
         }
     });
 })
+$(function () {
+    $("#show-req-event").on("click", function () {
+        if ($("#show-req-event").hasClass('checked')) {
+            $(".table-event").css('display', 'none')
+            $("#show-req-event").removeClass('checked')
+
+        } else {
+            $(".table-event").css('display', 'flex')
+            $("#show-req-event").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $("#show-add-info-item").on("click", function () {
+        if ($("#show-add-info-item").hasClass('checked')) {
+            $(".hidding-more-information").css('display', 'none')
+            $("#show-add-info-item").removeClass('checked')
+
+        } else {
+            $(".hidding-more-information").css('display', 'flex')
+            $("#show-add-info-item").addClass('checked')
+        }
+    });
+})
+$(function () {
+    $(".btn-show-todolist").on("click", function () {
+        if ($(".btn-show-todolist").hasClass('checked')) {
+            $(".card-body").css('display', 'none')
+            $(".card-footer").css('display', 'none')
+            $(".btn-show-todolist").removeClass('checked')
+
+        } else {
+            $(".card-body").css('display', 'block')
+            $(".card-footer").css('display', 'block')
+            $(".btn-show-todolist").addClass('checked')
+        }
+    });
+})
+$("[data-scroll]").on('click', function (event) {
+    event.preventDefault();
+
+    var $this = $(this),
+        blocktId = $(this).data('scroll'),
+        blockOfset = $(blocktId).offset().top;
+
+    $('nav a').removeClass('active');
+    $this.addClass('active');
+
+    $("html , body").animate({
+        scrollTop: blockOfset
+    }, 500);
+
+
+});
+$(function () {
+    $("#btnClose").on("click", function () {
+        $("#not-email-pabel").css('display', 'none')
+    });
+})

@@ -16,41 +16,47 @@
     <div class="logo">login</div>
     <!-- Main Form -->
     <div class="login-form-1">
-        <form id="login-form" class="text-left" method="POST">
+        <form id="login-form" class="text-left">
             {% csrf_token %}
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="lg_username" name="login"
-                               placeholder="username">
+                        <input type="text" class="form-control" id="lg_username" name="login" min="3"
+                               placeholder="username" required>
+                        <p id="ErrorMsg1" style="display: none"></p>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="lg_password" name="password"
-                               placeholder="password">
+                        <input type="password" class="form-control" id="lg_password" name="password" min="3"
+                               placeholder="password" required>
+                        <p id="ErrorMsg2" style="display: none"></p>
                     </div>
                     <div class="form-group login-group-checkbox">
-                        <input type="checkbox" id="lg_remember" name="lg_remember">
+                        <input type="checkbox" id="lg_remember" name="lg_remember" required>
                         <label for="lg_remember">remember</label>
+                        <p id="ErrorMsg3" style="display: none"></p>
                     </div>
                 </div>
-                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                <button type="submit" class="login-button" id="Submit"><i class="fa fa-chevron-right"></i>
+                </button>
             </div>
             <div class="etc-login-form">
-                <p>forgot your password? <a href="#">click here</a></p>
-                <p>new user? <a href="#">create new account</a></p>
+                <p>forgot your password? <a href="{% url "login:password_reset" %}">click here</a></p>
+                <p>new user? <a href="{% url 'login:presing' %}">create new account</a></p>
             </div>
         </form>
     </div>
-    <!-- end:Main Form -->
 </div>
 </body>
-{% block extrahead %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
-{% endblock extrahead %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
 <script src="{% static 'assets/js/login.js' %}"></script>
 </html>

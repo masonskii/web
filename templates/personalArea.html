@@ -7,9 +7,15 @@
     <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href='{% static '/css/index_menu.css' %}?{% now "U" %}' type="text/css">
     <link rel="stylesheet" href='{% static '/css/lk.css' %}?{% now "U" %}' type="text/css">
@@ -29,15 +35,34 @@
                     class="fa fa-home" aria-hidden="true"></i>Главная</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#"><i
                     class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'events:show_task' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Задачи</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'events:show_event' %}"><i
                     class="fa fa-calendar" aria-hidden="true"></i>Мероприятия</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3"
                href="{% url 'bank:transfer' %}"><i class="fa fa-university" aria-hidden="true"></i>Банк</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'market:sell' %}"><i
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'market:sell' %}"><i
                     class="fa fa-shopping-cart" aria-hidden="true"></i>Маркет</a>
-            <div>
-            </div>
-
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'booking-machine:sb' %}"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i>Бронирование</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'login:myevents' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мои мероприятия</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'login:todolist' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мои задачи</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'login:todolist' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мои брони</a>
+            {% if person.is_staff %}
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                   href="{% url 'login:history_req' %}"><i
+                        class="fa fa-calendar" aria-hidden="true"></i>История заявок организатора</a>
+            {% endif %}
         </div>
     </div>
     <!-- Page content wrapper-->
@@ -70,11 +95,15 @@
                                    data-bs-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">{{ user.name }} {{ user.surname }}</a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">{{ Profile }}</a>
+                                    <a class="dropdown-item" href="{% url 'login:user-area' %}">Профиль</a>
                                     {% if user.is_organizate %}
                                         <a class="dropdown-item" href="{% url 'createdNews' %}">Создать новость</a>
-                                        <a class="dropdown-item" href="#!">Создать мероприятие</a>
-                                        <a class="dropdown-item" href="{% url 'createdTask' %}">Создать задачу</a>
+                                        <a class="dropdown-item" href="{% url 'events:create_event' %}">Создать
+                                            мероприятие</a>
+                                        <a class="dropdown-item" href="{% url 'events:create_task' %}">Создать
+                                            задачу</a>
+                                        <a class="dropdown-item"
+                                           href="{% url 'booking-machine:cm' %}">Добавить оборудование в бд</a>
                                     {% else %}
                                         <a class="dropdown-item" href="#!">Подать заявку на организатора</a>
                                     {% endif %}
@@ -210,14 +239,61 @@
                                 </div>
                             </div>
                         {% endif %}
+                        {% if person.is_organizate %}
+                            {% if not person.organizated.name %}
+                                <div class="container-sm adding-info">
+                                    <button class="btn-dark btn-edit" id="btn-open-edit-box-9">Добавить информациб об
+                                        организации
+                                    </button>
+                                    <div class="container hidden-adding-info-block-9">
+                                        <form method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <label>
+                                                Название организации
+                                            </label>
+                                            <input type="text" name="reg_org_name" class="">
+
+                                            <label>
+                                                Адрес организации
+                                            </label>
+                                            <input type="text" name="reg_org_address" class="">
+
+                                            <label>
+                                                Выберите тип организации
+                                            </label>
+                                            <select id="inputState" class="form-control" name="reg_org_type">
+                                                <option selected>Новостная</option>
+                                                <option>Многостороняя</option>
+                                            </select>
+
+                                            <label>
+                                                Логотип организации
+                                            </label>
+                                            <input type="file" name="reg_org_logo" class="">
+
+                                            <label>
+                                                Описание организации
+                                            </label>
+                                            <textarea name="reg_org_description" class=""></textarea>
+                                            <button type="submit" class="btn" name="added_info_org">Добавить</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
                     </div>
                     <div class="container info-container">
+                        <h6><span class="text-md-center align-bottom">{{ person.get_online_info }}</span></h6>
                         <h3 class="pninfo"> {{ person.name }} {{ person.surname }}</h3>
                         <div class="panel">
                             <div class="registration-info-user">
                                 <h4>Логин</h4><h6>{{ person.username }}</h6>
                                 <h4>Почта</h4><h6>{{ person.email }}</h6>
                                 <h4>Телефон</h4><h6>{{ person.phone }}</h6>
+                                {% if person.is_organizate %}
+                                    <h4>Название организации</h4><h6>{{ person.organizated.name }}</h6>
+                                    <h4>Описание организации</h4><h6>{{ person.organizated.description }}</h6>
+                                {% endif %}
                             </div>
                             <button class="btn-dark btn-open-info" id="check-btn">Показать подробную информацию</button>
                             <div class="container-lg secret-panel" id="hidden-panel">
@@ -227,74 +303,196 @@
                                 <h4>Адрес</h4><h6>{{ person.address }}</h6>
                                 <h4>Баланс</h4><h6>{{ person.balance }}</h6>
                                 <h4>Роль</h4><h6>{{ person.role.role }}</h6>
-                                <h4>Номер карты</h4><h6>{{ person.card.number }}</h6>
-                                <h4>Код</h4><h6>{{ person.card.secret_code }}</h6>
+                                <h4>Специализация</h4><h6>{{ person.specialization }}</h6>
+                                <h4>Скиллы</h4>
+                                <h6 class="skill-block">{{ person.skills }}</h6>
+                                {% if person.is_organizate %}
+                                    <h4>Адрес организации</h4><h6>{{ person.organizated.address_org }}</h6>
+                                    <h4>Тип организации</h4><h6>{{ person.organizated.type }}</h6>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="container-md">
-                    {% if person.is_staff %}
-                        <div class="container success-block-req-org">
-                            <div class="list-request-box">
-                                <button class="btn-dark" id="show-req-org">История Заявок на рассмотрении</button>
-                                <div class="container table-org">
-                                    {% if form.count > 0 %}
-                                        {% if not form.is_pull %}
-                                            <table class="table_blur">
-                                                <thead>
-                                                <tr>
-                                                    <th>Logo</th>
-                                                    <th>Name</th>
-                                                    <th>Address</th>
-                                                    <th>description</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                {% for person in form %}
-                                                    <tr>
-                                                        <td><img class="img-org" src="{{ person.logo_org.url }}"
-                                                                 alt="logo"></td>
-                                                        <td>{{ person.name_org }}</td>
-                                                        <td>{{ person.country }}</td>
-                                                        <td>{{ person.address }}</td>
-                                                        <td>{{ person.description }}</td>
-                                                        <td>{{ person.date_created_request }}</td>
-                                                        <td>
-                                                            <form method="POST">
-                                                                {% csrf_token %}
-                                                                <input style="visibility: hidden"
-                                                                       value="{{ person.id }}"
-                                                                       name="id_req">
-                                                                <input type="submit" name="succ_req" value="Принять">
-                                                            </form>
-                                                        </td>
-                                                        <td>
-                                                            <form method="POST">
-                                                                {% csrf_token %}
-                                                                <input style="visibility: hidden"
-                                                                       value="{{ person.id }}"
-                                                                       name="id_req">
-                                                                <input type="submit" name="not_succ_req"
-                                                                       value="Отклонить">
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        {% endif %}
-                                    {% endif %}
+                    <div class="cntr2">
+                        <h3 class="zpsx1">Записи</h3>
+                        {% for item in list %}
+                            <div class="container comment-container-list">
+                                <a href="{% url 'login:another-user' item.sender.person_id %}">
+                                    <div class="sender-comm">
+                                        <div class="block-sender-img">
+                                            <img class='sender-img'
+                                                 src="{{ item.sender.logo.url }}"
+                                                 alt="...">
+                                        </div>
+                                        <h2>{{ item.sender.name }} {{ item.sender.surname }}</h2>
+                                    </div>
+                                </a>
+                                <div class="block-comm">
+                                    <div class="comment">
+                                        <h3>{{ item.description }}</h3>
+                                    </div>
                                 </div>
+                                <h4>{{ item.date_created }}</h4>
+
                             </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="container hidden-registration-form-organizate">
+                <div>
+                    <h2>Оформление заявки</h2>
+                    <h6>Оформите заявку на статус организации за 5 минут</h6>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label>
+                        Почта
+                    </label>
+                    <input type="email" name="reg_org_person_email" class="">
+
+                    <label>
+                        Телефон
+                    </label>
+                    <input type="text" name="reg_org_person_phone" class="">
+
+                    <label>
+                        Название организации
+                    </label>
+                    <input type="text" name="reg_org_name" class="">
+
+                    <label>
+                        Адрес организации
+                    </label>
+                    <input type="text" name="reg_org_address" class="">
+
+                    <label>
+                        Выберите тип организации
+                    </label>
+                    <select id="inputState" class="form-control" name="reg_org_type">
+                        <option selected>Новостная</option>
+                        <option>Многостороняя</option>
+                    </select>
+
+                    <label>
+                        Логотип организации
+                    </label>
+                    <input type="file" name="reg_org_logo" class="">
+
+                    <label>
+                        Описание организации
+                    </label>
+                    <textarea name="reg_org_description" class=""></textarea>
+
+                    <button class="btn-dark" type="submit" name="request_org">Подать заявку</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Start -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Get in Touch</h3>
+                    <div class="contact-info">
+                        <p><i class="fa fa-map-marker"></i>Пр.Энгельса 23</p>
+                        <p><i class="fa fa-envelope"></i>gavrin.01@bk.ru</p>
+                        <p><i class="fa fa-phone"></i>+8(981)157-41-85</p>
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
                         </div>
-                    {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Useful Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Newsletter</h3>
+                    <div class="newsletter">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class
+                            aptent taciti sociosqu
+                        </p>
+                        <form>
+                            <input class="form-control" type="email" placeholder="Your email here">
+                            <button class="btn">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Footer End -->
+
+<!-- Footer Menu Start -->
+<div class="footer-menu">
+    <div class="container">
+        <div class="f-menu">
+            <a href="">Terms of use</a>
+            <a href="">Privacy policy</a>
+            <a href="">Cookies</a>
+            <a href="">Accessibility help</a>
+            <a href="">Advertise with us</a>
+            <a href="">Contact us</a>
+        </div>
+    </div>
+</div>
+<!-- Footer Menu End -->
+
+<!-- Footer Bottom Start -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>Copyright &copy; <a href="{% url 'index' %}">Laboratory Inc</a>. All Rights Reserved</p>
+            </div>
+
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <div class="col-md-6 template-by">
+                <p>Designed By <a href="#">Andrey Gavrin</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Bottom End -->
+
 {% block extrahead %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

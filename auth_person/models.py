@@ -1,10 +1,16 @@
+import datetime
+from datetime import timezone
+
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.base_user import BaseUserManager
-from django.utils.translation import ugettext_lazy as _
+from django.http import HttpResponse
+
+now = datetime.datetime.now(timezone.utc)
 
 
 class UserManager(BaseUserManager):
@@ -83,6 +89,14 @@ class PersonCard(models.Model):
     secret_code = models.CharField(max_length=3)
 
 
+class Organization(models.Model):
+    name = models.CharField(max_length=99, null=False, blank=False)
+    type = models.CharField(max_length=99, null=False, blank=False)
+    description = models.CharField(max_length=999, null=False, blank=False)
+    logo = models.ImageField(upload_to='files/image/org_logo/%Y-%m-%d/', null=True, blank=True)
+    address_org = models.CharField(max_length=199, null=False, blank=False)
+
+
 class Person(AbstractBaseUser, PermissionsMixin):
     """
     Model table Person in project db, central table on project
@@ -113,6 +127,7 @@ class Person(AbstractBaseUser, PermissionsMixin):
         blank=True
     )
     sex = models.CharField(max_length=1, choices=sex_choice)
+    skills = models.CharField(max_length=999, null=True, blank=True)
     surname = models.CharField(
         max_length=99,
         null=True,
@@ -143,11 +158,19 @@ class Person(AbstractBaseUser, PermissionsMixin):
         on_delete=models.CASCADE,
         related_name='toCardFromUser'
     )
+    specialization = models.CharField(max_length=999)
     balance = models.DecimalField(max_digits=19, decimal_places=10)
     registrationDate = models.DateTimeField(auto_now=True)
     lastEntrance = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_organizate = models.BooleanField(default=False)
+    last_online = models.DateTimeField(blank=True, null=True)
+    organizated = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        default=0
+    )
     country = models.CharField(max_length=99)
     address = models.CharField(max_length=999)
     translate = models.IntegerField(default=0)
@@ -166,20 +189,55 @@ class Person(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.email
 
+    def sell(self, summary):
+        try:
+            if not self.check_balance():
+                return False
+            if self.balance < summary:
+                return False
+            if type(summary) is not int():
+                return False
+            return True
+        except Exception:
+            raise Exception
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def check_balance(self):
         return self.balance == 0
 
+    # In this method, check that the date of the last visit is not older than 15 minutes
+    def is_online(self):
+        if self.last_online:
+            return (datetime.datetime.now(timezone.utc) - self.last_online) < datetime.timedelta(minutes=15)
+        return False
 
-class Organization(models.Model):
-    name = models.CharField(max_length=99, null=False, blank=False)
-    type = models.CharField(max_length=99, null=False, blank=False)
-    description = models.CharField(max_length=999, null=False, blank=False)
-    logo = models.ImageField(upload_to='files/image/org_logo/%Y-%m-%d/', null=True, blank=True)
-    address = models.CharField(max_length=199, null=False, blank=False)
-    user = models.ForeignKey(Person, on_delete=models.CASCADE)
+    # If the user visited the site no more than 15 minutes ago,
+    def get_online_info(self):
+        if self.is_online():
+            # then we return information that he is online
+            return 'Online'
+        if self.last_online:
+            # otherwise we write a message about the last visit
+            return ('Last visit {}').format(naturaltime(self.last_online))
+            # If you have only recently added information about a user visiting the site
+            # then for some users there may not be any information about the visit, we will return information that the last visit is unknown
+        return 'Unknown'
+
+
+class Comm(models.Model):
+    sender = models.ForeignKey(
+        Person,
+        on_delete=models.CASCADE,
+        related_name='senderComm'
+    )
+    recipient = models.ForeignKey(
+        Person,
+        on_delete=models.CASCADE,
+        related_name='recipientComm'
+    )
+    description = models.CharField(max_length=999)
+    date_created = models.DateTimeField(auto_now=True)
 
 
 class Department(models.Model):
@@ -195,45 +253,6 @@ class Department(models.Model):
      """
     departmen_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, null=False)
-
-
-class Specialization(models.Model):
-    """
-     Model table Specialization in project db
-         Example:
-     SET:
-         var = Specialization(request.POST)
-         var.save()
-     ----------------------------
-     GET:
-         var = Specialization.objects.get(id = object)
-     """
-    specialization_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=20, null=False)
-
-
-class PersonSpecs(models.Model):
-    """
-     Model table PersonSpecs in project db
-         Example:
-     SET:
-         var = PersonSpecs(request.POST)
-         var.save()
-     ----------------------------
-     GET:
-         var = PersonSpecs.objects.get(id = object)
-     """
-    personSpecs_id = models.AutoField(primary_key=True)
-    SpecId = models.ForeignKey(
-        Specialization,
-        on_delete=models.CASCADE,
-        related_name='PersonSpecsSpecId'
-    )
-    PersonId = models.ForeignKey(
-        Person,
-        on_delete=models.CASCADE,
-        related_name='PersonSpecsPersonId'
-    )
 
 
 class Membership(models.Model):

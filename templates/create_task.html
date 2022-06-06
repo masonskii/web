@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Создаем нечто новое...</title>
     <link rel="stylesheet" href='{% static '/css/crtdnews.css' %}?{% now "U" %}' type="text/css">
 </head>
 <body>
@@ -31,6 +31,16 @@
                 <input name="payment" type="number"
                        class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="payment"
                        id="name"/>
+            </p>
+            <p class="name">
+                <select name="priority"
+                        class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                        id="name">
+                <option selected>Sandbox</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                </select>
             </p>
             <p class="name">
                 <input name="file" type="file" class="feedback-input" placeholder="payment" id="name"/>

@@ -36,7 +36,7 @@ class Transfer(models.Model):
             raise ValueError('person.balance - self.amout  < 0')
         self.person.balance = self.person.balance - self.amout
         self.rec_pers.balance = self.rec_pers.balance + self.amout
-        self.person.save()
-        self.rec_pers.save()
+        self.person.save(update_fields=['balance'])
+        self.rec_pers.save(update_fields=['balance'])
         return True
 

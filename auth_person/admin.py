@@ -4,6 +4,4 @@ from .models import *
 admin.site.register(Person)
 admin.site.register(Role)
 admin.site.register(Department)
-admin.site.register(Specialization)
-admin.site.register(PersonSpecs)
 admin.site.register(Membership)

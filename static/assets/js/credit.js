@@ -147,4 +147,9 @@ $(function(){
 
 
         });
-});;
+});
+$(function () {
+    $("#btnClose").on("click", function () {
+            $("#not-email-pabel").css('display', 'none')
+    });
+})

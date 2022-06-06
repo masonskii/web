@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href='{% static '/css/index_menu.css' %}?{% now "U" %}' type="text/css">
+    <link rel="stylesheet" href='{% static '/css/lk.css' %}?{% now "U" %}' type="text/css">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">Лаборатория Inc</div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}"><i
+                    class="fa fa-home" aria-hidden="true"></i>Главная</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#"><i
+                    class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'events:show_event' %}"><i
+                    class="fa fa-calendar" aria-hidden="true"></i>Мероприятия</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'bank:transfer' %}"><i class="fa fa-university" aria-hidden="true"></i>Банк</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3"
+               href="{% url 'market:sell' %}"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i>Маркет</a>
+            <div>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                   href="{% url 'booking-machine:sb' %}"><i
+                        class="fa fa-shopping-cart" aria-hidden="true"></i>Бронирование</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle"><i class="fa fa-bars" aria-hidden="true"></i>Меню
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="#!"><i class="fa fa-bell"
+                                                                                     aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!"><i class="fa fa-comment"
+                                                                              aria-hidden="true"></i></a></li>
+                        {% if not user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login:sign-in' %}"><i
+                                    class="fa fa-sign-in" aria-hidden="true"></i>Вход</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login:presing' %}"><i
+                                    class="fa fa-user-plus" aria-hidden="true"></i>Регистрация</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">{{ user.name }} {{ user.surname }}</a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'login:user-area' %}">Профиль</a>
+                                    {% if user.is_organizate %}
+                                        <a class="dropdown-item" href="{% url 'createdNews' %}">Создать новость</a>
+                                        <a class="dropdown-item" href="#!">Создать мероприятие</a>
+                                        <a class="dropdown-item" href="{% url 'events:create_task' %}">Создать
+                                            задачу</a>
+                                        <a class="dropdown-item"
+                                           href="{% url 'booking-machine:cm' %}">Добавить оборудование в бд</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="#!">Подать заявку на организатора</a>
+                                    {% endif %}
+                                    <a class="dropdown-item" href="{% url 'login:subsign' %}">О себе</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'login:logout' %}">Выход</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid">
+            <div class="container cont">
+                <div class="container-md">
+                    <div class="container logo-container">
+                        <div class="container-sm">
+                            {% if person.logo %}
+                                <img class='avatar-user' src='{{ person.logo.url }}' alt="your logo">
+                            {% else %}
+                                <img class='avatar-user' src='{% static 'default_img/noavatar.png' %}' alt="your logo">
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class="container info-container">
+                        <h6><span class="text-md-center align-bottom">{{ person.get_online_info }}</span></h6>
+                        <h3 class="pninfo"> {{ person.name }} {{ person.surname }}</h3>
+                        <div class="panel">
+                            <div class="registration-info-user">
+                                <h4>Почта</h4><h6>{{ person.email }}</h6>
+                                <h4>Телефон</h4><h6>{{ person.phone }}</h6>
+                                {% if person.is_organizate %}
+                                    <h4>Название организации</h4><h6>{{ person.organizated.name }}</h6>
+                                    <h4>Описание организации</h4><h6>{{ person.organizated.description }}</h6>
+                                {% endif %}
+                            </div>
+                            <button class="btn-dark btn-open-info" id="check-btn">Показать подробную информацию</button>
+                            <div class="container-lg secret-panel" id="hidden-panel">
+                                <h4>День рождения</h4><h6>{{ person.birthday }}</h6>
+                                <h4>Пол</h4><h6>{{ person.sex }}</h6>
+                                <h4>Страна</h4><h6>{{ person.country }}</h6>
+                                <h4>Адрес</h4><h6>{{ person.address }}</h6>
+                                {% if person.is_organizate %}
+                                    <h4>Адрес организации</h4><h6>{{ person.organizated.address }}</h6>
+                                    <h4>Тип организации</h4><h6>{{ person.organizated.type }}</h6>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-md">
+                    <div class="container comment-container">
+                        <h3>Оставить запись</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="input-comm">
+                                <input type="text" name="comment">
+                            </div>
+                            <button class="btn-dark" name="send_comm">Написать</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container-md cntr">
+                    <div class="cntr2">
+                        <h3 class="zpsx1">Записи</h3>
+                        {% for item in list %}
+                            <div class="container comment-container-list">
+
+
+                                <div class="sender-comm">
+                                    <div class="block-sender-img">
+                                        <img class='sender-img' src="{{ item.sender.logo.url }}" alt="...">
+                                    </div>
+                                    <h2>{{ item.sender.name }} {{ item.sender.surname }}</h2>
+                                </div>
+                                <div class="block-comm">
+                                    <div class="comment">
+                                        <h3>{{ item.description }}</h3>
+                                    </div>
+                                </div>
+                                <h4>{{ item.date_created }}</h4>
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Start -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Get in Touch</h3>
+                    <div class="contact-info">
+                        <p><i class="fa fa-map-marker"></i>Пр.Энгельса 23</p>
+                        <p><i class="fa fa-envelope"></i>gavrin.01@bk.ru</p>
+                        <p><i class="fa fa-phone"></i>+8(981)157-41-85</p>
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Useful Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum</a></li>
+                        <li><a href="#">Pellentesque</a></li>
+                        <li><a href="#">Aenean vulputate</a></li>
+                        <li><a href="#">Vestibulum sit amet</a></li>
+                        <li><a href="#">Nam dignissim</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget">
+                    <h3 class="title">Newsletter</h3>
+                    <div class="newsletter">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class
+                            aptent taciti sociosqu
+                        </p>
+                        <form>
+                            <input class="form-control" type="email" placeholder="Your email here">
+                            <button class="btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Footer Menu Start -->
+<div class="footer-menu">
+    <div class="container">
+        <div class="f-menu">
+            <a href="">Terms of use</a>
+            <a href="">Privacy policy</a>
+            <a href="">Cookies</a>
+            <a href="">Accessibility help</a>
+            <a href="">Advertise with us</a>
+            <a href="">Contact us</a>
+        </div>
+    </div>
+</div>
+<!-- Footer Menu End -->
+
+<!-- Footer Bottom Start -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 copyright">
+                <p>Copyright &copy; <a href="{% url 'index' %}">Laboratory Inc</a>. All Rights Reserved</p>
+            </div>
+
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <div class="col-md-6 template-by">
+                <p>Designed By <a href="#">Andrey Gavrin</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Bottom End -->
+
+{% block extrahead %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+{% endblock extrahead %}
+<script src="{% static 'assets/js/index.js' %}?{% now "U" %}'"></script>
+<script src={% static 'assets/js/lk.js' %}?{% now "U" %}'"></script>
+</body>
+</html>

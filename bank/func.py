@@ -19,8 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 def search_person(number_card):
     card = PersonCard.objects.get(number=number_card)
     user = Person.objects.get(card=card.card_id)
-    if not user is None:
+    if not user:
+        return None
+    else:
         return user
+
 
 
 def sender(request_user):
