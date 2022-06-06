@@ -178,7 +178,7 @@
                             </div>
                         </div>
 
-                        <form method="POST" id="form-buy" style="display: none">
+                        <form method='POST' id="form-buy" style="display: none">
                             {% csrf_token %}
                             <input type="hidden" name="id" value="{{ product.id }}">
                             <div class="text-center">

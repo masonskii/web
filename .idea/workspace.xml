@@ -2,91 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ca0899e-ac82-4f23-b42c-62acf66540f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/assets/js/event.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/assets/js/market.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/event.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth_person/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/event/ursl.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/machine/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/default_img/en_flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/default_img/ru_flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/another_lk.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bookingMachine.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/create_events.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/create_machine.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password_reset_complete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password_reset_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password_reset_email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/task.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/template_lk_history_request_org.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/template_lk_my_events.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/template_lk_todolist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/js/credit.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/credit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/js/lk.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/lk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/js/person-credit.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/person-credit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/credit.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/credit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/index_menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/index_menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/lk.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/lk.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/login_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/login_css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/market.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/market.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/reg_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/reg_css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/translate/eng.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/translate/eng.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/translate/rus.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/translate/rus.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth_person/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth_person/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth_person/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets/js/market.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/js/market.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth_person/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth_person/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_person/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bank/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/bank/func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bank/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bank/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bank/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bank/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bank/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bank/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/credit.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/credit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/credit.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/credit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/head.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/head.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/index_menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/index_menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/login_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/login_css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/reg_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/reg_css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create_news.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/error_transaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/password_reset_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/market.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/market.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/personalArea.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/personalArea.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/result_transaction.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/subsign.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/subsign.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/transfer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/transfer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,6 +76,9 @@
       <workItem from="1654430166057" duration="209000" />
       <workItem from="1654430712843" duration="650000" />
       <workItem from="1654447063187" duration="3653000" />
+      <workItem from="1654475493889" duration="778000" />
+      <workItem from="1654477598426" duration="2896000" />
+      <workItem from="1654554751825" duration="594000" />
     </task>
     <servers />
   </component>
@@ -168,5 +95,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

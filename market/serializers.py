@@ -8,6 +8,8 @@ class ProductSerializer(serializers.Serializer):
     price = serializers.DecimalField(max_digits=19, decimal_places=2)
     count = serializers.IntegerField()
 
+class BuySerializer(serializers.Serializer):
+    summary = serializers.IntegerField()
 
 class ErrorMessage(serializers.Serializer):
     status = serializers.CharField(max_length=99)

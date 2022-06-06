@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, 
 from django.urls import path, re_path, include
 
 from auth_person.views import sign_up, is_sign, sign_in, logout_view, subsign, go_to_user, show_my_tasks, \
-    show_my_events, show_history_request, SignInView
+    show_my_events, show_history_request
 
 app_name = 'login'
 """urlpatterns = [
@@ -22,7 +22,7 @@ urlpatterns = [
     path('template/todolist/', show_my_tasks, name='todolist'),
     path('template/myevents/', show_my_events, name='myevents'),
     path('template/history_request/', show_history_request, name='history_req'),
-    re_path(r'^personApi/(?P<login>\D+)/', SignInView.as_view(), name='pApi'),
+    #re_path(r'^personApi/(?P<login>\D+)/', SignInView.as_view(), name='pApi'),
     re_path(r'^user(?P<id>\d+)/', go_to_user, name='another-user'),
 
     re_path(r'^reset-password/$', PasswordResetView.as_view(), name='password_reset'),

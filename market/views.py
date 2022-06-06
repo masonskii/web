@@ -26,6 +26,16 @@ class ProductView(APIView):
         return Response(status=status.HTTP_200_OK, data={"product": serializer.data})
 
 
+class BuyView(APIView):
+
+    @renderer_classes([JSONRenderer])
+    def get(self, request, summary):
+        user = Person.objects.get(person_id=request.user.person_id)
+        user.balance = user.balance - summary
+        user.save()
+        return Response(status=status.HTTP_200_OK, data={'success':'True'})
+
+
 """class ErrorMsgView(APIView):
     @renderer_classes([JSONRenderer])
     def get(self, request):
@@ -41,19 +51,12 @@ class ProductView(APIView):
 
 
 def sell(request):
-    if 'buy_prd-all' in request.POST:
-        user = Person.objects.get(person_id=request.user.person_id)
-        sum = decimal.Decimal(request.POST['summary'])
-        user.balance = user.balance - sum
-        user.save()
-        return redirect(reverse('market:sell'))
-    else:
-        products = Product.objects.all()
-        logo = []
-        return render(
-            request,
-            'market.html',
-            {
-                'products': products,
-            }
-        )
+    products = Product.objects.all()
+    logo = []
+    return render(
+        request,
+        'market.html',
+        {
+            'products': products,
+        }
+    )

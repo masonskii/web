@@ -55,28 +55,19 @@ function sendAjaxForm(result_form, ajax_form, id) {
 }
 
 function sendBuyForm(result_form, ajax_form) {
-    var a = document.cookie.split(';');
-    var token = ''
-    for (i = 0; i < a.length; i++) {
-        var b = a[i].split('=')
-        b[0] = b[0].replace(/\s+/g, '')
-        if (b[0] == 'csrftoken') {
-            token = b[1]
-        }
-    }
     $.ajax({
-        type: "POST", //метод отправки
+        url: `http://127.0.0.1:8000/marketplace/buy/${document.getElementById('summary-box').value}`,
+        type: "GET", //метод отправки
         dataType: "json", //формат данных
         processData: false,
         contentType: false, // Сеарилизуем объект
-        data: {csrfmiddlewaretoken: getCookie('csrftoken'), data: $('#' + ajax_form).serialize()},
         success: function (response) { //Данные отправлены успешно
             console.log(1)
-            swal("Успешно купленно!", "Покупка", "success");
+            swal("Успешно купленно!", "Покупка совершена успешно", "success");
         },
         error: function (response) { // Данные не отправлены
             console.log(response)
-            //swal(response['errMsg']['status'] + response['errMsg']['msg'] + response['errMsg']['reason'], "Вы можете попробовать еще раз!", "error");
+            swal(response['errMsg']['status'] + response['errMsg']['msg'] + response['errMsg']['reason'], "Вы можете попробовать еще раз!", "error");
         }
     });
 }
